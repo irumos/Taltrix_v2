@@ -1,0 +1,82 @@
+[
+  {
+    "id": "factorial",
+    "title": "Recursive Factorial",
+    "category": "Recursion",
+    "language": "python",
+    "fileName": "factorial.py",
+    "steps": 17
+  },
+  {
+    "id": "bubble-sort",
+    "title": "Bubble Sort",
+    "category": "Sorting",
+    "language": "python",
+    "fileName": "bubble_sort.py",
+    "steps": 18
+  },
+  {
+    "id": "binary-search",
+    "title": "Binary Search",
+    "category": "Searching",
+    "language": "python",
+    "fileName": "binary_search.py",
+    "steps": 8
+  },
+  {
+    "id": "dfs",
+    "title": "Depth First Search",
+    "category": "Graphs",
+    "language": "python",
+    "fileName": "dfs.py",
+    "steps": 18
+  },
+  {
+    "id": "bfs",
+    "title": "Breadth First Search",
+    "category": "Graphs",
+    "language": "python",
+    "fileName": "bfs.py",
+    "steps": 11
+  },
+  {
+    "id": "linked-list",
+    "title": "Linked List",
+    "category": "Data Structures",
+    "language": "python",
+    "fileName": "linked_list.py",
+    "steps": 12
+  },
+  {
+    "id": "queue",
+    "title": "Queue (FIFO)",
+    "category": "Data Structures",
+    "language": "python",
+    "fileName": "queue_demo.py",
+    "steps": 9
+  },
+  {
+    "id": "stack",
+    "title": "Stack (LIFO)",
+    "category": "Data Structures",
+    "language": "python",
+    "fileName": "stack_demo.py",
+    "steps": 7
+  },
+  {
+    "id": "tree-traversal",
+    "title": "Tree Traversal",
+    "category": "Trees",
+    "language": "python",
+    "fileName": "tree_traversal.py",
+    "steps": 9
+  },
+  {
+    "id": "runtime-error",
+    "title": "Runtime Error",
+    "category": "Diagnostics",
+    "language": "python",
+    "fileName": "runtime_error.py",
+    "steps": 7
+  }
+]

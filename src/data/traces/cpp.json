@@ -1,0 +1,352 @@
+{
+  "id": "cpp",
+  "label": "C++",
+  "monacoLanguage": "cpp",
+  "fileName": "sum.cpp",
+  "entry": "sum(4)",
+  "code": "#include <iostream>\n\nint sum(int n) {\n    if (n == 0) return 0;\n    return n + sum(n - 1);\n}\n\nint main() {\n    std::cout << \"sum(4) = \" << sum(4) << std::endl;\n}\n",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "maxDepth": 5
+  },
+  "steps": [
+    {
+      "line": 9,
+      "label": "enter main",
+      "note": "main() is the first frame on the stack.",
+      "variables": [
+        {
+          "name": "argc",
+          "type": "int",
+          "value": "1",
+          "scope": "main",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "main",
+          "line": 9,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x01",
+          "type": "function",
+          "label": "sum",
+          "value": "text segment",
+          "refs": []
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 4,
+      "label": "call sum(4)",
+      "note": "sum(4) pushes a frame with its own copy of n.",
+      "variables": [
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "sum#1",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "main",
+          "line": 9,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 4,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x01",
+          "type": "function",
+          "label": "sum",
+          "value": "text segment",
+          "refs": []
+        },
+        {
+          "id": "int@0x30",
+          "type": "int",
+          "label": "n",
+          "value": "4",
+          "refs": [
+            "fn@0x01"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 5,
+      "label": "recurse sum(3)",
+      "note": "Each recursive call copies n by value onto a fresh frame.",
+      "variables": [
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "sum#1",
+          "changed": false
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "sum#2",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "main",
+          "line": 9,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 5,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 4,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x01",
+          "type": "function",
+          "label": "sum",
+          "value": "text segment",
+          "refs": []
+        },
+        {
+          "id": "int@0x30",
+          "type": "int",
+          "label": "n",
+          "value": "4",
+          "refs": [
+            "fn@0x01"
+          ]
+        },
+        {
+          "id": "int@0x2c",
+          "type": "int",
+          "label": "n",
+          "value": "3",
+          "refs": [
+            "int@0x30"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 4,
+      "label": "base case n = 0",
+      "note": "The guard finally matches and returns 0.",
+      "variables": [
+        {
+          "name": "n",
+          "type": "int",
+          "value": "0",
+          "scope": "sum#5",
+          "changed": true
+        },
+        {
+          "name": "return",
+          "type": "int",
+          "value": "0",
+          "scope": "sum#5",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "main",
+          "line": 9,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 5,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 5,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 5,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 4,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x01",
+          "type": "function",
+          "label": "sum",
+          "value": "text segment",
+          "refs": []
+        },
+        {
+          "id": "int@0x30",
+          "type": "int",
+          "label": "n",
+          "value": "4",
+          "refs": [
+            "fn@0x01"
+          ]
+        },
+        {
+          "id": "int@0x2c",
+          "type": "int",
+          "label": "n",
+          "value": "3",
+          "refs": [
+            "int@0x30"
+          ]
+        },
+        {
+          "id": "int@0x28",
+          "type": "int",
+          "label": "n",
+          "value": "0",
+          "refs": [
+            "int@0x2c"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 5,
+      "label": "unwind to 10",
+      "note": "Frames pop in LIFO order, accumulating the sum.",
+      "variables": [
+        {
+          "name": "return",
+          "type": "int",
+          "value": "10",
+          "scope": "sum#1",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "main",
+          "line": 9,
+          "locals": {}
+        },
+        {
+          "name": "sum",
+          "line": 5,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x01",
+          "type": "function",
+          "label": "sum",
+          "value": "text segment",
+          "refs": []
+        },
+        {
+          "id": "int@0x30",
+          "type": "int",
+          "label": "n",
+          "value": "4",
+          "refs": [
+            "fn@0x01"
+          ]
+        },
+        {
+          "id": "int@0x60",
+          "type": "int",
+          "label": "acc",
+          "value": "10",
+          "refs": [
+            "int@0x30"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 9,
+      "label": "stream to stdout",
+      "note": "std::cout flushes the final value; exit code 0.",
+      "variables": [
+        {
+          "name": "result",
+          "type": "int",
+          "value": "10",
+          "scope": "main",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "main",
+          "line": 9,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x01",
+          "type": "function",
+          "label": "sum",
+          "value": "text segment",
+          "refs": []
+        },
+        {
+          "id": "int@0x60",
+          "type": "int",
+          "label": "result",
+          "value": "10",
+          "refs": [
+            "fn@0x01"
+          ]
+        },
+        {
+          "id": "str@0x70",
+          "type": "const char*",
+          "label": "literal",
+          "value": "\"sum(4) = \"",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "sum(4) = 10"
+        },
+        {
+          "stream": "stderr",
+          "text": "[taltrix] replay finished — no compiler attached"
+        }
+      ]
+    }
+  ]
+}

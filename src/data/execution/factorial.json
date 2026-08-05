@@ -1,0 +1,1418 @@
+{
+  "id": "factorial",
+  "title": "Recursive Factorial",
+  "category": "Recursion",
+  "description": "Classic recursion: each call adds a frame until the base case unwinds.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "factorial.py",
+  "entry": "factorial(4)",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "maxDepth": 5
+  },
+  "code": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\n\nresult = factorial(4)\nprint(\"factorial(4) =\", result)\n",
+  "steps": [
+    {
+      "line": 7,
+      "label": "call factorial(4)",
+      "note": "The module frame requests factorial(4). Control transfers into a new frame.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 0.82,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:result"
+      ],
+      "highlightedVariables": [
+        "global:result"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 54,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 54
+      }
+    },
+    {
+      "line": 1,
+      "label": "enter factorial(4)",
+      "note": "A new frame binds n = 4 and evaluation begins.",
+      "status": "running",
+      "currentFunction": "factorial(4)",
+      "returnValue": null,
+      "executionTimeMs": 1.68,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "factorial(4):n"
+      ],
+      "highlightedVariables": [
+        "factorial(4):n"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 1,
+          "locals": {
+            "n": "4"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 88,
+        "objects": 2,
+        "allocations": 2,
+        "peakBytes": 88
+      }
+    },
+    {
+      "line": 2,
+      "label": "guard n <= 1 is False",
+      "note": "4 > 1, so the recursive branch is taken.",
+      "status": "running",
+      "currentFunction": "factorial(4)",
+      "returnValue": null,
+      "executionTimeMs": 2.88,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 2,
+          "locals": {
+            "n": "4"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 88,
+        "objects": 2,
+        "allocations": 2,
+        "peakBytes": 88
+      }
+    },
+    {
+      "line": 4,
+      "label": "recurse factorial(3)",
+      "note": "The multiplication waits while factorial(3) is evaluated.",
+      "status": "running",
+      "currentFunction": "factorial(4)",
+      "returnValue": null,
+      "executionTimeMs": 4.14,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 88,
+        "objects": 2,
+        "allocations": 2,
+        "peakBytes": 88
+      }
+    },
+    {
+      "line": 1,
+      "label": "enter factorial(3)",
+      "note": "A new frame binds n = 3 and evaluation begins.",
+      "status": "running",
+      "currentFunction": "factorial(3)",
+      "returnValue": null,
+      "executionTimeMs": 4.62,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "factorial(3):n"
+      ],
+      "highlightedVariables": [
+        "factorial(3):n"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 1,
+          "locals": {
+            "n": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 288,
+        "heapBytes": 122,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 122
+      }
+    },
+    {
+      "line": 2,
+      "label": "guard n <= 1 is False",
+      "note": "3 > 1, so the recursive branch is taken.",
+      "status": "running",
+      "currentFunction": "factorial(3)",
+      "returnValue": null,
+      "executionTimeMs": 5.56,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 2,
+          "locals": {
+            "n": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 288,
+        "heapBytes": 122,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 122
+      }
+    },
+    {
+      "line": 4,
+      "label": "recurse factorial(2)",
+      "note": "The multiplication waits while factorial(2) is evaluated.",
+      "status": "running",
+      "currentFunction": "factorial(3)",
+      "returnValue": null,
+      "executionTimeMs": 6.13,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 4,
+          "locals": {
+            "n": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 288,
+        "heapBytes": 122,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 122
+      }
+    },
+    {
+      "line": 1,
+      "label": "enter factorial(2)",
+      "note": "A new frame binds n = 2 and evaluation begins.",
+      "status": "running",
+      "currentFunction": "factorial(2)",
+      "returnValue": null,
+      "executionTimeMs": 6.75,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "2",
+          "scope": "factorial(2)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "factorial(2):n"
+      ],
+      "highlightedVariables": [
+        "factorial(2):n"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 4,
+          "locals": {
+            "n": "3"
+          }
+        },
+        {
+          "name": "factorial(2)",
+          "line": 1,
+          "locals": {
+            "n": "2"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        },
+        {
+          "id": "int@0x42",
+          "type": "int",
+          "label": "n = 2",
+          "value": "2",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 384,
+        "heapBytes": 156,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 156
+      }
+    },
+    {
+      "line": 2,
+      "label": "guard n <= 1 is False",
+      "note": "2 > 1, so the recursive branch is taken.",
+      "status": "running",
+      "currentFunction": "factorial(2)",
+      "returnValue": null,
+      "executionTimeMs": 7.71,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "2",
+          "scope": "factorial(2)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 4,
+          "locals": {
+            "n": "3"
+          }
+        },
+        {
+          "name": "factorial(2)",
+          "line": 2,
+          "locals": {
+            "n": "2"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        },
+        {
+          "id": "int@0x42",
+          "type": "int",
+          "label": "n = 2",
+          "value": "2",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 384,
+        "heapBytes": 156,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 156
+      }
+    },
+    {
+      "line": 4,
+      "label": "recurse factorial(1)",
+      "note": "The multiplication waits while factorial(1) is evaluated.",
+      "status": "running",
+      "currentFunction": "factorial(2)",
+      "returnValue": null,
+      "executionTimeMs": 8.14,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "2",
+          "scope": "factorial(2)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 4,
+          "locals": {
+            "n": "3"
+          }
+        },
+        {
+          "name": "factorial(2)",
+          "line": 4,
+          "locals": {
+            "n": "2"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        },
+        {
+          "id": "int@0x42",
+          "type": "int",
+          "label": "n = 2",
+          "value": "2",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 384,
+        "heapBytes": 156,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 156
+      }
+    },
+    {
+      "line": 2,
+      "label": "base case reached",
+      "note": "n reaches 1 — the guard holds and recursion stops.",
+      "status": "running",
+      "currentFunction": "factorial(1)",
+      "returnValue": null,
+      "executionTimeMs": 9.34,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "2",
+          "scope": "factorial(2)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "1",
+          "scope": "factorial(1)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "factorial(1):n"
+      ],
+      "highlightedVariables": [
+        "factorial(1):n"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 4,
+          "locals": {
+            "n": "3"
+          }
+        },
+        {
+          "name": "factorial(2)",
+          "line": 4,
+          "locals": {
+            "n": "2"
+          }
+        },
+        {
+          "name": "factorial(1)",
+          "line": 2,
+          "locals": {
+            "n": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        },
+        {
+          "id": "int@0x42",
+          "type": "int",
+          "label": "n = 2",
+          "value": "2",
+          "refs": []
+        },
+        {
+          "id": "int@0x41",
+          "type": "int",
+          "label": "n = 1",
+          "value": "1",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 480,
+        "heapBytes": 190,
+        "objects": 5,
+        "allocations": 5,
+        "peakBytes": 190
+      }
+    },
+    {
+      "line": 3,
+      "label": "return 1",
+      "note": "The deepest frame returns 1 and is popped from the stack.",
+      "status": "running",
+      "currentFunction": "factorial(1)",
+      "returnValue": "1",
+      "executionTimeMs": 10.09,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "2",
+          "scope": "factorial(2)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "1",
+          "scope": "factorial(1)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 4,
+          "locals": {
+            "n": "3"
+          }
+        },
+        {
+          "name": "factorial(2)",
+          "line": 4,
+          "locals": {
+            "n": "2"
+          }
+        },
+        {
+          "name": "factorial(1)",
+          "line": 3,
+          "locals": {
+            "n": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        },
+        {
+          "id": "int@0x42",
+          "type": "int",
+          "label": "n = 2",
+          "value": "2",
+          "refs": []
+        },
+        {
+          "id": "int@0x41",
+          "type": "int",
+          "label": "n = 1",
+          "value": "1",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 480,
+        "heapBytes": 190,
+        "objects": 5,
+        "allocations": 5,
+        "peakBytes": 190
+      }
+    },
+    {
+      "line": 4,
+      "label": "unwind → 2",
+      "note": "factorial(2) multiplies its pending value and returns 2.",
+      "status": "running",
+      "currentFunction": "factorial(3)",
+      "returnValue": "2",
+      "executionTimeMs": 11.2,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "3",
+          "scope": "factorial(3)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        },
+        {
+          "name": "factorial(3)",
+          "line": 4,
+          "locals": {
+            "n": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        },
+        {
+          "id": "int@0x42",
+          "type": "int",
+          "label": "n = 2",
+          "value": "2",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 288,
+        "heapBytes": 156,
+        "objects": 4,
+        "allocations": 5,
+        "peakBytes": 190
+      }
+    },
+    {
+      "line": 4,
+      "label": "unwind → 6",
+      "note": "factorial(3) multiplies its pending value and returns 6.",
+      "status": "running",
+      "currentFunction": "factorial(4)",
+      "returnValue": "6",
+      "executionTimeMs": 12.14,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "factorial(4)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        },
+        {
+          "name": "factorial(4)",
+          "line": 4,
+          "locals": {
+            "n": "4"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        },
+        {
+          "id": "int@0x43",
+          "type": "int",
+          "label": "n = 3",
+          "value": "3",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 122,
+        "objects": 3,
+        "allocations": 5,
+        "peakBytes": 190
+      }
+    },
+    {
+      "line": 4,
+      "label": "unwind → 24",
+      "note": "factorial(4) multiplies its pending value and returns 24.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": "24",
+      "executionTimeMs": 12.97,
+      "variables": [
+        {
+          "name": "result",
+          "type": "None",
+          "value": "None",
+          "scope": "global"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 4,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x44",
+          "type": "int",
+          "label": "n = 4",
+          "value": "4",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 88,
+        "objects": 2,
+        "allocations": 5,
+        "peakBytes": 190
+      }
+    },
+    {
+      "line": 7,
+      "label": "bind result",
+      "note": "The final value 24 is bound to result in the module scope.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": "24",
+      "executionTimeMs": 14.16,
+      "variables": [
+        {
+          "name": "result",
+          "type": "int",
+          "value": "24",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:result"
+      ],
+      "highlightedVariables": [
+        "global:result"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x7d",
+          "type": "int",
+          "label": "result",
+          "value": "24",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 90,
+        "objects": 2,
+        "allocations": 6,
+        "peakBytes": 190
+      }
+    },
+    {
+      "line": 8,
+      "label": "print result",
+      "note": "Execution completes and the interpreter flushes stdout.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 14.7,
+      "variables": [
+        {
+          "name": "result",
+          "type": "int",
+          "value": "24",
+          "scope": "global"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x1a",
+          "type": "function",
+          "label": "factorial",
+          "value": "code object",
+          "refs": []
+        },
+        {
+          "id": "int@0x7d",
+          "type": "int",
+          "label": "result",
+          "value": "24",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "factorial(4) = 24"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 90,
+        "objects": 2,
+        "allocations": 6,
+        "peakBytes": 190
+      }
+    }
+  ],
+  "totalTimeMs": 14.7,
+  "finalStatus": "completed"
+}

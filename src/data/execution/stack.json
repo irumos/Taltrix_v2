@@ -1,0 +1,493 @@
+{
+  "id": "stack",
+  "title": "Stack (LIFO)",
+  "category": "Data Structures",
+  "description": "Balanced bracket checking with an explicit stack.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "stack_demo.py",
+  "entry": "balanced('([])')",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "maxDepth": 2
+  },
+  "code": "PAIRS = {\")\": \"(\", \"]\": \"[\"}\n\n\ndef balanced(text):\n    stack = []\n    for char in text:\n        if char in \"([\":\n            stack.append(char)\n        else:\n            if not stack or stack.pop() != PAIRS[char]:\n                return False\n    return not stack\n\n\nprint(balanced(\"([])\"))\n",
+  "steps": [
+    {
+      "line": 5,
+      "label": "allocate stack",
+      "note": "An empty list acts as the LIFO stack.",
+      "status": "running",
+      "currentFunction": "balanced",
+      "returnValue": null,
+      "executionTimeMs": 0.64,
+      "variables": [
+        {
+          "name": "text",
+          "type": "str",
+          "value": "'([])'",
+          "scope": "balanced",
+          "changed": true
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "balanced",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "balanced:text",
+        "balanced:stack"
+      ],
+      "highlightedVariables": [
+        "balanced:text",
+        "balanced:stack"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "balanced",
+          "line": 5,
+          "locals": {
+            "text": "'([])'",
+            "stack": "[]"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x61",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 36,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 36
+      }
+    },
+    {
+      "line": 8,
+      "label": "push '('",
+      "note": "An opening bracket is pushed; depth is now 1.",
+      "status": "running",
+      "currentFunction": "balanced",
+      "returnValue": null,
+      "executionTimeMs": 1.12,
+      "variables": [
+        {
+          "name": "text",
+          "type": "str",
+          "value": "'([])'",
+          "scope": "balanced"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['(']",
+          "scope": "balanced",
+          "changed": true
+        },
+        {
+          "name": "char",
+          "type": "str",
+          "value": "'('",
+          "scope": "balanced",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedVariables": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedMemory": [
+        "list@0x61"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "balanced",
+          "line": 8,
+          "locals": {
+            "text": "'([])'",
+            "stack": "['(']",
+            "char": "'('"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x61",
+          "type": "list",
+          "label": "stack",
+          "value": "['(']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 42,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 42
+      }
+    },
+    {
+      "line": 8,
+      "label": "push '['",
+      "note": "An opening bracket is pushed; depth is now 2.",
+      "status": "running",
+      "currentFunction": "balanced",
+      "returnValue": null,
+      "executionTimeMs": 1.93,
+      "variables": [
+        {
+          "name": "text",
+          "type": "str",
+          "value": "'([])'",
+          "scope": "balanced"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['(', '[']",
+          "scope": "balanced",
+          "changed": true
+        },
+        {
+          "name": "char",
+          "type": "str",
+          "value": "'['",
+          "scope": "balanced",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedVariables": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedMemory": [
+        "list@0x61"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "balanced",
+          "line": 8,
+          "locals": {
+            "text": "'([])'",
+            "stack": "['(', '[']",
+            "char": "'['"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x61",
+          "type": "list",
+          "label": "stack",
+          "value": "['(', '[']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 52,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 52
+      }
+    },
+    {
+      "line": 10,
+      "label": "pop '['",
+      "note": "']' matches '[' — the pair is balanced.",
+      "status": "running",
+      "currentFunction": "balanced",
+      "returnValue": null,
+      "executionTimeMs": 2.43,
+      "variables": [
+        {
+          "name": "text",
+          "type": "str",
+          "value": "'([])'",
+          "scope": "balanced"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['(']",
+          "scope": "balanced",
+          "changed": true
+        },
+        {
+          "name": "char",
+          "type": "str",
+          "value": "']'",
+          "scope": "balanced",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedVariables": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedMemory": [
+        "list@0x61"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "balanced",
+          "line": 10,
+          "locals": {
+            "text": "'([])'",
+            "stack": "['(']",
+            "char": "']'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x61",
+          "type": "list",
+          "label": "stack",
+          "value": "['(']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 42,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 52
+      }
+    },
+    {
+      "line": 10,
+      "label": "pop '('",
+      "note": "')' matches '(' — the pair is balanced.",
+      "status": "running",
+      "currentFunction": "balanced",
+      "returnValue": null,
+      "executionTimeMs": 3.69,
+      "variables": [
+        {
+          "name": "text",
+          "type": "str",
+          "value": "'([])'",
+          "scope": "balanced"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "balanced",
+          "changed": true
+        },
+        {
+          "name": "char",
+          "type": "str",
+          "value": "')'",
+          "scope": "balanced",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedVariables": [
+        "balanced:stack",
+        "balanced:char"
+      ],
+      "highlightedMemory": [
+        "list@0x61"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "balanced",
+          "line": 10,
+          "locals": {
+            "text": "'([])'",
+            "stack": "[]",
+            "char": "')'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x61",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 36,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 52
+      }
+    },
+    {
+      "line": 12,
+      "label": "stack empty",
+      "note": "Every opening bracket was closed in order.",
+      "status": "running",
+      "currentFunction": "balanced",
+      "returnValue": "True",
+      "executionTimeMs": 4.3,
+      "variables": [
+        {
+          "name": "text",
+          "type": "str",
+          "value": "'([])'",
+          "scope": "balanced"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "balanced"
+        },
+        {
+          "name": "char",
+          "type": "str",
+          "value": "')'",
+          "scope": "balanced"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "balanced",
+          "line": 12,
+          "locals": {
+            "text": "'([])'",
+            "stack": "[]",
+            "char": "')'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x61",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 36,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 52
+      }
+    },
+    {
+      "line": 15,
+      "label": "print result",
+      "note": "The verdict is written to stdout.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 5.18,
+      "variables": [],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 15,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x61",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "True"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 36,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 52
+      }
+    }
+  ],
+  "totalTimeMs": 5.18,
+  "finalStatus": "completed"
+}

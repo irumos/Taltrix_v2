@@ -1,0 +1,348 @@
+{
+  "id": "javascript",
+  "label": "JavaScript",
+  "monacoLanguage": "javascript",
+  "fileName": "fib.js",
+  "entry": "fib(5)",
+  "code": "function fib(n) {\n  if (n < 2) return n;\n  return fib(n - 1) + fib(n - 2);\n}\n\nconst out = fib(5);\nconsole.log(\"fib(5) =\", out);\n",
+  "complexity": {
+    "time": "O(2^n)",
+    "space": "O(n)",
+    "maxDepth": 5
+  },
+  "steps": [
+    {
+      "line": 6,
+      "label": "call fib(5)",
+      "note": "The module scope invokes fib(5); a new frame is pushed.",
+      "variables": [
+        {
+          "name": "out",
+          "type": "ref",
+          "value": "<pending>",
+          "scope": "module",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 6,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x11",
+          "type": "function",
+          "label": "fib",
+          "value": "closure",
+          "refs": []
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 2,
+      "label": "guard n < 2",
+      "note": "n is 5 — the guard fails and the branch recurses twice.",
+      "variables": [
+        {
+          "name": "n",
+          "type": "number",
+          "value": "5",
+          "scope": "fib#1",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 6,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 2,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x11",
+          "type": "function",
+          "label": "fib",
+          "value": "closure",
+          "refs": []
+        },
+        {
+          "id": "num@0x21",
+          "type": "number",
+          "label": "n",
+          "value": "5",
+          "refs": [
+            "fn@0x11"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 3,
+      "label": "recurse fib(4)",
+      "note": "The left branch descends first. Depth grows to 3.",
+      "variables": [
+        {
+          "name": "n",
+          "type": "number",
+          "value": "5",
+          "scope": "fib#1",
+          "changed": false
+        },
+        {
+          "name": "n",
+          "type": "number",
+          "value": "4",
+          "scope": "fib#2",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 6,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 2,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x11",
+          "type": "function",
+          "label": "fib",
+          "value": "closure",
+          "refs": []
+        },
+        {
+          "id": "num@0x21",
+          "type": "number",
+          "label": "n",
+          "value": "5",
+          "refs": [
+            "fn@0x11"
+          ]
+        },
+        {
+          "id": "num@0x22",
+          "type": "number",
+          "label": "n",
+          "value": "4",
+          "refs": [
+            "num@0x21"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 2,
+      "label": "base case n = 1",
+      "note": "The leftmost leaf returns 1 immediately.",
+      "variables": [
+        {
+          "name": "n",
+          "type": "number",
+          "value": "1",
+          "scope": "fib#5",
+          "changed": true
+        },
+        {
+          "name": "return",
+          "type": "number",
+          "value": "1",
+          "scope": "fib#5",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 6,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 2,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x11",
+          "type": "function",
+          "label": "fib",
+          "value": "closure",
+          "refs": []
+        },
+        {
+          "id": "num@0x21",
+          "type": "number",
+          "label": "n",
+          "value": "5",
+          "refs": [
+            "fn@0x11"
+          ]
+        },
+        {
+          "id": "num@0x22",
+          "type": "number",
+          "label": "n",
+          "value": "4",
+          "refs": [
+            "num@0x21"
+          ]
+        },
+        {
+          "id": "num@0x25",
+          "type": "number",
+          "label": "n",
+          "value": "1",
+          "refs": [
+            "num@0x22"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 3,
+      "label": "fold branches",
+      "note": "Sibling calls fold back into their parent frames.",
+      "variables": [
+        {
+          "name": "return",
+          "type": "number",
+          "value": "3",
+          "scope": "fib#2",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 6,
+          "locals": {}
+        },
+        {
+          "name": "fib",
+          "line": 3,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x11",
+          "type": "function",
+          "label": "fib",
+          "value": "closure",
+          "refs": []
+        },
+        {
+          "id": "num@0x21",
+          "type": "number",
+          "label": "n",
+          "value": "5",
+          "refs": [
+            "fn@0x11"
+          ]
+        },
+        {
+          "id": "num@0x40",
+          "type": "number",
+          "label": "acc",
+          "value": "3",
+          "refs": [
+            "num@0x21"
+          ]
+        }
+      ],
+      "stdout": []
+    },
+    {
+      "line": 7,
+      "label": "log result",
+      "note": "fib(5) resolves to 5 and the program prints it.",
+      "variables": [
+        {
+          "name": "out",
+          "type": "number",
+          "value": "5",
+          "scope": "module",
+          "changed": true
+        }
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 7,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "fn@0x11",
+          "type": "function",
+          "label": "fib",
+          "value": "closure",
+          "refs": []
+        },
+        {
+          "id": "num@0x40",
+          "type": "number",
+          "label": "out",
+          "value": "5",
+          "refs": [
+            "fn@0x11"
+          ]
+        },
+        {
+          "id": "str@0x55",
+          "type": "string",
+          "label": "literal",
+          "value": "\"fib(5) =\"",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "fib(5) = 5"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,599 @@
+{
+  "id": "queue",
+  "title": "Queue (FIFO)",
+  "category": "Data Structures",
+  "description": "Enqueue at the back, dequeue from the front.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "queue_demo.py",
+  "entry": "run()",
+  "complexity": {
+    "time": "O(1) per op",
+    "space": "O(n)",
+    "maxDepth": 2
+  },
+  "code": "from collections import deque\n\n\ndef run():\n    queue = deque()\n    for job in [\"build\", \"test\", \"deploy\"]:\n        queue.append(job)\n    while queue:\n        job = queue.popleft()\n        print(\"running\", job)\n    return \"drained\"\n\n\nprint(run())\n",
+  "steps": [
+    {
+      "line": 5,
+      "label": "allocate queue",
+      "note": "An empty double ended queue is allocated.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": null,
+      "executionTimeMs": 1.22,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "[]",
+          "scope": "run",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "run:queue"
+      ],
+      "highlightedVariables": [
+        "run:queue"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 5,
+          "locals": {
+            "queue": "[]"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 50,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 50
+      }
+    },
+    {
+      "line": 7,
+      "label": "enqueue build",
+      "note": "'build' is appended to the back of the queue.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": null,
+      "executionTimeMs": 2.1,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['build']",
+          "scope": "run",
+          "changed": true
+        },
+        {
+          "name": "job",
+          "type": "str",
+          "value": "'build'",
+          "scope": "run",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedVariables": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedMemory": [
+        "deque@0x51"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 7,
+          "locals": {
+            "queue": "['build']",
+            "job": "'build'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['build'])",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 64,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 64
+      }
+    },
+    {
+      "line": 7,
+      "label": "enqueue test",
+      "note": "'test' is appended to the back of the queue.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": null,
+      "executionTimeMs": 2.94,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['build', 'test']",
+          "scope": "run",
+          "changed": true
+        },
+        {
+          "name": "job",
+          "type": "str",
+          "value": "'test'",
+          "scope": "run",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedVariables": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedMemory": [
+        "deque@0x51"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 7,
+          "locals": {
+            "queue": "['build', 'test']",
+            "job": "'test'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['build', 'test'])",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 80,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 80
+      }
+    },
+    {
+      "line": 7,
+      "label": "enqueue deploy",
+      "note": "'deploy' is appended to the back of the queue.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": null,
+      "executionTimeMs": 3.68,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['build', 'test', 'deploy']",
+          "scope": "run",
+          "changed": true
+        },
+        {
+          "name": "job",
+          "type": "str",
+          "value": "'deploy'",
+          "scope": "run",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedVariables": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedMemory": [
+        "deque@0x51"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 7,
+          "locals": {
+            "queue": "['build', 'test', 'deploy']",
+            "job": "'deploy'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['build', 'test', 'deploy'])",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 100,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 100
+      }
+    },
+    {
+      "line": 9,
+      "label": "dequeue build",
+      "note": "The oldest entry 'build' leaves the front — FIFO order holds.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": null,
+      "executionTimeMs": 4.8,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['test', 'deploy']",
+          "scope": "run",
+          "changed": true
+        },
+        {
+          "name": "job",
+          "type": "str",
+          "value": "'build'",
+          "scope": "run",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedVariables": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedMemory": [
+        "deque@0x51"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 9,
+          "locals": {
+            "queue": "['test', 'deploy']",
+            "job": "'build'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['test', 'deploy'])",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "running build"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 82,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 100
+      }
+    },
+    {
+      "line": 9,
+      "label": "dequeue test",
+      "note": "The oldest entry 'test' leaves the front — FIFO order holds.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": null,
+      "executionTimeMs": 5.55,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['deploy']",
+          "scope": "run",
+          "changed": true
+        },
+        {
+          "name": "job",
+          "type": "str",
+          "value": "'test'",
+          "scope": "run",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedVariables": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedMemory": [
+        "deque@0x51"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 9,
+          "locals": {
+            "queue": "['deploy']",
+            "job": "'test'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['deploy'])",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "running test"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 66,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 100
+      }
+    },
+    {
+      "line": 9,
+      "label": "dequeue deploy",
+      "note": "The oldest entry 'deploy' leaves the front — FIFO order holds.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": null,
+      "executionTimeMs": 6.26,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "[]",
+          "scope": "run",
+          "changed": true
+        },
+        {
+          "name": "job",
+          "type": "str",
+          "value": "'deploy'",
+          "scope": "run",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedVariables": [
+        "run:queue",
+        "run:job"
+      ],
+      "highlightedMemory": [
+        "deque@0x51"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 9,
+          "locals": {
+            "queue": "[]",
+            "job": "'deploy'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "running deploy"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 50,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 100
+      }
+    },
+    {
+      "line": 11,
+      "label": "queue drained",
+      "note": "No entries remain, so the loop exits.",
+      "status": "running",
+      "currentFunction": "run",
+      "returnValue": "'drained'",
+      "executionTimeMs": 6.89,
+      "variables": [
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "[]",
+          "scope": "run"
+        },
+        {
+          "name": "job",
+          "type": "str",
+          "value": "'deploy'",
+          "scope": "run"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "run",
+          "line": 11,
+          "locals": {
+            "queue": "[]",
+            "job": "'deploy'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 50,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 100
+      }
+    },
+    {
+      "line": 14,
+      "label": "print result",
+      "note": "The return value is written to stdout.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 7.95,
+      "variables": [],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "deque@0x51",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "drained"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 50,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 100
+      }
+    }
+  ],
+  "totalTimeMs": 7.95,
+  "finalStatus": "completed"
+}

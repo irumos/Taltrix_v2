@@ -1,0 +1,756 @@
+{
+  "id": "tree-traversal",
+  "title": "Tree Traversal",
+  "category": "Trees",
+  "description": "In-order traversal of a binary tree, one recursive frame per node.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "tree_traversal.py",
+  "entry": "inorder(root)",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h)",
+    "maxDepth": 4
+  },
+  "code": "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\n\nroot = Node(8, Node(3), Node(12))\n\n\ndef inorder(node):\n    if node is None:\n        return []\n    return inorder(node.left) + [node.value] + inorder(node.right)\n\n\nprint(inorder(root))\n",
+  "steps": [
+    {
+      "line": 8,
+      "label": "build tree",
+      "note": "Three nodes are allocated and linked into a balanced tree.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 0.96,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:root"
+      ],
+      "highlightedVariables": [
+        "global:root"
+      ],
+      "highlightedMemory": [
+        "node@0x8"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 11,
+      "label": "visit root 8",
+      "note": "The traversal begins at the root frame.",
+      "status": "running",
+      "currentFunction": "inorder(8)",
+      "returnValue": null,
+      "executionTimeMs": 1.84,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "inorder(8)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "inorder(8):node"
+      ],
+      "highlightedVariables": [
+        "inorder(8):node"
+      ],
+      "highlightedMemory": [
+        "node@0x8"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "inorder(8)",
+          "line": 11,
+          "locals": {
+            "node": "'<Node 8>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 14,
+      "label": "descend left → 3",
+      "note": "The left subtree must be fully traversed before the root is emitted.",
+      "status": "running",
+      "currentFunction": "inorder(3)",
+      "returnValue": null,
+      "executionTimeMs": 2.79,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "inorder(8)"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 3>'",
+          "scope": "inorder(3)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "inorder(3):node"
+      ],
+      "highlightedVariables": [
+        "inorder(3):node"
+      ],
+      "highlightedMemory": [
+        "node@0x3"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "inorder(8)",
+          "line": 11,
+          "locals": {
+            "node": "'<Node 8>'"
+          }
+        },
+        {
+          "name": "inorder(3)",
+          "line": 14,
+          "locals": {
+            "node": "'<Node 3>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 288,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 12,
+      "label": "empty child",
+      "note": "A missing child returns an empty list immediately.",
+      "status": "running",
+      "currentFunction": "inorder(None)",
+      "returnValue": "[]",
+      "executionTimeMs": 3.5,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "inorder(8)"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 3>'",
+          "scope": "inorder(3)"
+        },
+        {
+          "name": "node",
+          "type": "None",
+          "value": "None",
+          "scope": "inorder(None)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "inorder(None):node"
+      ],
+      "highlightedVariables": [
+        "inorder(None):node"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "inorder(8)",
+          "line": 11,
+          "locals": {
+            "node": "'<Node 8>'"
+          }
+        },
+        {
+          "name": "inorder(3)",
+          "line": 14,
+          "locals": {
+            "node": "'<Node 3>'"
+          }
+        },
+        {
+          "name": "inorder(None)",
+          "line": 12,
+          "locals": {
+            "node": "None"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 384,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 14,
+      "label": "emit 3",
+      "note": "The left leaf contributes [3].",
+      "status": "running",
+      "currentFunction": "inorder(8)",
+      "returnValue": "[3]",
+      "executionTimeMs": 4.39,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "inorder(8)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [
+        "node@0x3"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "inorder(8)",
+          "line": 14,
+          "locals": {
+            "node": "'<Node 8>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 14,
+      "label": "emit 8",
+      "note": "The root value is appended after its left subtree.",
+      "status": "running",
+      "currentFunction": "inorder(8)",
+      "returnValue": "[3, 8]",
+      "executionTimeMs": 4.82,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "inorder(8)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [
+        "node@0x8"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "inorder(8)",
+          "line": 14,
+          "locals": {
+            "node": "'<Node 8>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 14,
+      "label": "descend right → 12",
+      "note": "The right subtree is traversed last.",
+      "status": "running",
+      "currentFunction": "inorder(12)",
+      "returnValue": null,
+      "executionTimeMs": 5.87,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "inorder(8)"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 12>'",
+          "scope": "inorder(12)",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "inorder(12):node"
+      ],
+      "highlightedVariables": [
+        "inorder(12):node"
+      ],
+      "highlightedMemory": [
+        "node@0xc"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "inorder(8)",
+          "line": 14,
+          "locals": {
+            "node": "'<Node 8>'"
+          }
+        },
+        {
+          "name": "inorder(12)",
+          "line": 14,
+          "locals": {
+            "node": "'<Node 12>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 288,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 14,
+      "label": "emit 12",
+      "note": "The right leaf contributes [12] and the frame unwinds.",
+      "status": "running",
+      "currentFunction": "inorder(8)",
+      "returnValue": "[3, 8, 12]",
+      "executionTimeMs": 6.69,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "inorder(8)"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [
+        "node@0xc"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "inorder(8)",
+          "line": 14,
+          "locals": {
+            "node": "'<Node 8>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    },
+    {
+      "line": 17,
+      "label": "print traversal",
+      "note": "In-order traversal of a binary search tree yields sorted values.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 7.66,
+      "variables": [
+        {
+          "name": "root",
+          "type": "str",
+          "value": "'<Node 8>'",
+          "scope": "global"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 17,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "node@0x8",
+          "type": "Node",
+          "label": "value = 8",
+          "value": "root",
+          "refs": [
+            "node@0x3",
+            "node@0xc"
+          ]
+        },
+        {
+          "id": "node@0x3",
+          "type": "Node",
+          "label": "value = 3",
+          "value": "leaf",
+          "refs": []
+        },
+        {
+          "id": "node@0xc",
+          "type": "Node",
+          "label": "value = 12",
+          "value": "leaf",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "[3, 8, 12]"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 120,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 120
+      }
+    }
+  ],
+  "totalTimeMs": 7.66,
+  "finalStatus": "completed"
+}

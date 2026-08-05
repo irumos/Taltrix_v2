@@ -1,0 +1,631 @@
+{
+  "id": "binary-search",
+  "title": "Binary Search",
+  "category": "Searching",
+  "description": "Halve the search window until the target is isolated.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "binary_search.py",
+  "entry": "binary_search(data, 23)",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)",
+    "maxDepth": 2
+  },
+  "code": "def binary_search(items, target):\n    low, high = 0, len(items) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:\n            return mid\n        if items[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n\n\ndata = [2, 5, 8, 12, 16, 23, 38, 56]\nprint(binary_search(data, 23))\n",
+  "steps": [
+    {
+      "line": 14,
+      "label": "allocate list",
+      "note": "A sorted list of eight integers is allocated.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 0.97,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:data"
+      ],
+      "highlightedVariables": [
+        "global:data"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    },
+    {
+      "line": 1,
+      "label": "call binary_search",
+      "note": "The frame binds the list reference and the target value.",
+      "status": "running",
+      "currentFunction": "binary_search",
+      "returnValue": null,
+      "executionTimeMs": 1.41,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "binary_search",
+          "changed": true
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "value": "23",
+          "scope": "binary_search",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "binary_search:items",
+        "binary_search:target"
+      ],
+      "highlightedVariables": [
+        "binary_search:items",
+        "binary_search:target"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        },
+        {
+          "name": "binary_search",
+          "line": 1,
+          "locals": {
+            "items": "[2, 5, 8, 12, 16, 23, 38, 56]",
+            "target": "23"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    },
+    {
+      "line": 2,
+      "label": "init window",
+      "note": "The search window covers the whole list.",
+      "status": "running",
+      "currentFunction": "binary_search",
+      "returnValue": null,
+      "executionTimeMs": 2.53,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "binary_search"
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "value": "23",
+          "scope": "binary_search"
+        },
+        {
+          "name": "low",
+          "type": "int",
+          "value": "0",
+          "scope": "binary_search",
+          "changed": true
+        },
+        {
+          "name": "high",
+          "type": "int",
+          "value": "7",
+          "scope": "binary_search",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "binary_search:low",
+        "binary_search:high"
+      ],
+      "highlightedVariables": [
+        "binary_search:low",
+        "binary_search:high"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        },
+        {
+          "name": "binary_search",
+          "line": 2,
+          "locals": {
+            "items": "[2, 5, 8, 12, 16, 23, 38, 56]",
+            "target": "23",
+            "low": "0",
+            "high": "7"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    },
+    {
+      "line": 4,
+      "label": "probe index 3",
+      "note": "The midpoint of [0, 7] is 3 → value 12.",
+      "status": "running",
+      "currentFunction": "binary_search",
+      "returnValue": null,
+      "executionTimeMs": 3.4,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "binary_search"
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "value": "23",
+          "scope": "binary_search"
+        },
+        {
+          "name": "low",
+          "type": "int",
+          "value": "0",
+          "scope": "binary_search"
+        },
+        {
+          "name": "high",
+          "type": "int",
+          "value": "7",
+          "scope": "binary_search"
+        },
+        {
+          "name": "mid",
+          "type": "int",
+          "value": "3",
+          "scope": "binary_search",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "binary_search:mid"
+      ],
+      "highlightedVariables": [
+        "binary_search:mid"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        },
+        {
+          "name": "binary_search",
+          "line": 4,
+          "locals": {
+            "items": "[2, 5, 8, 12, 16, 23, 38, 56]",
+            "target": "23",
+            "low": "0",
+            "high": "7",
+            "mid": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    },
+    {
+      "line": 8,
+      "label": "search right half",
+      "note": "12 < 23 — discard the lower half.",
+      "status": "running",
+      "currentFunction": "binary_search",
+      "returnValue": null,
+      "executionTimeMs": 3.91,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "binary_search"
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "value": "23",
+          "scope": "binary_search"
+        },
+        {
+          "name": "low",
+          "type": "int",
+          "value": "4",
+          "scope": "binary_search",
+          "changed": true
+        },
+        {
+          "name": "high",
+          "type": "int",
+          "value": "7",
+          "scope": "binary_search"
+        },
+        {
+          "name": "mid",
+          "type": "int",
+          "value": "3",
+          "scope": "binary_search"
+        }
+      ],
+      "changed": [
+        "binary_search:low"
+      ],
+      "highlightedVariables": [
+        "binary_search:low"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        },
+        {
+          "name": "binary_search",
+          "line": 8,
+          "locals": {
+            "items": "[2, 5, 8, 12, 16, 23, 38, 56]",
+            "target": "23",
+            "low": "4",
+            "high": "7",
+            "mid": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    },
+    {
+      "line": 4,
+      "label": "probe index 5",
+      "note": "The midpoint of [4, 7] is 5 → value 23.",
+      "status": "running",
+      "currentFunction": "binary_search",
+      "returnValue": null,
+      "executionTimeMs": 4.8,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "binary_search"
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "value": "23",
+          "scope": "binary_search"
+        },
+        {
+          "name": "low",
+          "type": "int",
+          "value": "4",
+          "scope": "binary_search"
+        },
+        {
+          "name": "high",
+          "type": "int",
+          "value": "7",
+          "scope": "binary_search"
+        },
+        {
+          "name": "mid",
+          "type": "int",
+          "value": "5",
+          "scope": "binary_search",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "binary_search:mid"
+      ],
+      "highlightedVariables": [
+        "binary_search:mid"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        },
+        {
+          "name": "binary_search",
+          "line": 4,
+          "locals": {
+            "items": "[2, 5, 8, 12, 16, 23, 38, 56]",
+            "target": "23",
+            "low": "4",
+            "high": "7",
+            "mid": "5"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    },
+    {
+      "line": 6,
+      "label": "match at 5",
+      "note": "items[5] equals the target, so the index is returned.",
+      "status": "running",
+      "currentFunction": "binary_search",
+      "returnValue": "5",
+      "executionTimeMs": 5.73,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "binary_search"
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "value": "23",
+          "scope": "binary_search"
+        },
+        {
+          "name": "low",
+          "type": "int",
+          "value": "4",
+          "scope": "binary_search"
+        },
+        {
+          "name": "high",
+          "type": "int",
+          "value": "7",
+          "scope": "binary_search"
+        },
+        {
+          "name": "mid",
+          "type": "int",
+          "value": "5",
+          "scope": "binary_search"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 14,
+          "locals": {}
+        },
+        {
+          "name": "binary_search",
+          "line": 6,
+          "locals": {
+            "items": "[2, 5, 8, 12, 16, 23, 38, 56]",
+            "target": "23",
+            "low": "4",
+            "high": "7",
+            "mid": "5"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    },
+    {
+      "line": 15,
+      "label": "print index",
+      "note": "Four probes were enough for eight elements.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 6.23,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "scope": "global"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 15,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x3f",
+          "type": "list",
+          "label": "data",
+          "value": "[2, 5, 8, 12, 16, 23, 38, 56]",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "5"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 90,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 90
+      }
+    }
+  ],
+  "totalTimeMs": 6.23,
+  "finalStatus": "completed"
+}

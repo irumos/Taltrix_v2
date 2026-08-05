@@ -1,0 +1,2517 @@
+{
+  "id": "dfs",
+  "title": "Depth First Search",
+  "category": "Graphs",
+  "description": "An explicit stack drives the traversal deep before it goes wide.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "dfs.py",
+  "entry": "dfs(graph, 'A')",
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V)",
+    "maxDepth": 2
+  },
+  "code": "graph = {\n    \"A\": [\"B\", \"C\"],\n    \"B\": [\"D\"],\n    \"C\": [\"D\"],\n    \"D\": [],\n}\n\n\ndef dfs(graph, start):\n    seen, stack, order = set(), [start], []\n    while stack:\n        node = stack.pop()\n        if node in seen:\n            continue\n        seen.add(node)\n        order.append(node)\n        for nxt in reversed(graph[node]):\n            stack.append(nxt)\n    return order\n\n\nprint(dfs(graph, \"A\"))\n",
+  "steps": [
+    {
+      "line": 1,
+      "label": "allocate graph",
+      "note": "The adjacency map and its four edge lists are allocated.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 1.28,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:graph"
+      ],
+      "highlightedVariables": [
+        "global:graph"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 216,
+        "objects": 5,
+        "allocations": 5,
+        "peakBytes": 216
+      }
+    },
+    {
+      "line": 9,
+      "label": "call dfs",
+      "note": "The traversal frame receives the graph reference and the start node.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 1.75,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "dfs:graph",
+        "dfs:start"
+      ],
+      "highlightedVariables": [
+        "dfs:graph",
+        "dfs:start"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 9,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 216,
+        "objects": 5,
+        "allocations": 5,
+        "peakBytes": 216
+      }
+    },
+    {
+      "line": 10,
+      "label": "init frontier",
+      "note": "The frontier starts with a single node.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 2.31,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['A']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "dfs:seen",
+        "dfs:stack",
+        "dfs:order"
+      ],
+      "highlightedVariables": [
+        "dfs:seen",
+        "dfs:stack",
+        "dfs:order"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 10,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['A']",
+            "order": "[]"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "set()",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['A']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 336,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 336
+      }
+    },
+    {
+      "line": 12,
+      "label": "pop A",
+      "note": "A leaves the frontier and becomes the active node.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 3.01,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedVariables": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 12,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "[]",
+            "order": "[]",
+            "node": "'A'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "set()",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 330,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 336
+      }
+    },
+    {
+      "line": 16,
+      "label": "visit A",
+      "note": "A is recorded; the visit order is now ['A'].",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 3.7,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs"
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [
+        "dfs:order"
+      ],
+      "highlightedVariables": [
+        "dfs:order"
+      ],
+      "highlightedMemory": [
+        "set@0x21",
+        "list@0x23"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 16,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "[]",
+            "order": "['A']",
+            "node": "'A'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 336,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 336
+      }
+    },
+    {
+      "line": 18,
+      "label": "queue C, B",
+      "note": "Neighbours of A are pushed for later exploration.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 4.33,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['C', 'B']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [
+        "dfs:stack"
+      ],
+      "highlightedVariables": [
+        "dfs:stack"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 18,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['C', 'B']",
+            "order": "['A']",
+            "node": "'A'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['C', 'B']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 352,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 352
+      }
+    },
+    {
+      "line": 12,
+      "label": "pop B",
+      "note": "B leaves the frontier and becomes the active node.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 5.53,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['C']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'B'",
+          "scope": "dfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedVariables": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 12,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['C']",
+            "order": "['A']",
+            "node": "'B'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['C']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 342,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 352
+      }
+    },
+    {
+      "line": 16,
+      "label": "visit B",
+      "note": "B is recorded; the visit order is now ['A', 'B'].",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 6.11,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['C']",
+          "scope": "dfs"
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'B'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [
+        "dfs:order"
+      ],
+      "highlightedVariables": [
+        "dfs:order"
+      ],
+      "highlightedMemory": [
+        "set@0x21",
+        "list@0x23"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 16,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['C']",
+            "order": "['A', 'B']",
+            "node": "'B'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['C']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 362,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 362
+      }
+    },
+    {
+      "line": 18,
+      "label": "queue D",
+      "note": "Neighbours of B are pushed for later exploration.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 7,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['C', 'D']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'B'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [
+        "dfs:stack"
+      ],
+      "highlightedVariables": [
+        "dfs:stack"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 18,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['C', 'D']",
+            "order": "['A', 'B']",
+            "node": "'B'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['C', 'D']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 372,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 372
+      }
+    },
+    {
+      "line": 12,
+      "label": "pop D",
+      "note": "D leaves the frontier and becomes the active node.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 8.04,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['C']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'D'",
+          "scope": "dfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedVariables": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 12,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['C']",
+            "order": "['A', 'B']",
+            "node": "'D'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['C']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 362,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 372
+      }
+    },
+    {
+      "line": 16,
+      "label": "visit D",
+      "note": "D is recorded; the visit order is now ['A', 'B', 'D'].",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 9.05,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['C']",
+          "scope": "dfs"
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'D']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'D'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [
+        "dfs:order"
+      ],
+      "highlightedVariables": [
+        "dfs:order"
+      ],
+      "highlightedMemory": [
+        "set@0x21",
+        "list@0x23"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 16,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['C']",
+            "order": "['A', 'B', 'D']",
+            "node": "'D'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['C']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 382,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 382
+      }
+    },
+    {
+      "line": 12,
+      "label": "pop C",
+      "note": "C leaves the frontier and becomes the active node.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 9.97,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'D']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'C'",
+          "scope": "dfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedVariables": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 12,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "[]",
+            "order": "['A', 'B', 'D']",
+            "node": "'C'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 376,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 382
+      }
+    },
+    {
+      "line": 16,
+      "label": "visit C",
+      "note": "C is recorded; the visit order is now ['A', 'B', 'D', 'C'].",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 10.64,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs"
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'D', 'C']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'C'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [
+        "dfs:order"
+      ],
+      "highlightedVariables": [
+        "dfs:order"
+      ],
+      "highlightedMemory": [
+        "set@0x21",
+        "list@0x23"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 16,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "[]",
+            "order": "['A', 'B', 'D', 'C']",
+            "node": "'C'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D', 'C']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 396,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 396
+      }
+    },
+    {
+      "line": 18,
+      "label": "queue D",
+      "note": "Neighbours of C are pushed for later exploration.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 11.1,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "['D']",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'D', 'C']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'C'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [
+        "dfs:stack"
+      ],
+      "highlightedVariables": [
+        "dfs:stack"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 18,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "['D']",
+            "order": "['A', 'B', 'D', 'C']",
+            "node": "'C'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D', 'C']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 402,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 402
+      }
+    },
+    {
+      "line": 12,
+      "label": "pop D",
+      "note": "D leaves the frontier and becomes the active node.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 12.4,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'D', 'C']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'D'",
+          "scope": "dfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedVariables": [
+        "dfs:stack",
+        "dfs:node"
+      ],
+      "highlightedMemory": [
+        "list@0x22"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 12,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "[]",
+            "order": "['A', 'B', 'D', 'C']",
+            "node": "'D'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D', 'C']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 396,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 402
+      }
+    },
+    {
+      "line": 14,
+      "label": "skip D",
+      "note": "D was already visited — the branch is pruned.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": null,
+      "executionTimeMs": 13.21,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs"
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'D', 'C']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'D'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 14,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "[]",
+            "order": "['A', 'B', 'D', 'C']",
+            "node": "'D'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D', 'C']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 396,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 402
+      }
+    },
+    {
+      "line": 19,
+      "label": "return order",
+      "note": "Every reachable node has been visited.",
+      "status": "running",
+      "currentFunction": "dfs",
+      "returnValue": "['A', 'B', 'D', 'C']",
+      "executionTimeMs": 13.98,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "graph",
+          "type": "str",
+          "value": "'<dict>'",
+          "scope": "dfs"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "dfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "dfs"
+        },
+        {
+          "name": "stack",
+          "type": "list",
+          "value": "[]",
+          "scope": "dfs"
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'D', 'C']",
+          "scope": "dfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'D'",
+          "scope": "dfs"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "dfs",
+          "line": 19,
+          "locals": {
+            "graph": "'<dict>'",
+            "start": "'A'",
+            "seen": "{}",
+            "stack": "[]",
+            "order": "['A', 'B', 'D', 'C']",
+            "node": "'D'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D', 'C']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 396,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 402
+      }
+    },
+    {
+      "line": 22,
+      "label": "print order",
+      "note": "Depth first order is written to stdout.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 15.06,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 22,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x11",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "node@A",
+          "type": "list",
+          "label": "graph['A']",
+          "value": "['B', 'C']",
+          "refs": []
+        },
+        {
+          "id": "node@B",
+          "type": "list",
+          "label": "graph['B']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@C",
+          "type": "list",
+          "label": "graph['C']",
+          "value": "['D']",
+          "refs": []
+        },
+        {
+          "id": "node@D",
+          "type": "list",
+          "label": "graph['D']",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "set@0x21",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'D', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "list@0x22",
+          "type": "list",
+          "label": "stack",
+          "value": "[]",
+          "refs": []
+        },
+        {
+          "id": "list@0x23",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'D', 'C']",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "['A', 'B', 'D', 'C']"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 396,
+        "objects": 8,
+        "allocations": 8,
+        "peakBytes": 402
+      }
+    }
+  ],
+  "totalTimeMs": 15.06,
+  "finalStatus": "completed"
+}

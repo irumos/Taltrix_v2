@@ -1,0 +1,1419 @@
+{
+  "id": "bubble-sort",
+  "title": "Bubble Sort",
+  "category": "Sorting",
+  "description": "Adjacent comparisons bubble the largest value to the end on every pass.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "bubble_sort.py",
+  "entry": "bubble_sort([5, 1, 4, 2])",
+  "complexity": {
+    "time": "O(n²)",
+    "space": "O(1)",
+    "maxDepth": 2
+  },
+  "code": "def bubble_sort(items):\n    n = len(items)\n    for i in range(n - 1):\n        for j in range(n - 1 - i):\n            if items[j] > items[j + 1]:\n                items[j], items[j + 1] = items[j + 1], items[j]\n    return items\n\n\ndata = [5, 1, 4, 2]\nprint(bubble_sort(data))\n",
+  "steps": [
+    {
+      "line": 10,
+      "label": "allocate list",
+      "note": "A four element list is allocated on the heap.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 0.89,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:data"
+      ],
+      "highlightedVariables": [
+        "global:data"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[5, 1, 4, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 1,
+      "label": "call bubble_sort",
+      "note": "items is bound to the same heap object — Python passes the reference.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 1.66,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:items"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:items"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 1,
+          "locals": {
+            "items": "[5, 1, 4, 2]"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[5, 1, 4, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 2,
+      "label": "read length",
+      "note": "len(items) is 4, so the outer pass runs three times.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 2.93,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:n"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:n"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 2,
+          "locals": {
+            "items": "[5, 1, 4, 2]",
+            "n": "4"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[5, 1, 4, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 3,
+      "label": "pass 1",
+      "note": "Pass 1 of 3 begins; the tail 0 element(s) are already sorted.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 3.7,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:i"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:i"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 3,
+          "locals": {
+            "items": "[5, 1, 4, 2]",
+            "n": "4",
+            "i": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[5, 1, 4, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 5,
+      "label": "compare 5 / 1",
+      "note": "5 > 1 — the pair is out of order.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 4.56,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[5, 1, 4, 2]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:j"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:j"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 5,
+          "locals": {
+            "items": "[5, 1, 4, 2]",
+            "n": "4",
+            "i": "0",
+            "j": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[5, 1, 4, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 6,
+      "label": "swap → [1, 5, 4, 2]",
+      "note": "The list object is mutated in place, so data sees the change too.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 5.31,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 5, 4, 2]",
+          "scope": "global",
+          "changed": true
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 5, 4, 2]",
+          "scope": "bubble_sort",
+          "changed": true
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        }
+      ],
+      "changed": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedVariables": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedMemory": [
+        "list@0x2c"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 6,
+          "locals": {
+            "items": "[1, 5, 4, 2]",
+            "n": "4",
+            "i": "0",
+            "j": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 5, 4, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 5,
+      "label": "compare 5 / 4",
+      "note": "5 > 4 — the pair is out of order.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 6.21,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 5, 4, 2]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 5, 4, 2]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:j"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:j"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 5,
+          "locals": {
+            "items": "[1, 5, 4, 2]",
+            "n": "4",
+            "i": "0",
+            "j": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 5, 4, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 6,
+      "label": "swap → [1, 4, 5, 2]",
+      "note": "The list object is mutated in place, so data sees the change too.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 6.63,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 4, 5, 2]",
+          "scope": "global",
+          "changed": true
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 4, 5, 2]",
+          "scope": "bubble_sort",
+          "changed": true
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort"
+        }
+      ],
+      "changed": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedVariables": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedMemory": [
+        "list@0x2c"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 6,
+          "locals": {
+            "items": "[1, 4, 5, 2]",
+            "n": "4",
+            "i": "0",
+            "j": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 4, 5, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 5,
+      "label": "compare 5 / 2",
+      "note": "5 > 2 — the pair is out of order.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 7.71,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 4, 5, 2]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 4, 5, 2]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "2",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:j"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:j"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 5,
+          "locals": {
+            "items": "[1, 4, 5, 2]",
+            "n": "4",
+            "i": "0",
+            "j": "2"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 4, 5, 2]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 6,
+      "label": "swap → [1, 4, 2, 5]",
+      "note": "The list object is mutated in place, so data sees the change too.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 8.89,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "global",
+          "changed": true
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "bubble_sort",
+          "changed": true
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "2",
+          "scope": "bubble_sort"
+        }
+      ],
+      "changed": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedVariables": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedMemory": [
+        "list@0x2c"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 6,
+          "locals": {
+            "items": "[1, 4, 2, 5]",
+            "n": "4",
+            "i": "0",
+            "j": "2"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 4, 2, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 3,
+      "label": "pass 2",
+      "note": "Pass 2 of 3 begins; the tail 1 element(s) are already sorted.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 9.42,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort",
+          "changed": true
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "2",
+          "scope": "bubble_sort"
+        }
+      ],
+      "changed": [
+        "bubble_sort:i"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:i"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 3,
+          "locals": {
+            "items": "[1, 4, 2, 5]",
+            "n": "4",
+            "i": "1",
+            "j": "2"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 4, 2, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 5,
+      "label": "compare 1 / 4",
+      "note": "1 ≤ 4 — the pair already holds.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 10.66,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:j"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:j"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 5,
+          "locals": {
+            "items": "[1, 4, 2, 5]",
+            "n": "4",
+            "i": "1",
+            "j": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 4, 2, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 5,
+      "label": "compare 4 / 2",
+      "note": "4 > 2 — the pair is out of order.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 11.26,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 4, 2, 5]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:j"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:j"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 5,
+          "locals": {
+            "items": "[1, 4, 2, 5]",
+            "n": "4",
+            "i": "1",
+            "j": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 4, 2, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 6,
+      "label": "swap → [1, 2, 4, 5]",
+      "note": "The list object is mutated in place, so data sees the change too.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 11.72,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "global",
+          "changed": true
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "bubble_sort",
+          "changed": true
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort"
+        }
+      ],
+      "changed": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedVariables": [
+        "global:data",
+        "bubble_sort:items"
+      ],
+      "highlightedMemory": [
+        "list@0x2c"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 6,
+          "locals": {
+            "items": "[1, 2, 4, 5]",
+            "n": "4",
+            "i": "1",
+            "j": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 2, 4, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 3,
+      "label": "pass 3",
+      "note": "Pass 3 of 3 begins; the tail 2 element(s) are already sorted.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 12.67,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "2",
+          "scope": "bubble_sort",
+          "changed": true
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "1",
+          "scope": "bubble_sort"
+        }
+      ],
+      "changed": [
+        "bubble_sort:i"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:i"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 3,
+          "locals": {
+            "items": "[1, 2, 4, 5]",
+            "n": "4",
+            "i": "2",
+            "j": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 2, 4, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 5,
+      "label": "compare 1 / 2",
+      "note": "1 ≤ 2 — the pair already holds.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": null,
+      "executionTimeMs": 13.11,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "2",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bubble_sort:j"
+      ],
+      "highlightedVariables": [
+        "bubble_sort:j"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 5,
+          "locals": {
+            "items": "[1, 2, 4, 5]",
+            "n": "4",
+            "i": "2",
+            "j": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 2, 4, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 7,
+      "label": "return sorted list",
+      "note": "Sorting finished after 4 swaps.",
+      "status": "running",
+      "currentFunction": "bubble_sort",
+      "returnValue": "[1, 2, 4, 5]",
+      "executionTimeMs": 13.7,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "global"
+        },
+        {
+          "name": "items",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "n",
+          "type": "int",
+          "value": "4",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "2",
+          "scope": "bubble_sort"
+        },
+        {
+          "name": "j",
+          "type": "int",
+          "value": "0",
+          "scope": "bubble_sort"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 10,
+          "locals": {}
+        },
+        {
+          "name": "bubble_sort",
+          "line": 7,
+          "locals": {
+            "items": "[1, 2, 4, 5]",
+            "n": "4",
+            "i": "2",
+            "j": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 2, 4, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 11,
+      "label": "print result",
+      "note": "The sorted list is written to stdout.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 14.46,
+      "variables": [
+        {
+          "name": "data",
+          "type": "list",
+          "value": "[1, 2, 4, 5]",
+          "scope": "global"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 11,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x2c",
+          "type": "list",
+          "label": "data",
+          "value": "[1, 2, 4, 5]",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "[1, 2, 4, 5]"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    }
+  ],
+  "totalTimeMs": 14.46,
+  "finalStatus": "completed"
+}

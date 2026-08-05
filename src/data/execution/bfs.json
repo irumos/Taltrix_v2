@@ -1,0 +1,1125 @@
+{
+  "id": "bfs",
+  "title": "Breadth First Search",
+  "category": "Graphs",
+  "description": "A FIFO queue expands the graph level by level.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "bfs.py",
+  "entry": "bfs(graph, 'A')",
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V)",
+    "maxDepth": 2
+  },
+  "code": "from collections import deque\n\ngraph = {\"A\": [\"B\", \"C\"], \"B\": [\"D\"], \"C\": [\"D\"], \"D\": []}\n\n\ndef bfs(graph, start):\n    seen = {start}\n    queue = deque([start])\n    order = []\n    while queue:\n        node = queue.popleft()\n        order.append(node)\n        for nxt in graph[node]:\n            if nxt not in seen:\n                seen.add(nxt)\n                queue.append(nxt)\n    return order\n\n\nprint(bfs(graph, \"A\"))\n",
+  "steps": [
+    {
+      "line": 3,
+      "label": "allocate graph",
+      "note": "The adjacency map is allocated once and shared by every frame.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 0.7,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:graph"
+      ],
+      "highlightedVariables": [
+        "global:graph"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 44,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 44
+      }
+    },
+    {
+      "line": 6,
+      "label": "call bfs",
+      "note": "The traversal frame is pushed onto the call stack.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 1.65,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bfs:start"
+      ],
+      "highlightedVariables": [
+        "bfs:start"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 6,
+          "locals": {
+            "start": "'A'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 44,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 44
+      }
+    },
+    {
+      "line": 8,
+      "label": "seed queue",
+      "note": "The queue is seeded with the start node.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 2.2,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['A']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "[]",
+          "scope": "bfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bfs:seen",
+        "bfs:queue",
+        "bfs:order"
+      ],
+      "highlightedVariables": [
+        "bfs:seen",
+        "bfs:queue",
+        "bfs:order"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 8,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "['A']",
+            "order": "[]"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['A'])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "[]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 178,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 178
+      }
+    },
+    {
+      "line": 11,
+      "label": "dequeue A",
+      "note": "A is removed from the front of the queue and visited.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 2.64,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs"
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "[]",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedVariables": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedMemory": [
+        "deque@0x33",
+        "list@0x34"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 11,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "[]",
+            "order": "['A']",
+            "node": "'A'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 178,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 178
+      }
+    },
+    {
+      "line": 16,
+      "label": "enqueue B, C",
+      "note": "Unseen neighbours of A join the back of the queue.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 3.55,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs"
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['B', 'C']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A']",
+          "scope": "bfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        }
+      ],
+      "changed": [
+        "bfs:queue"
+      ],
+      "highlightedVariables": [
+        "bfs:queue"
+      ],
+      "highlightedMemory": [
+        "set@0x32",
+        "deque@0x33"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 16,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "['B', 'C']",
+            "order": "['A']",
+            "node": "'A'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['B', 'C'])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 214,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 214
+      }
+    },
+    {
+      "line": 11,
+      "label": "dequeue B",
+      "note": "B is removed from the front of the queue and visited.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 3.98,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs"
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['C']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'B'",
+          "scope": "bfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedVariables": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedMemory": [
+        "deque@0x33",
+        "list@0x34"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 11,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "['C']",
+            "order": "['A', 'B']",
+            "node": "'B'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'C'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['C'])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 214,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 214
+      }
+    },
+    {
+      "line": 16,
+      "label": "enqueue D",
+      "note": "Unseen neighbours of B join the back of the queue.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 4.69,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs"
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['C', 'D']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B']",
+          "scope": "bfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'B'",
+          "scope": "bfs"
+        }
+      ],
+      "changed": [
+        "bfs:queue"
+      ],
+      "highlightedVariables": [
+        "bfs:queue"
+      ],
+      "highlightedMemory": [
+        "set@0x32",
+        "deque@0x33"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 16,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "['C', 'D']",
+            "order": "['A', 'B']",
+            "node": "'B'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'C', 'D'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['C', 'D'])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 234,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 234
+      }
+    },
+    {
+      "line": 11,
+      "label": "dequeue C",
+      "note": "C is removed from the front of the queue and visited.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 5.2,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs"
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "['D']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'C']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'C'",
+          "scope": "bfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedVariables": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedMemory": [
+        "deque@0x33",
+        "list@0x34"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 11,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "['D']",
+            "order": "['A', 'B', 'C']",
+            "node": "'C'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'C', 'D'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque(['D'])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'C']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 234,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 234
+      }
+    },
+    {
+      "line": 11,
+      "label": "dequeue D",
+      "note": "D is removed from the front of the queue and visited.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": null,
+      "executionTimeMs": 5.75,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs"
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "[]",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'C', 'D']",
+          "scope": "bfs",
+          "changed": true
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'D'",
+          "scope": "bfs",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedVariables": [
+        "bfs:queue",
+        "bfs:order",
+        "bfs:node"
+      ],
+      "highlightedMemory": [
+        "deque@0x33",
+        "list@0x34"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 11,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "[]",
+            "order": "['A', 'B', 'C', 'D']",
+            "node": "'D'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'C', 'D'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'C', 'D']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 17,
+      "label": "return order",
+      "note": "The queue is empty, so every level has been expanded.",
+      "status": "running",
+      "currentFunction": "bfs",
+      "returnValue": "['A', 'B', 'C', 'D']",
+      "executionTimeMs": 6.29,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        },
+        {
+          "name": "start",
+          "type": "str",
+          "value": "'A'",
+          "scope": "bfs"
+        },
+        {
+          "name": "seen",
+          "type": "set",
+          "value": "{}",
+          "scope": "bfs"
+        },
+        {
+          "name": "queue",
+          "type": "list",
+          "value": "[]",
+          "scope": "bfs"
+        },
+        {
+          "name": "order",
+          "type": "list",
+          "value": "['A', 'B', 'C', 'D']",
+          "scope": "bfs"
+        },
+        {
+          "name": "node",
+          "type": "str",
+          "value": "'D'",
+          "scope": "bfs"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 3,
+          "locals": {}
+        },
+        {
+          "name": "bfs",
+          "line": 17,
+          "locals": {
+            "start": "'A'",
+            "seen": "{}",
+            "queue": "[]",
+            "order": "['A', 'B', 'C', 'D']",
+            "node": "'D'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'C', 'D'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'C', 'D']",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 20,
+      "label": "print order",
+      "note": "Breadth first order is written to stdout.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 6.93,
+      "variables": [
+        {
+          "name": "graph",
+          "type": "dict",
+          "value": "{'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}",
+          "scope": "global"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 20,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "dict@0x31",
+          "type": "dict",
+          "label": "graph",
+          "value": "4 keys",
+          "refs": []
+        },
+        {
+          "id": "set@0x32",
+          "type": "set",
+          "label": "seen",
+          "value": "{'A', 'B', 'C', 'D'}",
+          "refs": []
+        },
+        {
+          "id": "deque@0x33",
+          "type": "deque",
+          "label": "queue",
+          "value": "deque([])",
+          "refs": []
+        },
+        {
+          "id": "list@0x34",
+          "type": "list",
+          "label": "order",
+          "value": "['A', 'B', 'C', 'D']",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "['A', 'B', 'C', 'D']"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    }
+  ],
+  "totalTimeMs": 6.93,
+  "finalStatus": "completed"
+}

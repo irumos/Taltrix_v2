@@ -1,0 +1,542 @@
+{
+  "id": "runtime-error",
+  "title": "Runtime Error",
+  "category": "Diagnostics",
+  "description": "An out of range index surfaces as a runtime error with a traceback.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "runtime_error.py",
+  "entry": "average(scores)",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "maxDepth": 2
+  },
+  "code": "def average(values):\n    total = 0\n    for i in range(len(values) + 1):\n        total += values[i]\n    return total / len(values)\n\n\nscores = [90, 72, 88]\nprint(average(scores))\n",
+  "steps": [
+    {
+      "line": 8,
+      "label": "allocate list",
+      "note": "Three scores are stored in a list.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 1.12,
+      "variables": [
+        {
+          "name": "scores",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "global",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "global:scores"
+      ],
+      "highlightedVariables": [
+        "global:scores"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x71",
+          "type": "list",
+          "label": "scores",
+          "value": "[90, 72, 88]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 2,
+      "label": "call average",
+      "note": "The accumulator starts at zero.",
+      "status": "running",
+      "currentFunction": "average",
+      "returnValue": null,
+      "executionTimeMs": 1.61,
+      "variables": [
+        {
+          "name": "scores",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "global"
+        },
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "average",
+          "changed": true
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "value": "0",
+          "scope": "average",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "average:values",
+        "average:total"
+      ],
+      "highlightedVariables": [
+        "average:values",
+        "average:total"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "average",
+          "line": 2,
+          "locals": {
+            "values": "[90, 72, 88]",
+            "total": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x71",
+          "type": "list",
+          "label": "scores",
+          "value": "[90, 72, 88]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 4,
+      "label": "accumulate 90",
+      "note": "values[0] is added — the running total is 90.",
+      "status": "running",
+      "currentFunction": "average",
+      "returnValue": null,
+      "executionTimeMs": 2.04,
+      "variables": [
+        {
+          "name": "scores",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "global"
+        },
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "average"
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "value": "90",
+          "scope": "average",
+          "changed": true
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "0",
+          "scope": "average",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "average:total",
+        "average:i"
+      ],
+      "highlightedVariables": [
+        "average:total",
+        "average:i"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "average",
+          "line": 4,
+          "locals": {
+            "values": "[90, 72, 88]",
+            "total": "90",
+            "i": "0"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x71",
+          "type": "list",
+          "label": "scores",
+          "value": "[90, 72, 88]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 4,
+      "label": "accumulate 72",
+      "note": "values[1] is added — the running total is 162.",
+      "status": "running",
+      "currentFunction": "average",
+      "returnValue": null,
+      "executionTimeMs": 2.67,
+      "variables": [
+        {
+          "name": "scores",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "global"
+        },
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "average"
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "value": "162",
+          "scope": "average",
+          "changed": true
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "1",
+          "scope": "average",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "average:total",
+        "average:i"
+      ],
+      "highlightedVariables": [
+        "average:total",
+        "average:i"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "average",
+          "line": 4,
+          "locals": {
+            "values": "[90, 72, 88]",
+            "total": "162",
+            "i": "1"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x71",
+          "type": "list",
+          "label": "scores",
+          "value": "[90, 72, 88]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 4,
+      "label": "accumulate 88",
+      "note": "values[2] is added — the running total is 250.",
+      "status": "running",
+      "currentFunction": "average",
+      "returnValue": null,
+      "executionTimeMs": 3.81,
+      "variables": [
+        {
+          "name": "scores",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "global"
+        },
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "average"
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "value": "250",
+          "scope": "average",
+          "changed": true
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "2",
+          "scope": "average",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "average:total",
+        "average:i"
+      ],
+      "highlightedVariables": [
+        "average:total",
+        "average:i"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "average",
+          "line": 4,
+          "locals": {
+            "values": "[90, 72, 88]",
+            "total": "250",
+            "i": "2"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x71",
+          "type": "list",
+          "label": "scores",
+          "value": "[90, 72, 88]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 3,
+      "label": "index 3 requested",
+      "note": "The loop bound is one too large, so index 3 is about to be read.",
+      "status": "running",
+      "currentFunction": "average",
+      "returnValue": null,
+      "executionTimeMs": 4.43,
+      "variables": [
+        {
+          "name": "scores",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "global"
+        },
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "average"
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "value": "250",
+          "scope": "average"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "3",
+          "scope": "average",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "average:i"
+      ],
+      "highlightedVariables": [
+        "average:i"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "average",
+          "line": 3,
+          "locals": {
+            "values": "[90, 72, 88]",
+            "total": "250",
+            "i": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x71",
+          "type": "list",
+          "label": "scores",
+          "value": "[90, 72, 88]",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 4,
+      "label": "IndexError",
+      "note": "values has three elements, so index 3 is out of range and the frame raises.",
+      "status": "runtime-error",
+      "currentFunction": "average",
+      "returnValue": null,
+      "executionTimeMs": 5.68,
+      "variables": [
+        {
+          "name": "scores",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "global"
+        },
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[90, 72, 88]",
+          "scope": "average"
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "value": "250",
+          "scope": "average"
+        },
+        {
+          "name": "i",
+          "type": "int",
+          "value": "3",
+          "scope": "average"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 8,
+          "locals": {}
+        },
+        {
+          "name": "average",
+          "line": 4,
+          "locals": {
+            "values": "[90, 72, 88]",
+            "total": "250",
+            "i": "3"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "list@0x71",
+          "type": "list",
+          "label": "scores",
+          "value": "[90, 72, 88]",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stderr",
+          "text": "Traceback (most recent call last):"
+        },
+        {
+          "stream": "stderr",
+          "text": "  File \"runtime_error.py\", line 8, in <module>"
+        },
+        {
+          "stream": "stderr",
+          "text": "  File \"runtime_error.py\", line 4, in average"
+        },
+        {
+          "stream": "stderr",
+          "text": "IndexError: list index out of range"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    }
+  ],
+  "totalTimeMs": 5.68,
+  "finalStatus": "runtime-error"
+}

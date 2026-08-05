@@ -1,0 +1,1010 @@
+{
+  "id": "linked-list",
+  "title": "Linked List",
+  "category": "Data Structures",
+  "description": "Nodes are allocated separately and chained by reference.",
+  "language": "python",
+  "monacoLanguage": "python",
+  "fileName": "linked_list.py",
+  "entry": "build([10, 20, 30])",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "maxDepth": 2
+  },
+  "code": "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\n\ndef build(values):\n    head = Node(values[0])\n    cursor = head\n    for value in values[1:]:\n        cursor.next = Node(value)\n        cursor = cursor.next\n    return head\n\n\ndef walk(head):\n    while head:\n        print(head.value)\n        head = head.next\n\n\nwalk(build([10, 20, 30]))\n",
+  "steps": [
+    {
+      "line": 1,
+      "label": "define Node",
+      "note": "The class object is created and bound in the module scope.",
+      "status": "running",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 0.84,
+      "variables": [],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 7,
+      "label": "call build",
+      "note": "build receives the source values.",
+      "status": "running",
+      "currentFunction": "build",
+      "returnValue": null,
+      "executionTimeMs": 1.79,
+      "variables": [
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[10, 20, 30]",
+          "scope": "build",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "build:values"
+      ],
+      "highlightedVariables": [
+        "build:values"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "build",
+          "line": 7,
+          "locals": {
+            "values": "[10, 20, 30]"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 56,
+        "objects": 1,
+        "allocations": 1,
+        "peakBytes": 56
+      }
+    },
+    {
+      "line": 8,
+      "label": "allocate head",
+      "note": "The first node is allocated; head and cursor point at it.",
+      "status": "running",
+      "currentFunction": "build",
+      "returnValue": null,
+      "executionTimeMs": 2.26,
+      "variables": [
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[10, 20, 30]",
+          "scope": "build"
+        },
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build",
+          "changed": true
+        },
+        {
+          "name": "cursor",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "build:head",
+        "build:cursor"
+      ],
+      "highlightedVariables": [
+        "build:head",
+        "build:cursor"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "build",
+          "line": 8,
+          "locals": {
+            "values": "[10, 20, 30]",
+            "head": "'<Node 10>'",
+            "cursor": "'<Node 10>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 110,
+        "objects": 2,
+        "allocations": 2,
+        "peakBytes": 110
+      }
+    },
+    {
+      "line": 11,
+      "label": "link node 20",
+      "note": "A fresh node is allocated and linked from the current tail.",
+      "status": "running",
+      "currentFunction": "build",
+      "returnValue": null,
+      "executionTimeMs": 3.33,
+      "variables": [
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[10, 20, 30]",
+          "scope": "build"
+        },
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build"
+        },
+        {
+          "name": "cursor",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build"
+        },
+        {
+          "name": "value",
+          "type": "int",
+          "value": "20",
+          "scope": "build",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "build:value"
+      ],
+      "highlightedVariables": [
+        "build:value"
+      ],
+      "highlightedMemory": [
+        "node@0xa1"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "build",
+          "line": 11,
+          "locals": {
+            "values": "[10, 20, 30]",
+            "head": "'<Node 10>'",
+            "cursor": "'<Node 10>'",
+            "value": "20"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 174,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 174
+      }
+    },
+    {
+      "line": 12,
+      "label": "advance cursor",
+      "note": "The cursor moves to the node it just created.",
+      "status": "running",
+      "currentFunction": "build",
+      "returnValue": null,
+      "executionTimeMs": 3.82,
+      "variables": [
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[10, 20, 30]",
+          "scope": "build"
+        },
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build"
+        },
+        {
+          "name": "cursor",
+          "type": "str",
+          "value": "'<Node 20>'",
+          "scope": "build",
+          "changed": true
+        },
+        {
+          "name": "value",
+          "type": "int",
+          "value": "20",
+          "scope": "build"
+        }
+      ],
+      "changed": [
+        "build:cursor"
+      ],
+      "highlightedVariables": [
+        "build:cursor"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "build",
+          "line": 12,
+          "locals": {
+            "values": "[10, 20, 30]",
+            "head": "'<Node 10>'",
+            "cursor": "'<Node 20>'",
+            "value": "20"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 174,
+        "objects": 3,
+        "allocations": 3,
+        "peakBytes": 174
+      }
+    },
+    {
+      "line": 11,
+      "label": "link node 30",
+      "note": "A fresh node is allocated and linked from the current tail.",
+      "status": "running",
+      "currentFunction": "build",
+      "returnValue": null,
+      "executionTimeMs": 4.92,
+      "variables": [
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[10, 20, 30]",
+          "scope": "build"
+        },
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build"
+        },
+        {
+          "name": "cursor",
+          "type": "str",
+          "value": "'<Node 20>'",
+          "scope": "build"
+        },
+        {
+          "name": "value",
+          "type": "int",
+          "value": "30",
+          "scope": "build",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "build:value"
+      ],
+      "highlightedVariables": [
+        "build:value"
+      ],
+      "highlightedMemory": [
+        "node@0xa2"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "build",
+          "line": 11,
+          "locals": {
+            "values": "[10, 20, 30]",
+            "head": "'<Node 10>'",
+            "cursor": "'<Node 20>'",
+            "value": "30"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → node@0xa3",
+          "refs": [
+            "node@0xa3"
+          ]
+        },
+        {
+          "id": "node@0xa3",
+          "type": "Node",
+          "label": "value = 30",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 12,
+      "label": "advance cursor",
+      "note": "The cursor moves to the node it just created.",
+      "status": "running",
+      "currentFunction": "build",
+      "returnValue": null,
+      "executionTimeMs": 5.7,
+      "variables": [
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[10, 20, 30]",
+          "scope": "build"
+        },
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build"
+        },
+        {
+          "name": "cursor",
+          "type": "str",
+          "value": "'<Node 30>'",
+          "scope": "build",
+          "changed": true
+        },
+        {
+          "name": "value",
+          "type": "int",
+          "value": "30",
+          "scope": "build"
+        }
+      ],
+      "changed": [
+        "build:cursor"
+      ],
+      "highlightedVariables": [
+        "build:cursor"
+      ],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "build",
+          "line": 12,
+          "locals": {
+            "values": "[10, 20, 30]",
+            "head": "'<Node 10>'",
+            "cursor": "'<Node 30>'",
+            "value": "30"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → node@0xa3",
+          "refs": [
+            "node@0xa3"
+          ]
+        },
+        {
+          "id": "node@0xa3",
+          "type": "Node",
+          "label": "value = 30",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 13,
+      "label": "return head",
+      "note": "The chain is complete and the head reference is returned.",
+      "status": "running",
+      "currentFunction": "build",
+      "returnValue": "<Node 10>",
+      "executionTimeMs": 6.92,
+      "variables": [
+        {
+          "name": "values",
+          "type": "list",
+          "value": "[10, 20, 30]",
+          "scope": "build"
+        },
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "build"
+        },
+        {
+          "name": "cursor",
+          "type": "str",
+          "value": "'<Node 30>'",
+          "scope": "build"
+        },
+        {
+          "name": "value",
+          "type": "int",
+          "value": "30",
+          "scope": "build"
+        }
+      ],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "build",
+          "line": 13,
+          "locals": {
+            "values": "[10, 20, 30]",
+            "head": "'<Node 10>'",
+            "cursor": "'<Node 30>'",
+            "value": "30"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → node@0xa3",
+          "refs": [
+            "node@0xa3"
+          ]
+        },
+        {
+          "id": "node@0xa3",
+          "type": "Node",
+          "label": "value = 30",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 18,
+      "label": "emit 10",
+      "note": "The current node's value is printed and the walk follows next.",
+      "status": "running",
+      "currentFunction": "walk",
+      "returnValue": null,
+      "executionTimeMs": 7.91,
+      "variables": [
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 10>'",
+          "scope": "walk",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "walk:head"
+      ],
+      "highlightedVariables": [
+        "walk:head"
+      ],
+      "highlightedMemory": [
+        "node@0xa1"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "walk",
+          "line": 18,
+          "locals": {
+            "head": "'<Node 10>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → node@0xa3",
+          "refs": [
+            "node@0xa3"
+          ]
+        },
+        {
+          "id": "node@0xa3",
+          "type": "Node",
+          "label": "value = 30",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "10"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 18,
+      "label": "emit 20",
+      "note": "The current node's value is printed and the walk follows next.",
+      "status": "running",
+      "currentFunction": "walk",
+      "returnValue": null,
+      "executionTimeMs": 8.35,
+      "variables": [
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 20>'",
+          "scope": "walk",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "walk:head"
+      ],
+      "highlightedVariables": [
+        "walk:head"
+      ],
+      "highlightedMemory": [
+        "node@0xa2"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "walk",
+          "line": 18,
+          "locals": {
+            "head": "'<Node 20>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → node@0xa3",
+          "refs": [
+            "node@0xa3"
+          ]
+        },
+        {
+          "id": "node@0xa3",
+          "type": "Node",
+          "label": "value = 30",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "20"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 18,
+      "label": "emit 30",
+      "note": "The current node's value is printed and the walk follows next.",
+      "status": "running",
+      "currentFunction": "walk",
+      "returnValue": null,
+      "executionTimeMs": 9.56,
+      "variables": [
+        {
+          "name": "head",
+          "type": "str",
+          "value": "'<Node 30>'",
+          "scope": "walk",
+          "changed": true
+        }
+      ],
+      "changed": [
+        "walk:head"
+      ],
+      "highlightedVariables": [
+        "walk:head"
+      ],
+      "highlightedMemory": [
+        "node@0xa3"
+      ],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 1,
+          "locals": {}
+        },
+        {
+          "name": "walk",
+          "line": 18,
+          "locals": {
+            "head": "'<Node 30>'"
+          }
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → node@0xa3",
+          "refs": [
+            "node@0xa3"
+          ]
+        },
+        {
+          "id": "node@0xa3",
+          "type": "Node",
+          "label": "value = 30",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [
+        {
+          "stream": "stdout",
+          "text": "30"
+        }
+      ],
+      "metrics": {
+        "stackBytes": 192,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    },
+    {
+      "line": 22,
+      "label": "traversal done",
+      "note": "head becomes None, so the loop and the program finish.",
+      "status": "completed",
+      "currentFunction": "<module>",
+      "returnValue": null,
+      "executionTimeMs": 10.45,
+      "variables": [],
+      "changed": [],
+      "highlightedVariables": [],
+      "highlightedMemory": [],
+      "stack": [
+        {
+          "name": "<module>",
+          "line": 22,
+          "locals": {}
+        }
+      ],
+      "heap": [
+        {
+          "id": "cls@0x01",
+          "type": "type",
+          "label": "Node",
+          "value": "class object",
+          "refs": []
+        },
+        {
+          "id": "node@0xa1",
+          "type": "Node",
+          "label": "value = 10",
+          "value": "next → node@0xa2",
+          "refs": [
+            "node@0xa2"
+          ]
+        },
+        {
+          "id": "node@0xa2",
+          "type": "Node",
+          "label": "value = 20",
+          "value": "next → node@0xa3",
+          "refs": [
+            "node@0xa3"
+          ]
+        },
+        {
+          "id": "node@0xa3",
+          "type": "Node",
+          "label": "value = 30",
+          "value": "next → None",
+          "refs": []
+        }
+      ],
+      "stdout": [],
+      "metrics": {
+        "stackBytes": 96,
+        "heapBytes": 238,
+        "objects": 4,
+        "allocations": 4,
+        "peakBytes": 238
+      }
+    }
+  ],
+  "totalTimeMs": 10.45,
+  "finalStatus": "completed"
+}
