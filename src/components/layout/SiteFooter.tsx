@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Terminal } from "lucide-react";
+import { Terminal, MessageSquare } from "lucide-react";
+import { GOOGLE_FEEDBACK_FORM_URL } from "@/config/links";
 
 export function SiteFooter() {
   return (
@@ -14,13 +15,26 @@ export function SiteFooter() {
         <p className="font-mono text-[11px] text-muted-foreground">
           See Code Come Alive. — frontend preview, traces are illustrative.
         </p>
-        <Link
-          to="/workspace"
-          data-cursor="button"
-          className="font-mono text-[11px] tracking-[0.2em] text-accent uppercase"
-        >
-          Launch app →
-        </Link>
+        <div className="flex items-center gap-4">
+          <a
+            href={GOOGLE_FEEDBACK_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="button"
+            className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.15em] text-muted-foreground hover:text-cyan-400 transition-colors uppercase"
+            aria-label="Submit Feedback (opens in a new tab)"
+          >
+            <MessageSquare className="h-3 w-3 text-cyan-400" aria-hidden />
+            <span>Feedback</span>
+          </a>
+          <Link
+            to="/workspace"
+            data-cursor="button"
+            className="font-mono text-[11px] tracking-[0.2em] text-accent uppercase"
+          >
+            Launch app →
+          </Link>
+        </div>
       </div>
     </footer>
   );
