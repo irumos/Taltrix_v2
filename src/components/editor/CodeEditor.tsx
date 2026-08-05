@@ -59,7 +59,30 @@ export function CodeEditor({
   const handleEditorMount = (editor: any, monaco: any) => {
     editorRef.current = editor;
     monacoRef.current = monaco;
+    try {
+      monaco.editor.defineTheme("taltrix", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          { token: "comment", foreground: "5b6784", fontStyle: "italic" },
+          { token: "keyword", foreground: "a78bfa" },
+          { token: "string", foreground: "67e8f9" },
+          { token: "number", foreground: "f59e0b" },
+        ],
+        colors: {
+          "editor.background": "#0D1224",
+          "editor.lineHighlightBackground": "#141B2D00",
+          "editorLineNumber.foreground": "#3d4a68",
+          "editorGutter.background": "#0D1224",
+          "editor.selectionBackground": "#7C3AED44",
+        },
+      });
+      monaco.editor.setTheme("taltrix");
+    } catch {
+      // theme already defined or fallback
+    }
   };
+
 
   // Extract step metrics & line context
   const currentLine = highlightLine ?? exec?.step?.line;
