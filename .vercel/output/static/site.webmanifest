@@ -1,0 +1,17 @@
+{
+  "name": "Taltrix | Interactive Code Visualizer",
+  "short_name": "Taltrix",
+  "description": "Interactive code execution visualization platform for students and educators.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
