@@ -1,7 +1,7 @@
 import { r as __exportAll } from "../_runtime.mjs";
 //#region node_modules/lenis/dist/lenis.mjs
 var lenis_exports = /* @__PURE__ */ __exportAll({ default: () => Lenis });
-var version = "1.3.25";
+var version = "1.3.26";
 /**
 * Clamp a value between a minimum and maximum value
 *
@@ -367,6 +367,7 @@ var Lenis = class {
 	_resetVelocityTimeout = null;
 	_rafId = null;
 	_isDraggingSelection = false;
+	reducedMotionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 	/**
 	* Whether or not the user is touching the screen
 	*/
@@ -418,7 +419,7 @@ var Lenis = class {
 	emitter = new Emitter();
 	dimensions;
 	virtualScroll;
-	constructor({ wrapper = window, content = document.documentElement, eventsTarget = wrapper, smoothWheel = true, syncTouch = false, syncTouchLerp = .075, touchInertiaExponent = 1.7, duration, easing, lerp = .1, infinite = false, orientation = "vertical", gestureOrientation = orientation === "horizontal" ? "both" : "vertical", touchMultiplier = 1, wheelMultiplier = 1, autoResize = true, prevent, virtualScroll, overscroll = true, autoRaf = false, anchors = false, autoToggle = false, allowNestedScroll = false, __experimental__naiveDimensions = false, naiveDimensions = __experimental__naiveDimensions, stopInertiaOnNavigate = false } = {}) {
+	constructor({ wrapper = window, content = document.documentElement, eventsTarget = wrapper, smoothWheel = true, syncTouch = false, syncTouchLerp = .075, touchInertiaExponent = 1.7, duration, easing, lerp = .1, infinite = false, orientation = "vertical", gestureOrientation = orientation === "horizontal" ? "both" : "vertical", touchMultiplier = 1, wheelMultiplier = 1, autoResize = true, prevent, virtualScroll, overscroll = true, autoRaf = false, anchors = false, autoToggle = false, allowNestedScroll = false, __experimental__naiveDimensions = false, naiveDimensions = __experimental__naiveDimensions, stopInertiaOnNavigate = false, respectReducedMotion = true } = {}) {
 		window.lenisVersion = version;
 		if (!window.lenis) window.lenis = {};
 		window.lenis.version = version;
@@ -453,7 +454,8 @@ var Lenis = class {
 			autoToggle,
 			allowNestedScroll,
 			naiveDimensions,
-			stopInertiaOnNavigate
+			stopInertiaOnNavigate,
+			respectReducedMotion
 		};
 		this.dimensions = new Dimensions(wrapper, content, { autoResize });
 		this.updateClassName();
@@ -732,6 +734,12 @@ var Lenis = class {
 	* })
 	*/
 	scrollTo(_target, { offset = 0, immediate = false, lock = false, programmatic = true, lerp = programmatic ? this.options.lerp : void 0, duration = programmatic ? this.options.duration : void 0, easing = programmatic ? this.options.easing : void 0, onStart, onComplete, force = false, userData } = {}) {
+		if (this.prefersReducedMotion) if (programmatic) immediate = true;
+		else {
+			lerp = 1;
+			duration = void 0;
+			easing = void 0;
+		}
 		if ((this.isStopped || this.isLocked) && !force) return;
 		let target = _target;
 		let adjustedOffset = offset;
@@ -1002,6 +1010,12 @@ var Lenis = class {
 	*/
 	get isSmooth() {
 		return this.isScrolling === "smooth";
+	}
+	/**
+	* Whether the user prefers reduced motion and lenis is honoring it (see `respectReducedMotion` option)
+	*/
+	get prefersReducedMotion() {
+		return this.options.respectReducedMotion && this.reducedMotionMediaQuery.matches;
 	}
 	/**
 	* The class name applied to the wrapper element

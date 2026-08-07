@@ -1733,14 +1733,18 @@ var Legend = /*#__PURE__*/ function(_PureComponent) {
 			value: function getDefaultPosition(style) {
 				var _this$props = this.props, layout = _this$props.layout, align = _this$props.align, verticalAlign = _this$props.verticalAlign, margin = _this$props.margin, chartWidth = _this$props.chartWidth, chartHeight = _this$props.chartHeight;
 				var hPos, vPos;
-				if (!style || (style.left === void 0 || style.left === null) && (style.right === void 0 || style.right === null)) if (align === "center" && layout === "vertical") {
-					var box = this.getBBoxSnapshot();
-					hPos = { left: ((chartWidth || 0) - box.width) / 2 };
-				} else hPos = align === "right" ? { right: margin && margin.right || 0 } : { left: margin && margin.left || 0 };
-				if (!style || (style.top === void 0 || style.top === null) && (style.bottom === void 0 || style.bottom === null)) if (verticalAlign === "middle") {
-					var _box = this.getBBoxSnapshot();
-					vPos = { top: ((chartHeight || 0) - _box.height) / 2 };
-				} else vPos = verticalAlign === "bottom" ? { bottom: margin && margin.bottom || 0 } : { top: margin && margin.top || 0 };
+				if (!style || (style.left === void 0 || style.left === null) && (style.right === void 0 || style.right === null)) {
+					if (align === "center" && layout === "vertical") {
+						var box = this.getBBoxSnapshot();
+						hPos = { left: ((chartWidth || 0) - box.width) / 2 };
+					} else hPos = align === "right" ? { right: margin && margin.right || 0 } : { left: margin && margin.left || 0 };
+				}
+				if (!style || (style.top === void 0 || style.top === null) && (style.bottom === void 0 || style.bottom === null)) {
+					if (verticalAlign === "middle") {
+						var _box = this.getBBoxSnapshot();
+						vPos = { top: ((chartHeight || 0) - _box.height) / 2 };
+					} else vPos = verticalAlign === "bottom" ? { bottom: margin && margin.bottom || 0 } : { top: margin && margin.top || 0 };
+				}
 				return _objectSpread$32(_objectSpread$32({}, hPos), vPos);
 			}
 		},
@@ -2928,7 +2932,7 @@ var CONVERSION_RATES = {
 	cm: 96 / 2.54,
 	mm: 96 / 25.4,
 	pt: 96 / 72,
-	pc: 96 / 6,
+	pc: 16,
 	"in": 96,
 	Q: 96 / 101.6,
 	px: 1
@@ -3157,8 +3161,10 @@ var calculateWordWidths = function calculateWordWidths(_ref) {
 	var children = _ref.children, breakAll = _ref.breakAll, style = _ref.style;
 	try {
 		var words = [];
-		if (!(0, import_isNil.default)(children)) if (breakAll) words = children.toString().split("");
-		else words = children.toString().split(BREAKING_SPACES);
+		if (!(0, import_isNil.default)(children)) {
+			if (breakAll) words = children.toString().split("");
+			else words = children.toString().split(BREAKING_SPACES);
+		}
 		return {
 			wordsWithComputedWidth: words.map(function(word) {
 				return {
@@ -12078,15 +12084,17 @@ function getCursorPoints(layout, activeCoordinate, offset) {
 		y2 = y1;
 		x1 = offset.left;
 		x2 = offset.left + offset.width;
-	} else if (activeCoordinate.cx != null && activeCoordinate.cy != null) if (layout === "centric") {
-		var cx = activeCoordinate.cx, cy = activeCoordinate.cy, innerRadius = activeCoordinate.innerRadius, outerRadius = activeCoordinate.outerRadius, angle = activeCoordinate.angle;
-		var innerPoint = polarToCartesian(cx, cy, innerRadius, angle);
-		var outerPoint = polarToCartesian(cx, cy, outerRadius, angle);
-		x1 = innerPoint.x;
-		y1 = innerPoint.y;
-		x2 = outerPoint.x;
-		y2 = outerPoint.y;
-	} else return getRadialCursorPoints(activeCoordinate);
+	} else if (activeCoordinate.cx != null && activeCoordinate.cy != null) {
+		if (layout === "centric") {
+			var cx = activeCoordinate.cx, cy = activeCoordinate.cy, innerRadius = activeCoordinate.innerRadius, outerRadius = activeCoordinate.outerRadius, angle = activeCoordinate.angle;
+			var innerPoint = polarToCartesian(cx, cy, innerRadius, angle);
+			var outerPoint = polarToCartesian(cx, cy, outerRadius, angle);
+			x1 = innerPoint.x;
+			y1 = innerPoint.y;
+			x2 = outerPoint.x;
+			y2 = outerPoint.y;
+		} else return getRadialCursorPoints(activeCoordinate);
+	}
 	return [{
 		x: x1,
 		y: y1
@@ -12588,13 +12596,14 @@ var getAxisMapByAxes = function getAxisMapByAxes(props, _ref2) {
 					} else if (!allowDuplicatedCategory) domain = parseDomainOfCategoryAxis(childDomain, domain, child).reduce(function(finalDomain, entry) {
 						return finalDomain.indexOf(entry) >= 0 ? finalDomain : [].concat(_toConsumableArray(finalDomain), [entry]);
 					}, []);
-				} else if (type === "category") if (!allowDuplicatedCategory) domain = parseDomainOfCategoryAxis(childDomain, domain, child).reduce(function(finalDomain, entry) {
-					return finalDomain.indexOf(entry) >= 0 || entry === "" || (0, import_isNil.default)(entry) ? finalDomain : [].concat(_toConsumableArray(finalDomain), [entry]);
-				}, []);
-				else domain = domain.filter(function(entry) {
-					return entry !== "" && !(0, import_isNil.default)(entry);
-				});
-				else if (type === "number") {
+				} else if (type === "category") {
+					if (!allowDuplicatedCategory) domain = parseDomainOfCategoryAxis(childDomain, domain, child).reduce(function(finalDomain, entry) {
+						return finalDomain.indexOf(entry) >= 0 || entry === "" || (0, import_isNil.default)(entry) ? finalDomain : [].concat(_toConsumableArray(finalDomain), [entry]);
+					}, []);
+					else domain = domain.filter(function(entry) {
+						return entry !== "" && !(0, import_isNil.default)(entry);
+					});
+				} else if (type === "number") {
 					var errorBarsDomain = parseErrorBarsOfAxis(displayedData, graphicalItems.filter(function(item) {
 						var _defaultProps2, _defaultProps3;
 						var itemAxisId = axisIdKey in item.props ? item.props[axisIdKey] : (_defaultProps2 = item.type.defaultProps) === null || _defaultProps2 === void 0 ? void 0 : _defaultProps2[axisIdKey];
@@ -13356,47 +13365,49 @@ var generateCategoricalChart = function generateCategoricalChart(_ref6) {
 				function findWithPayload(entry) {
 					return typeof tooltipAxis.dataKey === "function" ? tooltipAxis.dataKey(entry.payload) : null;
 				}
-				if (hasActive) if (activeTooltipIndex >= 0) {
-					var activePoint, basePoint;
-					if (tooltipAxis.dataKey && !tooltipAxis.allowDuplicatedCategory) {
-						var specifiedKey = typeof tooltipAxis.dataKey === "function" ? findWithPayload : "payload.".concat(tooltipAxis.dataKey.toString());
-						activePoint = findEntryInArray(points, specifiedKey, activeLabel);
-						basePoint = isRange && baseLine && findEntryInArray(baseLine, specifiedKey, activeLabel);
+				if (hasActive) {
+					if (activeTooltipIndex >= 0) {
+						var activePoint, basePoint;
+						if (tooltipAxis.dataKey && !tooltipAxis.allowDuplicatedCategory) {
+							var specifiedKey = typeof tooltipAxis.dataKey === "function" ? findWithPayload : "payload.".concat(tooltipAxis.dataKey.toString());
+							activePoint = findEntryInArray(points, specifiedKey, activeLabel);
+							basePoint = isRange && baseLine && findEntryInArray(baseLine, specifiedKey, activeLabel);
+						} else {
+							activePoint = points === null || points === void 0 ? void 0 : points[activeTooltipIndex];
+							basePoint = isRange && baseLine && baseLine[activeTooltipIndex];
+						}
+						if (activeShape || activeBar) {
+							var activeIndex = element.props.activeIndex !== void 0 ? element.props.activeIndex : activeTooltipIndex;
+							return [
+								/*#__PURE__*/ (0, import_react.cloneElement)(element, _objectSpread(_objectSpread(_objectSpread({}, item.props), itemEvents), {}, { activeIndex })),
+								null,
+								null
+							];
+						}
+						if (!(0, import_isNil.default)(activePoint)) return [graphicalItem].concat(_toConsumableArray(_this.renderActivePoints({
+							item,
+							activePoint,
+							basePoint,
+							childIndex: activeTooltipIndex,
+							isRange
+						})));
 					} else {
-						activePoint = points === null || points === void 0 ? void 0 : points[activeTooltipIndex];
-						basePoint = isRange && baseLine && baseLine[activeTooltipIndex];
-					}
-					if (activeShape || activeBar) {
-						var activeIndex = element.props.activeIndex !== void 0 ? element.props.activeIndex : activeTooltipIndex;
+						var _this$getItemByXY;
+						/**
+						* We hit this block if consumer uses a Tooltip without XAxis and/or YAxis.
+						* In which case, this.state.activeTooltipIndex never gets set
+						* because the mouse events that trigger that value getting set never get trigged without the axis components.
+						*
+						* An example usage case is a FunnelChart
+						*/
+						var _ref11$graphicalItem = ((_this$getItemByXY = _this.getItemByXY(_this.state.activeCoordinate)) !== null && _this$getItemByXY !== void 0 ? _this$getItemByXY : { graphicalItem }).graphicalItem, _ref11$graphicalItem$ = _ref11$graphicalItem.item, xyItem = _ref11$graphicalItem$ === void 0 ? element : _ref11$graphicalItem$, childIndex = _ref11$graphicalItem.childIndex;
+						var elementProps = _objectSpread(_objectSpread(_objectSpread({}, item.props), itemEvents), {}, { activeIndex: childIndex });
 						return [
-							/*#__PURE__*/ (0, import_react.cloneElement)(element, _objectSpread(_objectSpread(_objectSpread({}, item.props), itemEvents), {}, { activeIndex })),
+							/*#__PURE__*/ (0, import_react.cloneElement)(xyItem, elementProps),
 							null,
 							null
 						];
 					}
-					if (!(0, import_isNil.default)(activePoint)) return [graphicalItem].concat(_toConsumableArray(_this.renderActivePoints({
-						item,
-						activePoint,
-						basePoint,
-						childIndex: activeTooltipIndex,
-						isRange
-					})));
-				} else {
-					var _this$getItemByXY;
-					/**
-					* We hit this block if consumer uses a Tooltip without XAxis and/or YAxis.
-					* In which case, this.state.activeTooltipIndex never gets set
-					* because the mouse events that trigger that value getting set never get trigged without the axis components.
-					*
-					* An example usage case is a FunnelChart
-					*/
-					var _ref11$graphicalItem = ((_this$getItemByXY = _this.getItemByXY(_this.state.activeCoordinate)) !== null && _this$getItemByXY !== void 0 ? _this$getItemByXY : { graphicalItem }).graphicalItem, _ref11$graphicalItem$ = _ref11$graphicalItem.item, xyItem = _ref11$graphicalItem$ === void 0 ? element : _ref11$graphicalItem$, childIndex = _ref11$graphicalItem.childIndex;
-					var elementProps = _objectSpread(_objectSpread(_objectSpread({}, item.props), itemEvents), {}, { activeIndex: childIndex });
-					return [
-						/*#__PURE__*/ (0, import_react.cloneElement)(xyItem, elementProps),
-						null,
-						null
-					];
 				}
 				if (isRange) return [
 					graphicalItem,
@@ -13607,17 +13618,19 @@ var generateCategoricalChart = function generateCategoricalChart(_ref6) {
 					var tooltipEventType = this.getTooltipEventType();
 					var tooltipItem = findChildByType(children, Tooltip);
 					var tooltipEvents = {};
-					if (tooltipItem && tooltipEventType === "axis") if (tooltipItem.props.trigger === "click") tooltipEvents = { onClick: this.handleClick };
-					else tooltipEvents = {
-						onMouseEnter: this.handleMouseEnter,
-						onDoubleClick: this.handleDoubleClick,
-						onMouseMove: this.handleMouseMove,
-						onMouseLeave: this.handleMouseLeave,
-						onTouchMove: this.handleTouchMove,
-						onTouchStart: this.handleTouchStart,
-						onTouchEnd: this.handleTouchEnd,
-						onContextMenu: this.handleContextMenu
-					};
+					if (tooltipItem && tooltipEventType === "axis") {
+						if (tooltipItem.props.trigger === "click") tooltipEvents = { onClick: this.handleClick };
+						else tooltipEvents = {
+							onMouseEnter: this.handleMouseEnter,
+							onDoubleClick: this.handleDoubleClick,
+							onMouseMove: this.handleMouseMove,
+							onMouseLeave: this.handleMouseLeave,
+							onTouchMove: this.handleTouchMove,
+							onTouchStart: this.handleTouchStart,
+							onTouchEnd: this.handleTouchEnd,
+							onContextMenu: this.handleContextMenu
+						};
+					}
 					return _objectSpread(_objectSpread({}, adaptEventHandlers(this.props, this.handleOuterEvent)), tooltipEvents);
 				}
 			},

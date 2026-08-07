@@ -652,8 +652,10 @@ var size = function(options) {
 			let availableWidth = overflowAvailableWidth;
 			if (shiftData != null && shiftData.enabled.x) availableWidth = maximumClippingWidth;
 			if (shiftData != null && shiftData.enabled.y) availableHeight = maximumClippingHeight;
-			if (noShift && !alignment) if (isYAxis) availableWidth = width - 2 * max(overflow.left, overflow.right);
-			else availableHeight = height - 2 * max(overflow.top, overflow.bottom);
+			if (noShift && !alignment) {
+				if (isYAxis) availableWidth = width - 2 * max(overflow.left, overflow.right);
+				else availableHeight = height - 2 * max(overflow.top, overflow.bottom);
+			}
 			await apply({
 				...state,
 				availableWidth,
