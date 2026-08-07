@@ -28,6 +28,8 @@ import { useSettings } from "@/contexts/SettingsContext";
 import { useExecution } from "@/contexts/ExecutionContext";
 import type { LanguageId } from "@/types/execution";
 
+import { useNavigationHistory } from "@/contexts/NavigationHistoryContext";
+
 export function WorkspaceToolbar({
   onToggleInspector,
   inspectorCollapsed,
@@ -39,6 +41,7 @@ export function WorkspaceToolbar({
   onToggleExplorer: () => void;
   explorerCollapsed: boolean;
 }) {
+  const { getBackLabel, navigateBack } = useNavigationHistory();
   const {
     language,
     setLanguage,
@@ -107,13 +110,16 @@ export function WorkspaceToolbar({
           </TaltrixButton>
         </Tooltip>
 
-        <Link
-          to="/"
+        <button
+          type="button"
+          onClick={() => navigateBack('/')}
           data-cursor="button"
-          className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+          aria-label="Exit workspace"
+          className="group flex items-center gap-1 rounded-lg px-2.5 py-1.5 font-mono text-[11px] text-muted-foreground transition-all hover:bg-surface-h hover:text-foreground active:scale-95"
         >
-          <ChevronLeft className="h-3.5 w-3.5" /> exit
-        </Link>
+          <ChevronLeft className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:-translate-x-1" />
+          <span>{getBackLabel()}</span>
+        </button>
         <span className="font-display text-[12px] font-semibold tracking-[0.32em] text-foreground">
           TALTRIX
         </span>

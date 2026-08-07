@@ -12,10 +12,14 @@ import {
   MessageSquare,
   Menu,
   X,
+  User,
+  LogIn,
+  LayoutDashboard,
 } from "lucide-react";
 import { TaltrixButton } from "@/components/ui-kit/TaltrixButton";
 import { blip, restoreMuted, setMuted } from "@/lib/sound";
 import { useSettings } from "@/contexts/SettingsContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { GOOGLE_FEEDBACK_FORM_URL } from "@/config/links";
 
 const NAV = [
@@ -29,6 +33,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [muted, setMutedState] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, isAuthenticated, role } = useAuth();
+
 
   const {
     settings,
@@ -68,18 +74,18 @@ export function Navbar() {
       className="fixed inset-x-0 top-0 z-[120]"
     >
       <nav
-        className={`mx-auto flex h-14 items-center justify-between gap-4 px-5 transition-all duration-300 ease-out ${
+        className={`mx-auto flex h-14 items-center justify-between gap-2 transition-all duration-300 ease-out px-4 sm:px-6 ${
           scrolled
-            ? "mt-3 max-w-[960px] rounded-full border border-border/70 bg-surface/75 backdrop-blur-2xl shadow-xl shadow-black/25 sm:px-6"
-            : "mt-0 max-w-[1240px] border border-transparent bg-transparent backdrop-blur-none sm:px-8"
+            ? "mt-3 max-w-[1180px] rounded-full border border-border/70 bg-surface/75 backdrop-blur-2xl shadow-xl shadow-black/25"
+            : "mt-0 max-w-[1280px] border border-transparent bg-transparent backdrop-blur-none"
         }`}
         aria-label="Primary"
       >
-        <a href="#top" onClick={jump("#top")} className="flex items-center gap-2.5" data-cursor="button">
-          <span className="grid h-8 w-8 place-items-center rounded-lg [background-image:var(--gradient-primary)]">
+        <a href="#top" onClick={jump("#top")} className="flex items-center gap-2.5 shrink-0" data-cursor="button">
+          <span className="grid h-8 w-8 place-items-center rounded-lg [background-image:var(--gradient-primary)] shrink-0">
             <Terminal className="h-4 w-4 text-primary-foreground" aria-hidden />
           </span>
-          <span className="font-display text-sm font-semibold tracking-[0.34em]">TALTRIX</span>
+          <span className="font-display text-sm font-semibold tracking-[0.34em] shrink-0">TALTRIX</span>
         </a>
 
         {/* Desktop / Tablet Navigation Items */}
@@ -105,11 +111,10 @@ export function Navbar() {
             onMouseEnter={() => blip("hover")}
             data-cursor="button"
             aria-label="Submit Feedback (opens in a new tab)"
-            className="group relative inline-flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-[13px] font-medium text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:bg-surface-h/60 hover:text-foreground active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group relative inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-[13px] font-medium text-muted-foreground transition-all duration-200 hover:bg-surface-h/60 hover:text-foreground"
           >
             <MessageSquare className="h-3.5 w-3.5 text-muted-foreground/80 transition-colors group-hover:text-cyan-400" aria-hidden />
             <span>Feedback</span>
-            <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] scale-x-0 rounded-full bg-cyan-400/70 transition-transform duration-200 ease-out group-hover:scale-x-100" />
           </a>
 
           <button
@@ -117,14 +122,14 @@ export function Navbar() {
             onClick={() => setSettingsModalOpen(true)}
             onMouseEnter={() => blip("hover")}
             data-cursor="button"
-            className="rounded-lg px-3.5 py-2 text-[13px] text-muted-foreground transition-colors hover:text-foreground hover:bg-surface-h/50"
+            className="rounded-lg px-3 py-2 text-[13px] text-muted-foreground transition-colors hover:text-foreground hover:bg-surface-h/50"
           >
             Settings
           </button>
         </div>
 
         {/* Landing Top-Right Toolbar */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           {/* Mobile Menu Toggle Button */}
           <button
             type="button"
@@ -156,7 +161,7 @@ export function Navbar() {
             data-cursor="button"
             aria-label="Appearance settings"
             title="Appearance Settings"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-cyan-400 hover:border-cyan-500/40"
+            className="hidden sm:grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-cyan-400 hover:border-cyan-500/40"
           >
             <Palette className="h-4 w-4" />
           </button>
@@ -168,7 +173,7 @@ export function Navbar() {
             data-cursor="button"
             aria-label="Global Settings"
             title="Global Settings"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-cyan-400 hover:border-cyan-500/40"
+            className="hidden sm:grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-cyan-400 hover:border-cyan-500/40"
           >
             <Settings2 className="h-4 w-4" />
           </button>
@@ -180,7 +185,7 @@ export function Navbar() {
             data-cursor="button"
             aria-label="Keyboard Shortcuts"
             title="Keyboard Shortcuts (?)"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-cyan-400 hover:border-cyan-500/40 font-mono text-xs font-bold"
+            className="hidden lg:grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-cyan-400 hover:border-cyan-500/40 font-mono text-xs font-bold"
           >
             ?
           </button>
@@ -191,13 +196,35 @@ export function Navbar() {
             data-cursor="button"
             aria-pressed={!muted}
             aria-label={muted ? "Unmute interface sounds" : "Mute interface sounds"}
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-accent"
+            className="hidden md:grid h-9 w-9 place-items-center rounded-lg border border-border/70 text-muted-foreground transition-colors hover:text-accent"
           >
             {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
           </button>
 
-          <Link to="/workspace">
-            <TaltrixButton size="sm">Open Playground</TaltrixButton>
+          {isAuthenticated ? (
+            <Link to={role === 'admin' ? '/admin' : '/dashboard'} className="shrink-0">
+              <button
+                type="button"
+                className="flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-500/10 px-2.5 sm:px-3 py-1.5 font-sans text-xs font-semibold text-cyan-300 transition-colors hover:bg-cyan-500/20 whitespace-nowrap"
+              >
+                <LayoutDashboard className="h-3.5 w-3.5" />
+                <span>Dashboard</span>
+              </button>
+            </Link>
+          ) : (
+            <Link to="/login" className="shrink-0">
+              <button
+                type="button"
+                className="flex items-center gap-1.5 rounded-lg border border-border/80 bg-surface/60 px-2.5 sm:px-3 py-1.5 font-sans text-xs font-medium text-foreground transition-colors hover:bg-surface-h whitespace-nowrap"
+              >
+                <LogIn className="h-3.5 w-3.5 text-cyan-400" />
+                <span>Sign In</span>
+              </button>
+            </Link>
+          )}
+
+          <Link to="/workspace" className="shrink-0">
+            <TaltrixButton size="sm" className="whitespace-nowrap">Open Playground</TaltrixButton>
           </Link>
         </div>
       </nav>

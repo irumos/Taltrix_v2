@@ -8,13 +8,20 @@ import {
   Palette,
   HelpCircle,
   Sparkles,
+  LayoutDashboard,
+  ShieldCheck,
+  LogOut,
+  LogIn,
+  MessageSquare,
+  User,
 } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { useSettings } from "@/contexts/SettingsContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ActionItem {
   id: string;
-  category: "Navigation" | "Theme" | "Settings";
+  category: "Navigation" | "Theme" | "Settings" | "Auth";
   title: string;
   subtitle?: string;
   icon: any;
@@ -31,6 +38,7 @@ export function CommandPalette() {
     setTheme,
     setAccentColor,
   } = useSettings();
+  const { isAuthenticated, role, logout } = useAuth();
 
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -44,7 +52,7 @@ export function CommandPalette() {
       {
         id: "nav-workspace",
         category: "Navigation",
-        title: "Launch Workspace",
+        title: "Open Playground / Workspace",
         subtitle: "Open interactive code execution visualizer",
         icon: Play,
         perform: () => {
@@ -52,6 +60,45 @@ export function CommandPalette() {
           navigate({ to: "/workspace" });
         },
       },
+      {
+        id: "nav-dashboard",
+        category: "Navigation",
+        title: role === "admin" ? "Admin Portal" : "Student Dashboard",
+        subtitle: "Open personal dashboard and metrics",
+        icon: role === "admin" ? ShieldCheck : LayoutDashboard,
+        perform: () => {
+          setCommandPaletteOpen(false);
+          navigate({ to: role === "admin" ? "/admin" : "/dashboard" });
+        },
+      },
+      ...(isAuthenticated
+        ? [
+            {
+              id: "action-logout",
+              category: "Auth" as const,
+              title: "Sign Out",
+              subtitle: "End current authentication session",
+              icon: LogOut,
+              perform: () => {
+                setCommandPaletteOpen(false);
+                logout();
+                navigate({ to: "/" });
+              },
+            },
+          ]
+        : [
+            {
+              id: "action-login",
+              category: "Auth" as const,
+              title: "Sign In",
+              subtitle: "Access college account and saved visualizers",
+              icon: LogIn,
+              perform: () => {
+                setCommandPaletteOpen(false);
+                navigate({ to: "/login" });
+              },
+            },
+          ]),
       {
         id: "action-theme-toggle",
         category: "Theme",
@@ -110,7 +157,7 @@ export function CommandPalette() {
       {
         id: "theme-light",
         category: "Theme",
-        title: "Theme: Light (Experimental)",
+        title: "Theme: Light",
         subtitle: "Clean light mode for bright rooms",
         icon: Palette,
         perform: () => {
@@ -171,8 +218,9 @@ export function CommandPalette() {
         },
       },
     ],
-    [navigate, setAccentColor, setCommandPaletteOpen, setSettingsModalOpen, setShortcutsModalOpen, setTheme, toggleDarkLight],
+    [isAuthenticated, logout, navigate, role, setAccentColor, setCommandPaletteOpen, setSettingsModalOpen, setShortcutsModalOpen, setTheme, toggleDarkLight],
   );
+
 
   const filtered = useMemo(() => {
     if (!query.trim()) return actions;

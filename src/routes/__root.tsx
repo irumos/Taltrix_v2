@@ -132,9 +132,13 @@ function RootShell({ children }: { children: ReactNode }) {
 
 import { useLocation } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
+import { Toaster } from "sonner";
 import { SettingsProvider } from "@/contexts/SettingsContext";
 import { ThemeProvider } from "@/contexts/ThemeProvider";
 import { TransitionProvider } from "@/contexts/TransitionProvider";
+import { NotificationProvider } from "@/contexts/NotificationContext";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { NavigationHistoryProvider } from "@/contexts/NavigationHistoryContext";
 import { CommandPalette } from "@/components/common/CommandPalette";
 import { ShortcutsModal } from "@/components/common/ShortcutsModal";
 import { SettingsModal } from "@/components/settings/SettingsModal";
@@ -146,29 +150,37 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SettingsProvider>
-        <ThemeProvider>
-          <TransitionProvider>
-            <CustomCursor />
-            <AnimatePresence mode="sync" initial={false}>
-              <motion.div
-                key={location.pathname}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="w-full h-full"
-              >
-                {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-                <Outlet />
-              </motion.div>
-            </AnimatePresence>
-            <CommandPalette />
-            <ShortcutsModal />
-            <SettingsModal />
-          </TransitionProvider>
-        </ThemeProvider>
-      </SettingsProvider>
+      <NotificationProvider>
+        <AuthProvider>
+          <NavigationHistoryProvider>
+            <SettingsProvider>
+              <ThemeProvider>
+                <TransitionProvider>
+                  <CustomCursor />
+                  <Toaster position="top-right" theme="dark" richColors closeButton />
+                  <AnimatePresence mode="sync" initial={false}>
+                    <motion.div
+                      key={location.pathname}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="w-full h-full"
+                    >
+                      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+                      <Outlet />
+                    </motion.div>
+                  </AnimatePresence>
+                  <CommandPalette />
+                  <ShortcutsModal />
+                  <SettingsModal />
+                </TransitionProvider>
+              </ThemeProvider>
+            </SettingsProvider>
+          </NavigationHistoryProvider>
+        </AuthProvider>
+      </NotificationProvider>
     </QueryClientProvider>
   );
 }
+
