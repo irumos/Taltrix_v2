@@ -714,8 +714,10 @@ function timeInterval(floori, offseti, count, field) {
 		return timeInterval((date) => {
 			if (date >= date) while (floori(date), !test(date)) date.setTime(date - 1);
 		}, (date, step) => {
-			if (date >= date) if (step < 0) while (++step <= 0) while (offseti(date, -1), !test(date));
-			else while (--step >= 0) while (offseti(date, 1), !test(date));
+			if (date >= date) {
+				if (step < 0) while (++step <= 0) while (offseti(date, -1), !test(date));
+				else while (--step >= 0) while (offseti(date, 1), !test(date));
+			}
 		});
 	};
 	if (count) {
