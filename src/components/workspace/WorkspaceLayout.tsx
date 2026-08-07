@@ -12,7 +12,6 @@ import { ExecutionInsights } from "./ExecutionInsights";
 import { ExplainStepModal } from "./ExplainStepModal";
 import { ExecutionCompleteModal } from "./ExecutionCompleteModal";
 import { FtueWalkthrough } from "./FtueWalkthrough";
-import { SettingsModal } from "@/components/settings/SettingsModal";
 import { StatusBar } from "./StatusBar";
 import { TimelineBar } from "@/components/timeline/TimelineBar";
 import { ObjectInspector } from "@/components/inspector/ObjectInspector";
@@ -74,8 +73,19 @@ export function WorkspaceLayout() {
             ) : null}
 
             {/* Dominant Editor Panel (~70%) */}
-            <ResizablePanel defaultSize={inspectorCollapsed ? "100%" : "70%"} minSize="45%" className="h-full">
-              <EditorPane />
+            <ResizablePanel defaultSize={inspectorCollapsed ? "100%" : "70%"} minSize="45%">
+              <ResizablePanelGroup orientation="vertical" className="flex-col">
+                <ResizablePanel defaultSize="78%" minSize="40%">
+                  <EditorPane />
+                </ResizablePanel>
+
+                <ResizableHandle className="h-px w-full bg-border/70 transition-colors hover:bg-accent/60" />
+
+                {/* What's Happening & Insights Strip */}
+                <ResizablePanel defaultSize="22%" minSize="15%" className="p-2 bg-surface/30">
+                  {mode === "learn" ? <WhatsHappeningPanel /> : <ExecutionInsights />}
+                </ResizablePanel>
+              </ResizablePanelGroup>
             </ResizablePanel>
 
             {/* Information Panel (~30%) */}

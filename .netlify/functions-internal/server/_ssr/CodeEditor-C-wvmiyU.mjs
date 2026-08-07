@@ -1,5 +1,5 @@
 import { o as __toESM } from "../_runtime.mjs";
-import { f as useSettings, l as blip } from "./router-B_pj-fbL.mjs";
+import { f as useSettings, l as blip } from "./router-BQ7q_z5s.mjs";
 import { a as javascript_default, i as cpp_default, n as DEMO_CODE, o as python_default } from "./execution-DcB11N3d.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[...].mjs";

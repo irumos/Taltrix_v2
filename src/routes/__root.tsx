@@ -158,7 +158,7 @@ function RootComponent() {
                 <TransitionProvider>
                   <CustomCursor />
                   <Toaster position="top-right" theme="dark" richColors closeButton />
-                  <AnimatePresence mode="wait" initial={false}>
+                  <AnimatePresence mode="sync" initial={false}>
                     <motion.div
                       key={location.pathname}
                       initial={{ opacity: 0 }}

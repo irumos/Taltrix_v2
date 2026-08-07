@@ -1,12 +1,12 @@
 import { o as __toESM } from "../_runtime.mjs";
-import { d as setMuted, f as useSettings, i as __exportAll, l as blip, o as useAuth, p as cn, r as TaltrixButton, u as restoreMuted } from "./router-B_pj-fbL.mjs";
+import { d as setMuted, f as useSettings, i as __exportAll, l as blip, o as useAuth, p as cn, r as TaltrixButton, u as restoreMuted } from "./router-BQ7q_z5s.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[...].mjs";
 import { i as useMotionValueEvent, n as useTransform, o as AnimatePresence, r as useScroll } from "../_libs/framer-motion.mjs";
 import { t as motion } from "../_libs/motion.mjs";
 import { $ as LayoutDashboard, E as Settings2, Pt as Boxes, R as Palette, U as MessageSquare, V as Moon, Vt as ArrowRight, W as Menu, Y as LogIn, _ as Sun, b as Sparkles, g as Terminal, i as Volume2, mt as EyeOff, n as X, r as VolumeX, xt as CircleQuestionMark } from "../_libs/lucide-react.mjs";
 import { v as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Chrz22sM.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-IOoYHTcx.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Section({ id, children, className, label }) {
@@ -912,11 +912,11 @@ function usePrefersReducedMotion() {
 	}, []);
 	return reduced;
 }
-var ExecutionSection = (0, import_react.lazy)(() => import("./ExecutionSection-jr8vGBU8.mjs").then((m) => ({ default: m.ExecutionSection })));
-var MemorySection = (0, import_react.lazy)(() => import("./MemorySection-DJTpObzc.mjs").then((m) => ({ default: m.MemorySection })));
-var TimelineSection = (0, import_react.lazy)(() => import("./TimelineSection-BIePan2N.mjs").then((m) => ({ default: m.TimelineSection })));
-var FeaturesSection = (0, import_react.lazy)(() => import("./FeaturesSection-D2mGI8D4.mjs").then((m) => ({ default: m.FeaturesSection })));
-var LaunchSection = (0, import_react.lazy)(() => import("./LaunchSection-BevNXEua.mjs").then((m) => ({ default: m.LaunchSection })));
+var ExecutionSection = (0, import_react.lazy)(() => import("./ExecutionSection-D_JECIbg.mjs").then((m) => ({ default: m.ExecutionSection })));
+var MemorySection = (0, import_react.lazy)(() => import("./MemorySection-DMD5e428.mjs").then((m) => ({ default: m.MemorySection })));
+var TimelineSection = (0, import_react.lazy)(() => import("./TimelineSection-CC_qVHho.mjs").then((m) => ({ default: m.TimelineSection })));
+var FeaturesSection = (0, import_react.lazy)(() => import("./FeaturesSection-DYjlLZSW.mjs").then((m) => ({ default: m.FeaturesSection })));
+var LaunchSection = (0, import_react.lazy)(() => import("./LaunchSection-BUFQL296.mjs").then((m) => ({ default: m.LaunchSection })));
 function SectionFallback() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: "mx-auto h-[420px] w-full max-w-[1240px] px-5 sm:px-8",

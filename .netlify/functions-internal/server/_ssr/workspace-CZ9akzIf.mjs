@@ -1,16 +1,16 @@
 import { o as __toESM } from "../_runtime.mjs";
 import { t as cva } from "../_libs/class-variance-authority+clsx.mjs";
-import { f as useSettings, l as blip, n as Modal, p as cn, r as TaltrixButton, s as useNavigationHistory, t as CustomCursor } from "./router-B_pj-fbL.mjs";
+import { f as useSettings, l as blip, n as Modal, p as cn, r as TaltrixButton, s as useNavigationHistory, t as CustomCursor } from "./router-BQ7q_z5s.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[...].mjs";
 import { o as AnimatePresence } from "../_libs/framer-motion.mjs";
 import { t as motion } from "../_libs/motion.mjs";
-import { Dt as ChevronDown, E as Settings2, Et as ChevronLeft, F as Pause, Ft as Bot, G as MemoryStick, Gt as Activity, H as Monitor, I as PanelRight, L as PanelLeft, Lt as BookOpen, M as Puzzle, Mt as Brain, Ot as Check, P as Play, Pt as Boxes, Q as Lightbulb, R as Palette, S as SkipBack, St as CircleCheck, Tt as ChevronRight, Vt as ArrowRight, Z as LoaderCircle, _t as Cpu, a as Variable, at as History, b as Sparkles, bt as Clock, ct as GripVertical, d as TriangleAlert, dt as FolderOpen, et as Layers, ft as FileCodeCorner, g as Terminal, h as TimerOff, i as Volume2, it as Infinity$1, j as RotateCcw, jt as Bug, k as School, kt as ChartColumn, lt as GraduationCap, n as X, pt as Eye, r as VolumeX, st as HardDrive, t as Zap, ut as Gauge, vt as Command, x as SkipForward, yt as CodeXml, z as OctagonX } from "../_libs/lucide-react.mjs";
+import { Dt as ChevronDown, E as Settings2, Et as ChevronLeft, F as Pause, Ft as Bot, G as MemoryStick, Gt as Activity, H as Monitor, I as PanelRight, L as PanelLeft, Lt as BookOpen, M as Puzzle, Mt as Brain, Ot as Check, P as Play, Pt as Boxes, Q as Lightbulb, R as Palette, S as SkipBack, St as CircleCheck, Tt as ChevronRight, Vt as ArrowRight, Z as LoaderCircle, _t as Cpu, a as Variable, at as History, b as Sparkles, bt as Clock, ct as GripVertical, d as TriangleAlert, dt as FolderOpen, et as Layers, ft as FileCodeCorner, g as Terminal, h as TimerOff, i as Volume2, it as Infinity$1, j as RotateCcw, jt as Bug, k as School, lt as GraduationCap, n as X, pt as Eye, r as VolumeX, st as HardDrive, t as Zap, ut as Gauge, vt as Command, x as SkipForward, yt as CodeXml, z as OctagonX } from "../_libs/lucide-react.mjs";
 import { a as objectProfile, i as PROGRAM_LANGUAGES, n as ExecutionProvider, o as programsByCategory, r as PROGRAMS, s as useExecution, t as CodeEditor } from "./CodeEditor-C-wvmiyU.mjs";
 import { a as Trigger, i as Root2, n as Item2, r as Portal2, t as Content2 } from "../_libs/@radix-ui/react-dropdown-menu+[...].mjs";
 import { a as Trigger$1, i as Root3, n as Portal, r as Provider, t as Content2$1 } from "../_libs/@radix-ui/react-tooltip+[...].mjs";
 import { n as Zt, r as tn, t as Xt } from "../_libs/react-resizable-panels.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/workspace-BXgArBDf.js
+//#region node_modules/.nitro/vite/services/ssr/assets/workspace-CZ9akzIf.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var badgeVariants = cva("inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[10px] tracking-[0.16em] uppercase transition-colors duration-300", {
@@ -1164,6 +1164,262 @@ function EmptyState({ icon: Icon, title, message }) {
 		]
 	});
 }
+var TABS = [
+	{
+		id: "variables",
+		label: "Variables",
+		icon: Variable
+	},
+	{
+		id: "stack",
+		label: "Function Calls",
+		icon: Layers
+	},
+	{
+		id: "memory",
+		label: "Memory View",
+		icon: Boxes
+	},
+	{
+		id: "insights",
+		label: "Program Status",
+		icon: Activity
+	},
+	{
+		id: "explanation",
+		label: "Explanation",
+		icon: Sparkles
+	}
+];
+function InspectorSidebar() {
+	const { step, program, index, select, hover, setHover } = useExecution();
+	const [activeTab, setActiveTab] = (0, import_react.useState)("variables");
+	const hoveredObject = hover?.kind === "object" ? hover.id : null;
+	const hoveredFrame = hover?.kind === "frame" ? hover.name : null;
+	const failure = step.status && step.status !== "running" && step.status !== "done" ? step.status : null;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "flex h-full flex-col border-l border-border/70 bg-surface/50 font-mono text-[12px]",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "flex items-center border-b border-border/70 bg-background/60 p-1.5 overflow-x-auto",
+				children: TABS.map((t) => {
+					const active = t.id === activeTab;
+					return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+						type: "button",
+						"data-cursor": "button",
+						onClick: () => setActiveTab(t.id),
+						className: cn("flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-left font-mono text-[11px] transition-all whitespace-nowrap", active ? "bg-cyan-500/15 font-semibold text-cyan-300 border border-cyan-500/30 shadow-sm" : "text-muted-foreground hover:bg-surface/60 hover:text-foreground"),
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(t.icon, { className: cn("h-3.5 w-3.5", active ? "text-cyan-400" : "text-muted-foreground") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t.label })]
+					}, t.id);
+				})
+			}),
+			failure ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "border-b border-border/60 p-3",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionStateBanner, { status: failure })
+			}) : null,
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "min-h-0 flex-1 overflow-auto p-3",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnimatePresence, {
+					mode: "wait",
+					children: activeTab === "variables" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
+						initial: {
+							opacity: 0,
+							y: 8
+						},
+						animate: {
+							opacity: 1,
+							y: 0
+						},
+						exit: {
+							opacity: 0,
+							y: -8
+						},
+						transition: { duration: .2 },
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center justify-between border-b border-border/50 pb-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-sans text-xs font-semibold text-foreground",
+								children: "Active Variables"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "rounded bg-cyan-500/10 px-2 py-0.5 text-[10px] text-cyan-300",
+								children: [step.variables.length, " active"]
+							})]
+						}), step.variables.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EmptyState, {
+							icon: Variable,
+							title: "No active variables",
+							message: "Run your program to watch variables change in real time."
+						}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(VariablesTable, { variables: step.variables })]
+					}, "variables") : activeTab === "stack" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
+						initial: {
+							opacity: 0,
+							y: 8
+						},
+						animate: {
+							opacity: 1,
+							y: 0
+						},
+						exit: {
+							opacity: 0,
+							y: -8
+						},
+						transition: { duration: .2 },
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center justify-between border-b border-border/50 pb-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-sans text-xs font-semibold text-foreground",
+								children: "Function Calls"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "rounded bg-purple-500/10 px-2 py-0.5 text-[10px] text-purple-300",
+								children: [step.stack.length, " calls active"]
+							})]
+						}), step.stack.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EmptyState, {
+							icon: Layers,
+							title: "No active function calls",
+							message: "Run your program to see how functions are called and returned."
+						}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StackFrames, {
+							frames: step.stack,
+							highlighted: hoveredFrame,
+							onHover: (name) => setHover(name ? {
+								kind: "frame",
+								name
+							} : null),
+							onSelect: (name) => select({
+								kind: "function",
+								name
+							})
+						})]
+					}, "stack") : activeTab === "memory" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
+						initial: {
+							opacity: 0,
+							y: 8
+						},
+						animate: {
+							opacity: 1,
+							y: 0
+						},
+						exit: {
+							opacity: 0,
+							y: -8
+						},
+						transition: { duration: .2 },
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center justify-between border-b border-border/50 pb-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-sans text-xs font-semibold text-foreground",
+								children: "Memory View"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "rounded bg-indigo-500/10 px-2 py-0.5 text-[10px] text-indigo-300",
+								children: [step.heap.length, " objects"]
+							})]
+						}), step.heap.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EmptyState, {
+							icon: Boxes,
+							title: "Memory is empty",
+							message: "Run your program to see memory addresses and object structures."
+						}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MemoryGraph, {
+							objects: step.heap,
+							highlighted: hoveredObject,
+							onHover: (id) => setHover(id ? {
+								kind: "object",
+								id
+							} : null),
+							onSelect: (id) => select({
+								kind: "object",
+								id
+							})
+						})]
+					}, "memory") : activeTab === "insights" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
+						initial: {
+							opacity: 0,
+							y: 8
+						},
+						animate: {
+							opacity: 1,
+							y: 0
+						},
+						exit: {
+							opacity: 0,
+							y: -8
+						},
+						transition: { duration: .2 },
+						className: "space-y-3",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center justify-between border-b border-border/50 pb-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "font-sans text-xs font-semibold text-foreground",
+									children: "Program Status"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+									className: "rounded bg-amber-500/10 px-2 py-0.5 text-[10px] text-amber-300",
+									children: [
+										"Step ",
+										index + 1,
+										" of ",
+										program.steps.length
+									]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CpuCard, {}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionSummary, {})
+						]
+					}, "insights") : activeTab === "explanation" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
+						initial: {
+							opacity: 0,
+							y: 8
+						},
+						animate: {
+							opacity: 1,
+							y: 0
+						},
+						exit: {
+							opacity: 0,
+							y: -8
+						},
+						transition: { duration: .2 },
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center justify-between border-b border-border/50 pb-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-sans text-xs font-semibold text-foreground font-mono",
+								children: "Step Explanation"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "rounded bg-cyan-500/10 px-2 py-0.5 text-[10px] text-cyan-300",
+								children: ["Line ", step.line]
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-4 space-y-3 font-sans",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "text-[11px] font-semibold uppercase tracking-wider text-cyan-400 font-mono",
+									children: "What Happened?"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "mt-1 text-xs leading-relaxed text-foreground",
+									children: step.explanation?.summary || `Line ${step.line} executed successfully.`
+								})] }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "text-[11px] font-semibold uppercase tracking-wider text-purple-400 font-mono",
+									children: "What Changed?"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "mt-1 text-xs leading-relaxed text-muted-foreground",
+									children: step.variables.length > 0 ? `${step.variables.length} active variables are currently tracked in memory.` : "No variables changed on this step."
+								})] }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "text-[11px] font-semibold uppercase tracking-wider text-emerald-400 font-mono",
+									children: "What Happens Next?"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "mt-1 text-xs leading-relaxed text-muted-foreground",
+									children: index + 1 < program.steps.length ? `Execution will move forward to line ${program.steps[index + 1]?.line}.` : "Program execution completed!"
+								})] })
+							]
+						})]
+					}, "explanation") : null
+				})
+			})
+		]
+	});
+}
 var ExecutionStoryService = class {
 	/**
 	* Generates a beginner-friendly, educational narrative for the current step.
@@ -1432,13 +1688,13 @@ function StoryModeDropdown({ value, onChange }) {
 		}) })]
 	});
 }
-var STORAGE_KEY$1 = "taltrix_execution_story_mode";
+var STORAGE_KEY = "taltrix_execution_story_mode";
 function ExecutionStoryPanel() {
 	const { step, index, program, select, setHover } = useExecution();
 	const { speak, stop, isSpeaking, supported } = useStorySpeech();
 	const [explanationMode, setExplanationMode] = (0, import_react.useState)(() => {
 		if (typeof window !== "undefined") {
-			const saved = localStorage.getItem(STORAGE_KEY$1);
+			const saved = localStorage.getItem(STORAGE_KEY);
 			if (saved && [
 				"beginner",
 				"intermediate",
@@ -1450,7 +1706,7 @@ function ExecutionStoryPanel() {
 	});
 	const handleModeChange = (newMode) => {
 		setExplanationMode(newMode);
-		if (typeof window !== "undefined") localStorage.setItem(STORAGE_KEY$1, newMode);
+		if (typeof window !== "undefined") localStorage.setItem(STORAGE_KEY, newMode);
 	};
 	const [showHistory, setShowHistory] = (0, import_react.useState)(false);
 	const totalSteps = program.steps.length;
@@ -2065,376 +2321,6 @@ function ExecutionInsights() {
 				})
 			]
 		})]
-	});
-}
-var INSPECTOR_OPTIONS = [
-	{
-		id: "explanation",
-		label: "Execution Story",
-		category: "AI Learning Engine",
-		icon: Brain
-	},
-	{
-		id: "variables",
-		label: "Variables",
-		category: "Memory & Scope",
-		icon: Variable
-	},
-	{
-		id: "stack",
-		label: "Function Calls",
-		category: "Call Stack",
-		icon: Layers
-	},
-	{
-		id: "memory",
-		label: "Memory View",
-		category: "Heap Graph",
-		icon: Boxes
-	},
-	{
-		id: "insights",
-		label: "Program Status",
-		category: "CPU & Transport",
-		icon: Activity
-	},
-	{
-		id: "insights_detail",
-		label: "Execution Insights",
-		category: "Metrics",
-		icon: ChartColumn
-	}
-];
-var STORAGE_KEY = "taltrix_selected_inspector";
-function InspectorSidebar() {
-	const { step, program, index, hover, setHover, select } = useExecution();
-	const [selectedInspector, setSelectedInspector] = (0, import_react.useState)(() => {
-		if (typeof window !== "undefined") {
-			const stored = localStorage.getItem(STORAGE_KEY);
-			if (stored && INSPECTOR_OPTIONS.some((o) => o.id === stored)) return stored;
-		}
-		return "variables";
-	});
-	const [dropdownOpen, setDropdownOpen] = (0, import_react.useState)(false);
-	const containerRef = (0, import_react.useRef)(null);
-	const handleSelectInspector = (id) => {
-		blip("hover");
-		setSelectedInspector(id);
-		setDropdownOpen(false);
-		if (typeof window !== "undefined") localStorage.setItem(STORAGE_KEY, id);
-	};
-	(0, import_react.useEffect)(() => {
-		const handleClickOutside = (e) => {
-			if (containerRef.current && !containerRef.current.contains(e.target)) setDropdownOpen(false);
-		};
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => document.removeEventListener("mousedown", handleClickOutside);
-	}, []);
-	const currentOption = INSPECTOR_OPTIONS.find((o) => o.id === selectedInspector) || INSPECTOR_OPTIONS[0];
-	const hoveredObject = hover?.kind === "object" ? hover.id : null;
-	const hoveredFrame = hover?.kind === "frame" ? hover.name : null;
-	const failure = step.status && step.status !== "running" && step.status !== "done" ? step.status : null;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "flex h-full flex-col border-l border-border/70 bg-surface/50 font-mono text-[12px]",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				ref: containerRef,
-				className: "relative border-b border-border/70 bg-background/70 p-2.5",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center justify-between",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "font-sans text-[11px] font-semibold text-muted-foreground uppercase tracking-wider",
-						children: "Inspector View"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-						type: "button",
-						onClick: () => {
-							blip("hover");
-							setDropdownOpen((prev) => !prev);
-						},
-						"aria-expanded": dropdownOpen,
-						"aria-label": "Select Inspector",
-						className: "flex items-center gap-2 rounded-xl border border-border/80 bg-surface/90 px-3 py-1.5 font-sans text-xs font-semibold text-foreground shadow-sm transition-all hover:bg-surface-h hover:border-cyan-500/40 focus:outline-none focus:ring-2 focus:ring-cyan-500/50",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(currentOption.icon, { className: "h-4 w-4 text-cyan-400 shrink-0" }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: currentOption.label }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: `h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}` })
-						]
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnimatePresence, { children: dropdownOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
-					initial: {
-						opacity: 0,
-						y: 6,
-						scale: .96
-					},
-					animate: {
-						opacity: 1,
-						y: 0,
-						scale: 1
-					},
-					exit: {
-						opacity: 0,
-						y: 6,
-						scale: .96
-					},
-					transition: {
-						duration: .15,
-						ease: "easeOut"
-					},
-					className: "absolute left-2 right-2 top-full mt-1.5 z-[150] overflow-hidden rounded-2xl border border-border/80 bg-surface/95 p-1.5 shadow-2xl backdrop-blur-2xl",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "space-y-0.5",
-						children: INSPECTOR_OPTIONS.map((option) => {
-							const Icon = option.icon;
-							const selected = option.id === selectedInspector;
-							return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-								type: "button",
-								onClick: () => handleSelectInspector(option.id),
-								className: `flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left transition-all ${selected ? "bg-cyan-500/15 font-semibold text-cyan-300 border border-cyan-500/30" : "text-muted-foreground hover:bg-surface-h/60 hover:text-foreground"}`,
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-center gap-2.5",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { className: `h-4 w-4 ${selected ? "text-cyan-400" : "text-muted-foreground"}` }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-										className: "font-sans text-xs font-semibold",
-										children: option.label
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-										className: "font-mono text-[10px] text-muted-foreground",
-										children: option.category
-									})] })]
-								}), selected && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "h-4 w-4 text-cyan-400 shrink-0" })]
-							}, option.id);
-						})
-					})
-				}) })]
-			}),
-			failure ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "border-b border-border/60 p-3",
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionStateBanner, { status: failure })
-			}) : null,
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "min-h-0 flex-1 overflow-auto p-3",
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(AnimatePresence, {
-					mode: "wait",
-					children: [
-						selectedInspector === "variables" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
-							initial: {
-								opacity: 0,
-								y: 8,
-								scale: .98
-							},
-							animate: {
-								opacity: 1,
-								y: 0,
-								scale: 1
-							},
-							exit: {
-								opacity: 0,
-								y: -8,
-								scale: .98
-							},
-							transition: {
-								duration: .2,
-								ease: "easeOut"
-							},
-							className: "space-y-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center justify-between border-b border-border/50 pb-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "font-sans text-xs font-semibold text-foreground",
-									children: "Active Variables"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "rounded bg-cyan-500/10 px-2 py-0.5 text-[10px] text-cyan-300",
-									children: [step.variables.length, " active"]
-								})]
-							}), step.variables.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EmptyState, {
-								icon: Variable,
-								title: "No active variables",
-								message: "Run your program to watch variables change in real time."
-							}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(VariablesTable, { variables: step.variables })]
-						}, "variables"),
-						selectedInspector === "stack" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
-							initial: {
-								opacity: 0,
-								y: 8,
-								scale: .98
-							},
-							animate: {
-								opacity: 1,
-								y: 0,
-								scale: 1
-							},
-							exit: {
-								opacity: 0,
-								y: -8,
-								scale: .98
-							},
-							transition: {
-								duration: .2,
-								ease: "easeOut"
-							},
-							className: "space-y-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center justify-between border-b border-border/50 pb-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "font-sans text-xs font-semibold text-foreground",
-									children: "Function Calls"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "rounded bg-purple-500/10 px-2 py-0.5 text-[10px] text-purple-300",
-									children: [step.stack.length, " calls active"]
-								})]
-							}), step.stack.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EmptyState, {
-								icon: Layers,
-								title: "No active function calls",
-								message: "Run your program to see how functions are called and returned."
-							}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StackFrames, {
-								frames: step.stack,
-								highlighted: hoveredFrame,
-								onHover: (name) => setHover(name ? {
-									kind: "frame",
-									name
-								} : null),
-								onSelect: (name) => select({
-									kind: "function",
-									name
-								})
-							})]
-						}, "stack"),
-						selectedInspector === "memory" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
-							initial: {
-								opacity: 0,
-								y: 8,
-								scale: .98
-							},
-							animate: {
-								opacity: 1,
-								y: 0,
-								scale: 1
-							},
-							exit: {
-								opacity: 0,
-								y: -8,
-								scale: .98
-							},
-							transition: {
-								duration: .2,
-								ease: "easeOut"
-							},
-							className: "space-y-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center justify-between border-b border-border/50 pb-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "font-sans text-xs font-semibold text-foreground",
-									children: "Memory View"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "rounded bg-indigo-500/10 px-2 py-0.5 text-[10px] text-indigo-300",
-									children: [step.heap.length, " objects"]
-								})]
-							}), step.heap.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EmptyState, {
-								icon: Boxes,
-								title: "Memory is empty",
-								message: "Run your program to see memory addresses and object structures."
-							}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MemoryGraph, {
-								objects: step.heap,
-								highlighted: hoveredObject,
-								onHover: (id) => setHover(id ? {
-									kind: "object",
-									id
-								} : null),
-								onSelect: (id) => select({
-									kind: "object",
-									id
-								})
-							})]
-						}, "memory"),
-						selectedInspector === "insights" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.div, {
-							initial: {
-								opacity: 0,
-								y: 8,
-								scale: .98
-							},
-							animate: {
-								opacity: 1,
-								y: 0,
-								scale: 1
-							},
-							exit: {
-								opacity: 0,
-								y: -8,
-								scale: .98
-							},
-							transition: {
-								duration: .2,
-								ease: "easeOut"
-							},
-							className: "space-y-3",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-center justify-between border-b border-border/50 pb-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "font-sans text-xs font-semibold text-foreground",
-										children: "Program Status"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-										className: "rounded bg-amber-500/10 px-2 py-0.5 text-[10px] text-amber-300",
-										children: [
-											"Step ",
-											index + 1,
-											" of ",
-											program.steps.length
-										]
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CpuCard, {}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionSummary, {})
-							]
-						}, "insights"),
-						selectedInspector === "insights_detail" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
-							initial: {
-								opacity: 0,
-								y: 8,
-								scale: .98
-							},
-							animate: {
-								opacity: 1,
-								y: 0,
-								scale: 1
-							},
-							exit: {
-								opacity: 0,
-								y: -8,
-								scale: .98
-							},
-							transition: {
-								duration: .2,
-								ease: "easeOut"
-							},
-							className: "space-y-3",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionInsights, {})
-						}, "insights_detail"),
-						selectedInspector === "explanation" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
-							initial: {
-								opacity: 0,
-								y: 8,
-								scale: .98
-							},
-							animate: {
-								opacity: 1,
-								y: 0,
-								scale: 1
-							},
-							exit: {
-								opacity: 0,
-								y: -8,
-								scale: .98
-							},
-							transition: {
-								duration: .2,
-								ease: "easeOut"
-							},
-							className: "space-y-3",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WhatsHappeningPanel, {})
-						}, "explanation")
-					]
-				})
-			})
-		]
 	});
 }
 function ExplainStepModal() {
@@ -3146,8 +3032,24 @@ function WorkspaceLayout() {
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResizablePanel, {
 							defaultSize: inspectorCollapsed ? "100%" : "70%",
 							minSize: "45%",
-							className: "h-full",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EditorPane, {})
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(ResizablePanelGroup, {
+								orientation: "vertical",
+								className: "flex-col",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResizablePanel, {
+										defaultSize: "78%",
+										minSize: "40%",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EditorPane, {})
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResizableHandle, { className: "h-px w-full bg-border/70 transition-colors hover:bg-accent/60" }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResizablePanel, {
+										defaultSize: "22%",
+										minSize: "15%",
+										className: "p-2 bg-surface/30",
+										children: mode === "learn" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WhatsHappeningPanel, {}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionInsights, {})
+									})
+								]
+							})
 						}),
 						!inspectorCollapsed ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResizableHandle, { className: "bg-border/70 transition-colors hover:bg-accent/60" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ResizablePanel, {
 							defaultSize: "30%",
@@ -3202,47 +3104,8 @@ function WorkspaceLayout() {
 		]
 	}) });
 }
-var WorkspaceErrorBoundary = class extends import_react.Component {
-	state = { hasError: false };
-	static getDerivedStateFromError(error) {
-		return {
-			hasError: true,
-			error
-		};
-	}
-	componentDidCatch(error, errorInfo) {
-		console.error("Workspace error boundary caught error:", error, errorInfo);
-	}
-	render() {
-		if (this.state.hasError) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "flex h-screen w-full flex-col items-center justify-center bg-background p-6 text-center",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "max-w-md space-y-4 rounded-2xl border border-border/80 bg-surface/80 p-6 shadow-2xl backdrop-blur-xl",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-						className: "font-display text-lg font-bold text-foreground",
-						children: "Workspace Loading Issue"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "font-sans text-xs text-muted-foreground leading-relaxed",
-						children: "The playground workspace encountered an initialization error. Please reload to restore the visualizer."
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TaltrixButton, {
-						onClick: () => {
-							this.setState({ hasError: false });
-							window.location.reload();
-						},
-						className: "w-full justify-center",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RotateCcw, { className: "mr-2 h-4 w-4" }), "Reload Workspace"]
-					})
-				]
-			})
-		});
-		return this.props.children;
-	}
-};
 function WorkspacePage() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WorkspaceErrorBoundary, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WorkspaceLayout, {}) }) });
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WorkspaceLayout, {}) });
 }
 var SplitComponent = WorkspacePage;
 //#endregion
