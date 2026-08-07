@@ -1,8 +1,8 @@
 import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[...].mjs";
 import { t as motion } from "../_libs/motion.mjs";
 import { Gt as Activity, Nt as BrainCircuit, Pt as Boxes, et as Layers, m as Timer, tt as Languages, ut as Gauge } from "../_libs/lucide-react.mjs";
-import { n as Section, r as SectionHeading } from "./routes-Dcvndtrf.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/FeaturesSection-BmUgp6aW.js
+import { n as Section, r as SectionHeading } from "./routes-Chrz22sM.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/FeaturesSection-D2mGI8D4.js
 var import_jsx_runtime = require_jsx_runtime();
 var FEATURES = [
 	{

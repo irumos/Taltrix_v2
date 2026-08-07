@@ -401,8 +401,8 @@ function blip(kind) {
 	} catch {}
 }
 //#endregion
-//#region node_modules/.nitro/vite/services/ssr/assets/router-BaC3vnTK.js
-var router_BaC3vnTK_exports = /* @__PURE__ */ __exportAll$1({
+//#region node_modules/.nitro/vite/services/ssr/assets/router-B_pj-fbL.js
+var router_B_pj_fbL_exports = /* @__PURE__ */ __exportAll$1({
 	a: () => useAuth,
 	c: () => __exportAll,
 	createRouter: () => createRouter,
@@ -2404,7 +2404,7 @@ function RootComponent() {
 				closeButton: true
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnimatePresence, {
-				mode: "sync",
+				mode: "wait",
 				initial: false,
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
 					initial: { opacity: 0 },
@@ -2424,7 +2424,7 @@ function RootComponent() {
 		] }) }) }) }) }) })
 	});
 }
-var $$splitComponentImporter$6 = () => import("./routes-Dcvndtrf.mjs").then((n) => n.t);
+var $$splitComponentImporter$6 = () => import("./routes-Chrz22sM.mjs").then((n) => n.t);
 var TITLE$6 = "Taltrix | Interactive Code Visualizer";
 var DESCRIPTION$6 = "Taltrix visualizes how programs really execute: line-by-line flow, variables, call stack, memory, heap and an interactive execution timeline.";
 var Route$6 = createFileRoute("/")({
@@ -2453,7 +2453,7 @@ var Route$6 = createFileRoute("/")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-var $$splitComponentImporter$5 = () => import("./admin-BOgqSA4e.mjs");
+var $$splitComponentImporter$5 = () => import("./admin-C7T8ESvp.mjs");
 var TITLE$5 = "Admin Portal | TALTRIX";
 var DESCRIPTION$5 = "TALTRIX Platform Administration & Academic Telemetry";
 var Route$5 = createFileRoute("/admin")({
@@ -2463,7 +2463,7 @@ var Route$5 = createFileRoute("/admin")({
 	}] }),
 	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-var $$splitComponentImporter$4 = () => import("./dashboard-CAg5XcbA.mjs");
+var $$splitComponentImporter$4 = () => import("./dashboard-EvULckWI.mjs");
 var TITLE$4 = "Student Dashboard | TALTRIX";
 var DESCRIPTION$4 = "TALTRIX Student Workspace & Academic Dashboard";
 var Route$4 = createFileRoute("/dashboard")({
@@ -2473,7 +2473,7 @@ var Route$4 = createFileRoute("/dashboard")({
 	}] }),
 	component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-var $$splitComponentImporter$3 = () => import("./forgot-password-CQ3DozzX.mjs");
+var $$splitComponentImporter$3 = () => import("./forgot-password-CWXJFOqB.mjs");
 var TITLE$3 = "Forgot Password | TALTRIX";
 var DESCRIPTION$3 = "Request a password reset link for your TALTRIX account.";
 var Route$3 = createFileRoute("/forgot-password")({
@@ -2490,7 +2490,7 @@ var Route$3 = createFileRoute("/forgot-password")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./login-Bx-jB1wd.mjs");
+var $$splitComponentImporter$2 = () => import("./login-lcovygEv.mjs");
 var TITLE$2 = "Sign In | TALTRIX Code Execution Visualizer";
 var DESCRIPTION$2 = "Sign in with your college email to access your code execution visualizer, saved programs, and learning progress.";
 var Route$2 = createFileRoute("/login")({
@@ -2515,7 +2515,7 @@ var Route$2 = createFileRoute("/login")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-var $$splitComponentImporter$1 = () => import("./signup-9n7pG86M.mjs");
+var $$splitComponentImporter$1 = () => import("./signup-DN1F5NkO.mjs");
 var TITLE$1 = "Create Account | TALTRIX";
 var DESCRIPTION$1 = "Create your student account to visualize code execution, analyze memory call stacks, and save programs.";
 var Route$1 = createFileRoute("/signup")({
@@ -2540,7 +2540,7 @@ var Route$1 = createFileRoute("/signup")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-var $$splitComponentImporter = () => import("./workspace-BU2E-7cP.mjs");
+var $$splitComponentImporter = () => import("./workspace-BXgArBDf.mjs");
 var TITLE = "Taltrix Playground | Interactive Code Visualizer";
 var DESCRIPTION = "The Taltrix workspace: Monaco editor, animated variables, call stack, memory graph, terminal and an execution timeline in one professional IDE layout.";
 var Route = createFileRoute("/workspace")({
@@ -2622,4 +2622,4 @@ function createRouter() {
 }
 var getRouter = createRouter;
 //#endregion
-export { router_BaC3vnTK_exports as a, useNotifications as c, setMuted as d, useSettings as f, __exportAll as i, blip as l, Modal as n, useAuth as o, cn as p, TaltrixButton as r, useNavigationHistory as s, CustomCursor as t, restoreMuted as u };
+export { router_B_pj_fbL_exports as a, useNotifications as c, setMuted as d, useSettings as f, __exportAll as i, blip as l, Modal as n, useAuth as o, cn as p, TaltrixButton as r, useNavigationHistory as s, CustomCursor as t, restoreMuted as u };

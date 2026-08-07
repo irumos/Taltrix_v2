@@ -1,13 +1,13 @@
 import { o as __toESM } from "../_runtime.mjs";
-import { c as useNotifications, f as useSettings, l as blip, o as useAuth } from "./router-BaC3vnTK.mjs";
+import { c as useNotifications, f as useSettings, l as blip, o as useAuth } from "./router-B_pj-fbL.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[...].mjs";
 import { o as AnimatePresence } from "../_libs/framer-motion.mjs";
 import { t as motion } from "../_libs/motion.mjs";
 import { $ as LayoutDashboard, A as Save, D as Send, Gt as Activity, It as Bookmark, J as LogOut, N as Plus, P as Play, T as Settings, Tt as ChevronRight, U as MessageSquare, V as Moon, W as Menu, Z as LoaderCircle, _ as Sun, b as Sparkles, bt as Clock, f as TrendingUp, g as Terminal, n as X, nt as KeyRound, pt as Eye, s as User, v as Star, yt as CodeXml, zt as Award } from "../_libs/lucide-react.mjs";
 import { v as Link, y as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
-import { n as NotificationsCenter, r as ProtectedRoute, t as FeedbackService } from "./feedbackService-BARG6SDq.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/dashboard-CAg5XcbA.js
+import { n as NotificationsCenter, r as ProtectedRoute, t as FeedbackService } from "./feedbackService-Bx0ORHy6.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/dashboard-EvULckWI.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var MOCK_VISUALIZATIONS = [

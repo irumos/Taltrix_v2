@@ -1,6 +1,6 @@
 import { o as __toESM } from "../_runtime.mjs";
 import { t as cva } from "../_libs/class-variance-authority+clsx.mjs";
-import { f as useSettings, l as blip, n as Modal, p as cn, r as TaltrixButton, s as useNavigationHistory, t as CustomCursor } from "./router-BaC3vnTK.mjs";
+import { f as useSettings, l as blip, n as Modal, p as cn, r as TaltrixButton, s as useNavigationHistory, t as CustomCursor } from "./router-B_pj-fbL.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[...].mjs";
 import { o as AnimatePresence } from "../_libs/framer-motion.mjs";
@@ -10,7 +10,7 @@ import { a as objectProfile, i as PROGRAM_LANGUAGES, n as ExecutionProvider, o a
 import { a as Trigger, i as Root2, n as Item2, r as Portal2, t as Content2 } from "../_libs/@radix-ui/react-dropdown-menu+[...].mjs";
 import { a as Trigger$1, i as Root3, n as Portal, r as Provider, t as Content2$1 } from "../_libs/@radix-ui/react-tooltip+[...].mjs";
 import { n as Zt, r as tn, t as Xt } from "../_libs/react-resizable-panels.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/workspace-BU2E-7cP.js
+//#region node_modules/.nitro/vite/services/ssr/assets/workspace-BXgArBDf.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var badgeVariants = cva("inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[10px] tracking-[0.16em] uppercase transition-colors duration-300", {
@@ -3202,8 +3202,47 @@ function WorkspaceLayout() {
 		]
 	}) });
 }
+var WorkspaceErrorBoundary = class extends import_react.Component {
+	state = { hasError: false };
+	static getDerivedStateFromError(error) {
+		return {
+			hasError: true,
+			error
+		};
+	}
+	componentDidCatch(error, errorInfo) {
+		console.error("Workspace error boundary caught error:", error, errorInfo);
+	}
+	render() {
+		if (this.state.hasError) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "flex h-screen w-full flex-col items-center justify-center bg-background p-6 text-center",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "max-w-md space-y-4 rounded-2xl border border-border/80 bg-surface/80 p-6 shadow-2xl backdrop-blur-xl",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "font-display text-lg font-bold text-foreground",
+						children: "Workspace Loading Issue"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "font-sans text-xs text-muted-foreground leading-relaxed",
+						children: "The playground workspace encountered an initialization error. Please reload to restore the visualizer."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TaltrixButton, {
+						onClick: () => {
+							this.setState({ hasError: false });
+							window.location.reload();
+						},
+						className: "w-full justify-center",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RotateCcw, { className: "mr-2 h-4 w-4" }), "Reload Workspace"]
+					})
+				]
+			})
+		});
+		return this.props.children;
+	}
+};
 function WorkspacePage() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WorkspaceLayout, {}) });
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WorkspaceErrorBoundary, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExecutionProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WorkspaceLayout, {}) }) });
 }
 var SplitComponent = WorkspacePage;
 //#endregion

@@ -1,12 +1,12 @@
-import { p as cn } from "./router-BaC3vnTK.mjs";
+import { p as cn } from "./router-B_pj-fbL.mjs";
 import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[...].mjs";
 import { o as AnimatePresence } from "../_libs/framer-motion.mjs";
 import { t as motion } from "../_libs/motion.mjs";
 import { Pt as Boxes, a as Variable, et as Layers, y as SquareTerminal } from "../_libs/lucide-react.mjs";
 import { t as CodeEditor } from "./CodeEditor-C-wvmiyU.mjs";
-import { n as useTraceRunner, t as TimelineControls } from "./use-trace-runner-DYyFj9S0.mjs";
-import { n as Section, r as SectionHeading } from "./routes-Dcvndtrf.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/ExecutionSection-wI5ad0eM.js
+import { n as useTraceRunner, t as TimelineControls } from "./use-trace-runner-D4m6Xrb7.mjs";
+import { n as Section, r as SectionHeading } from "./routes-Chrz22sM.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/ExecutionSection-jr8vGBU8.js
 var import_jsx_runtime = require_jsx_runtime();
 function Panel({ className, ...props }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {

@@ -5,8 +5,8 @@ import { o as require_jsx_runtime } from "../_libs/@radix-ui/react-collection+[.
 import { t as useInView } from "../_libs/framer-motion.mjs";
 import { t as motion } from "../_libs/motion.mjs";
 import { Ut as ArrowDown, Vt as ArrowRight } from "../_libs/lucide-react.mjs";
-import { n as Section, r as SectionHeading } from "./routes-Dcvndtrf.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/MemorySection-DeOnCtTh.js
+import { n as Section, r as SectionHeading } from "./routes-Chrz22sM.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/MemorySection-DJTpObzc.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var SNAPSHOT = TRACE[4];
