@@ -113,6 +113,7 @@ export function SettingsModal() {
         document.body.style.overflow = "";
       };
     }
+    return undefined;
   }, [settingsModalOpen]);
 
   // Keyboard shortcut listener: ESC key closes modal

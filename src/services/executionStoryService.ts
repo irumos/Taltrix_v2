@@ -1,4 +1,4 @@
-import { Step } from '@/types/execution';
+import { ExecutionStep } from '@/types/execution';
 
 export type ExplanationMode = 'beginner' | 'intermediate' | 'advanced' | 'professor';
 
@@ -32,11 +32,11 @@ export class ExecutionStoryService {
    * Generates a beginner-friendly, educational narrative for the current step.
    */
   static generateStory(
-    step: Step,
+    step: ExecutionStep,
     index: number,
     totalSteps: number,
-    prevStep?: Step,
-    nextStep?: Step,
+    prevStep?: ExecutionStep,
+    nextStep?: ExecutionStep,
     mode: ExplanationMode = 'beginner'
   ): StoryPayload {
     // 1. Determine Variable Changes (Diff)
@@ -64,7 +64,7 @@ export class ExecutionStoryService {
     let story = '';
     let why = '';
 
-    const summary = step.explanation?.summary || '';
+    const summary = step.deepExplanation || '';
     const codeLine = step.line ? `Line ${step.line}` : '';
 
     if (index === 0) {
@@ -89,51 +89,51 @@ export class ExecutionStoryService {
       why = 'There are no remaining statements left in the call stack to execute.';
     } else if (step.stack && prevStep?.stack && step.stack.length > prevStep.stack.length) {
       const topFrame = step.stack[step.stack.length - 1];
-      const isRecursive = step.stack.some((f, idx) => idx < step.stack.length - 1 && f.name === topFrame.name);
+      const isRecursive = step.stack.some((f, idx) => idx < step.stack.length - 1 && f.name === topFrame?.name);
 
       if (isRecursive) {
         category = 'recursion';
-        title = `Recursive Call: ${topFrame.name}()`;
+        title = `Recursive Call: ${topFrame?.name}()`;
         const argStr = step.variables.map((v) => `${v.name} = ${v.value}`).join(', ');
         story =
           mode === 'beginner'
-            ? `The function ${topFrame.name}() calls itself with ${argStr || 'new values'}. Before it can compute the final result, it must wait for this smaller step to finish first!`
+            ? `The function ${topFrame?.name}() calls itself with ${argStr || 'new values'}. Before it can compute the final result, it must wait for this smaller step to finish first!`
             : mode === 'professor'
-            ? `Recursive invocation detected on ${topFrame.name}(). A new activation record is pushed onto the call stack.`
-            : `Function ${topFrame.name}() entered a recursive sub-call with parameters (${argStr}).`;
+            ? `Recursive invocation detected on ${topFrame?.name}(). A new activation record is pushed onto the call stack.`
+            : `Function ${topFrame?.name}() entered a recursive sub-call with parameters (${argStr}).`;
         why = 'Recursion breaks complex problems down into identical smaller sub-problems.';
       } else {
         category = 'function_call';
-        title = `Function Called: ${topFrame.name}()`;
+        title = `Function Called: ${topFrame?.name}()`;
         story =
           mode === 'beginner'
-            ? `The program pauses the current code and jumps into the ${topFrame.name}() function to run its instructions.`
+            ? `The program pauses the current code and jumps into the ${topFrame?.name}() function to run its instructions.`
             : mode === 'professor'
-            ? `Control transferred to function sub-routine ${topFrame.name}(). Call stack frame initialized at address frame #${step.stack.length}.`
-            : `Entered function ${topFrame.name}(). A new call stack frame has been opened.`;
+            ? `Control transferred to function sub-routine ${topFrame?.name}(). Call stack frame initialized at address frame #${step.stack.length}.`
+            : `Entered function ${topFrame?.name}(). A new call stack frame has been opened.`;
         why = 'Functions encapsulate reusable logic and receive arguments to compute specific outputs.';
       }
     } else if (step.stack && prevStep?.stack && step.stack.length < prevStep.stack.length) {
       category = 'return';
       const returnedFrame = prevStep.stack[prevStep.stack.length - 1];
-      title = `Function Returned: ${returnedFrame.name}()`;
+      title = `Function Returned: ${returnedFrame?.name}()`;
       story =
         mode === 'beginner'
-          ? `The function ${returnedFrame.name}() finished its work and sent its result back to the code that called it.`
+          ? `The function ${returnedFrame?.name}() finished its work and sent its result back to the code that called it.`
           : mode === 'professor'
-          ? `Sub-routine ${returnedFrame.name}() executed return statement. Stack frame popped and control restored to caller.`
-          : `Function ${returnedFrame.name}() completed execution and returned control to caller.`;
+          ? `Sub-routine ${returnedFrame?.name}() executed return statement. Stack frame popped and control restored to caller.`
+          : `Function ${returnedFrame?.name}() completed execution and returned control to caller.`;
       why = 'When a function finishes, its temporary memory frame is closed and variables inside it are cleaned up.';
     } else if (changedVariables.length > 0) {
       category = 'assignment';
       const mainVar = changedVariables[0];
-      title = `Variable ${mainVar.name} Updated`;
+      title = `Variable ${mainVar?.name} Updated`;
       story =
         mode === 'beginner'
-          ? `The variable ${mainVar.name} was changed from ${mainVar.oldVal} to ${mainVar.newVal}.`
+          ? `The variable ${mainVar?.name} was changed from ${mainVar?.oldVal} to ${mainVar?.newVal}.`
           : mode === 'professor'
-          ? `Assignment operation mutated memory address of identifier '${mainVar.name}' (${mainVar.oldVal} → ${mainVar.newVal}).`
-          : `Updated ${mainVar.name} value to ${mainVar.newVal} in local stack memory.`;
+          ? `Assignment operation mutated memory address of identifier '${mainVar?.name}' (${mainVar?.oldVal} → ${mainVar?.newVal}).`
+          : `Updated ${mainVar?.name} value to ${mainVar?.newVal} in local stack memory.`;
       why = 'Variables store data values that your program can update as calculations proceed.';
     } else if (summary.toLowerCase().includes('if') || summary.toLowerCase().includes('condition')) {
       category = 'condition';
@@ -182,7 +182,7 @@ export class ExecutionStoryService {
     if (nextStep) {
       if (nextStep.stack && step.stack && nextStep.stack.length > step.stack.length) {
         const nextFrame = nextStep.stack[nextStep.stack.length - 1];
-        nextStepPreview = `The program will now enter function ${nextFrame.name}().`;
+        nextStepPreview = `The program will now enter function ${nextFrame?.name}().`;
       } else if (nextStep.line) {
         nextStepPreview = `Next, the computer will move to execute line ${nextStep.line}.`;
       }

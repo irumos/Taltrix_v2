@@ -125,7 +125,7 @@ export class AuthService {
       } else {
         user = {
           id: `user_student_${Date.now()}`,
-          name: emailClean.split('@')[0].replace('.', ' '),
+          name: emailClean.split('@')[0]?.replace('.', ' ') ?? 'Student User',
           email: emailClean,
           rollNumber: `21CS${Math.floor(100 + Math.random() * 900)}`,
           department: 'Computer Science',
@@ -140,10 +140,14 @@ export class AuthService {
       }
     }
 
+    if (!user) {
+      throw new Error("Failed to resolve user.");
+    }
+
     const activeUser: UserProfile = {
       ...user,
       lastActive: new Date().toISOString(),
-    };
+    } as UserProfile;
 
     const userIndex = users.findIndex((u) => u.id === activeUser.id);
     if (userIndex !== -1) {
@@ -242,6 +246,9 @@ export class AuthService {
     }
 
     const target = users[index];
+    if (!target) {
+      throw new Error("User not found");
+    }
     const updated: UserProfile = {
       id: target.id,
       name: updates.name ?? target.name,

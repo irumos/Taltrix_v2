@@ -37,7 +37,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
     indentGuides: true,
     codeFont: "JetBrains Mono",
     cursorStyle: "line",
-    cursorBlinking: "phase",
+    cursorBlink: "phase",
     tabSize: 2,
     readOnly: false,
   },
@@ -187,9 +187,9 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   // Apply theme & appearance datasets to root document element
   useEffect(() => {
     if (typeof document !== "undefined") {
-      document.documentElement.dataset.theme = settings.theme.id;
-      document.documentElement.dataset.accent = settings.appearance.accentColor;
-      document.documentElement.dataset.density = settings.appearance.uiDensity;
+      document.documentElement.dataset['theme'] = settings.theme.id;
+      document.documentElement.dataset['accent'] = settings.appearance.accentColor;
+      document.documentElement.dataset['density'] = settings.appearance.uiDensity;
     }
   }, [settings.theme.id, settings.appearance.accentColor, settings.appearance.uiDensity]);
 

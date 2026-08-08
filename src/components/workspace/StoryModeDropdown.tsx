@@ -59,7 +59,7 @@ export function StoryModeDropdown({ value, onChange }: StoryModeDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const currentMode = STORY_MODES.find((m) => m.id === value) || STORY_MODES[0];
+  const currentMode = STORY_MODES.find((m) => m.id === value) || STORY_MODES[0]!;
   const CurrentIcon = currentMode.icon;
 
   const handleSelect = (modeId: ExplanationMode) => {

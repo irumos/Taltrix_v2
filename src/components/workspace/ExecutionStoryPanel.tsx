@@ -36,7 +36,7 @@ import { StoryModeDropdown } from './StoryModeDropdown';
 const STORAGE_KEY = 'taltrix_execution_story_mode';
 
 export function ExecutionStoryPanel() {
-  const { step, index, program, select, setHover } = useExecution();
+  const { step, index, program, seek, select, setHover } = useExecution();
   const { speak, stop, isSpeaking, supported } = useStorySpeech();
 
   const [explanationMode, setExplanationMode] = useState<ExplanationMode>(() => {
@@ -212,12 +212,12 @@ export function ExecutionStoryPanel() {
 
                 return (
                   <button
-                    key={st.id || idx}
+                    key={idx}
                     type="button"
                     onClick={() => {
                       blip('hover');
                       // Jump to step via select or index
-                      select({ kind: 'line', line: st.line });
+                      seek(idx);
                     }}
                     className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-all ${
                       isCurrent

@@ -156,7 +156,7 @@ export class FeedbackService {
       ...items[index],
       status,
       ...(adminResponse !== undefined ? { adminResponse } : {}),
-    };
+    } as FeedbackItem;
 
     items[index] = updated;
     saveStoredFeedback(items);
