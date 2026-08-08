@@ -39,7 +39,7 @@ export function NavigationHistoryProvider({ children }: { children: ReactNode })
       }
       const updated = [...prev, current].slice(-10); // Keep last 10
       if (updated.length >= 2) {
-        setPreviousPath(updated[updated.length - 2]);
+        setPreviousPath(updated[updated.length - 2] || "/");
       }
       return updated;
     });

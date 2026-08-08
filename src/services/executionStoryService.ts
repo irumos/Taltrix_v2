@@ -1,4 +1,4 @@
-import { Step } from '@/types/execution';
+import { ExecutionStep as Step } from '@/types/execution';
 
 export type ExplanationMode = 'beginner' | 'intermediate' | 'advanced' | 'professor';
 
@@ -64,7 +64,7 @@ export class ExecutionStoryService {
     let story = '';
     let why = '';
 
-    const summary = step.explanation?.summary || '';
+    const summary = step.deepExplanation || '';
     const codeLine = step.line ? `Line ${step.line}` : '';
 
     if (index === 0) {
@@ -88,7 +88,7 @@ export class ExecutionStoryService {
           : 'The program reached the end of execution and returned 0 errors.';
       why = 'There are no remaining statements left in the call stack to execute.';
     } else if (step.stack && prevStep?.stack && step.stack.length > prevStep.stack.length) {
-      const topFrame = step.stack[step.stack.length - 1];
+      const topFrame = step.stack[step.stack.length - 1]!;
       const isRecursive = step.stack.some((f, idx) => idx < step.stack.length - 1 && f.name === topFrame.name);
 
       if (isRecursive) {
@@ -115,7 +115,7 @@ export class ExecutionStoryService {
       }
     } else if (step.stack && prevStep?.stack && step.stack.length < prevStep.stack.length) {
       category = 'return';
-      const returnedFrame = prevStep.stack[prevStep.stack.length - 1];
+      const returnedFrame = prevStep.stack[prevStep.stack.length - 1]!;
       title = `Function Returned: ${returnedFrame.name}()`;
       story =
         mode === 'beginner'
@@ -126,7 +126,7 @@ export class ExecutionStoryService {
       why = 'When a function finishes, its temporary memory frame is closed and variables inside it are cleaned up.';
     } else if (changedVariables.length > 0) {
       category = 'assignment';
-      const mainVar = changedVariables[0];
+      const mainVar = changedVariables[0]!;
       title = `Variable ${mainVar.name} Updated`;
       story =
         mode === 'beginner'
@@ -181,7 +181,7 @@ export class ExecutionStoryService {
     let nextStepPreview = 'End of execution reached.';
     if (nextStep) {
       if (nextStep.stack && step.stack && nextStep.stack.length > step.stack.length) {
-        const nextFrame = nextStep.stack[nextStep.stack.length - 1];
+        const nextFrame = nextStep.stack[nextStep.stack.length - 1]!;
         nextStepPreview = `The program will now enter function ${nextFrame.name}().`;
       } else if (nextStep.line) {
         nextStepPreview = `Next, the computer will move to execute line ${nextStep.line}.`;

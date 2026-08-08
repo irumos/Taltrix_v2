@@ -77,7 +77,8 @@ export class UserService {
     const users = getStoredUsers();
     const index = users.findIndex((u) => u.id === userId);
     if (index === -1) throw new Error('User not found');
-    const updated = { ...users[index], status };
+    const target = users[index] as UserProfile;
+    const updated: UserProfile = { ...target, status };
     users[index] = updated;
     saveStoredUsers(users);
     return updated;
@@ -87,7 +88,8 @@ export class UserService {
     const users = getStoredUsers();
     const index = users.findIndex((u) => u.id === userId);
     if (index === -1) throw new Error('User not found');
-    const updated = { ...users[index], role };
+    const target = users[index] as UserProfile;
+    const updated: UserProfile = { ...target, role };
     users[index] = updated;
     saveStoredUsers(users);
     return updated;
