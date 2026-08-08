@@ -20,8 +20,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof document !== "undefined") {
-      document.documentElement.dataset.theme = activeTheme;
-      document.documentElement.dataset.accent = activeAccent;
+      document.documentElement.dataset['theme'] = activeTheme;
+      document.documentElement.dataset['accent'] = activeAccent;
     }
   }, [activeTheme, activeAccent]);
 

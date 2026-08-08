@@ -192,7 +192,7 @@ export function InspectorSidebar() {
                 <div>
                   <div className="text-[11px] font-semibold uppercase tracking-wider text-cyan-400 font-mono">What Happened?</div>
                   <div className="mt-1 text-xs leading-relaxed text-foreground">
-                    {step.explanation?.summary || `Line ${step.line} executed successfully.`}
+                    {step.deepExplanation || `Line ${step.line} executed successfully.`}
                   </div>
                 </div>
                 <div>

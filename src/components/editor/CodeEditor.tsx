@@ -106,14 +106,14 @@ export function CodeEditor({
     const currentStep = exec.step;
     const prevStep = steps[index - 1];
 
-    if (currentStep.callStack && prevStep.callStack) {
-      if (currentStep.callStack.length > prevStep.callStack.length) {
+    if (currentStep.stack && prevStep?.stack) {
+      if (currentStep.stack.length > prevStep.stack.length) {
         return {
           flowType: "function-call",
           detailText: `↓ Entering ${currentStep.currentFunction || "function"}()`,
         };
       }
-      if (currentStep.callStack.length < prevStep.callStack.length) {
+      if (currentStep.stack.length < prevStep.stack.length) {
         return {
           flowType: "function-return",
           detailText: `↑ Returning to ${currentStep.currentFunction || "caller"}`,
@@ -122,6 +122,7 @@ export function CodeEditor({
     }
 
     if (
+      prevStep &&
       currentStep.line <= prevStep.line &&
       currentStep.currentFunction === prevStep.currentFunction &&
       Math.abs(currentStep.line - prevStep.line) > 1
@@ -286,7 +287,7 @@ export function CodeEditor({
               wordWrap: settings.editor.wordWrap,
               tabSize: settings.editor.tabSize,
               cursorStyle: settings.editor.cursorStyle,
-              cursorBlinking: settings.editor.cursorBlinking,
+              cursorBlinking: settings.editor.cursorBlink,
               readOnly: settings.editor.readOnly,
               scrollBeyondLastLine: false,
               padding: { top: 16, bottom: 16 },
