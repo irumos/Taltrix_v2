@@ -164,14 +164,14 @@ export function AdminDashboardPage() {
   }, []);
 
   const handleStatusChange = async (userId: string, status: any) => {
-    blip('click');
+    blip("type");
     await UserService.updateUserStatus(userId, status);
     notify('success', 'User Status Updated', `Status changed to ${status}.`);
     fetchUsers();
   };
 
   const handleRoleChange = async (userId: string, role: any) => {
-    blip('click');
+    blip("type");
     await UserService.updateUserRole(userId, role);
     notify('success', 'Role Updated', `User granted ${role} privileges.`);
     fetchUsers();
@@ -179,7 +179,7 @@ export function AdminDashboardPage() {
 
   const handleDeleteUser = async (userId: string) => {
     if (!confirm('Are you sure you want to remove this user from TALTRIX?')) return;
-    blip('click');
+    blip("type");
     await UserService.deleteUser(userId);
     notify('info', 'User Deleted', 'Account removed from system db.');
     fetchUsers();
@@ -187,7 +187,7 @@ export function AdminDashboardPage() {
 
   const handleReplyFeedback = async () => {
     if (!selectedFeedback) return;
-    blip('click');
+    blip("type");
     const updated = await FeedbackService.updateFeedbackStatus(
       selectedFeedback.id,
       'resolved',
@@ -203,12 +203,12 @@ export function AdminDashboardPage() {
   const handleCreateAnnouncement = (e: FormEvent) => {
     e.preventDefault();
     if (!newAnnTitle.trim() || !newAnnContent.trim()) return;
-    blip('click');
+    blip("type");
     const item = {
       id: `ann_${Date.now()}`,
       title: newAnnTitle,
       content: newAnnContent,
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toISOString().split("T")[0] || "",
     };
     setAnnouncements([item, ...announcements]);
     notify('success', 'Announcement Published', 'Broadcast live to student dashboards.');
@@ -292,7 +292,7 @@ export function AdminDashboardPage() {
           <button
             type="button"
             onClick={() => {
-              blip('click');
+              blip("type");
               logout();
               navigate({ to: '/' });
             }}
@@ -687,7 +687,7 @@ export function AdminDashboardPage() {
                 {/* Pagination Controls */}
                 <div className="flex items-center justify-between border-t border-border/70 p-4 font-mono text-xs">
                   <span className="text-muted-foreground">
-                    Page {userData.page || 1} of {userData.totalPages || 1} ({userData.total} total)
+                    Page {userOptions.page || 1} of {userData.totalPages || 1} ({userData.total} total)
                   </span>
                   <div className="flex items-center gap-2">
                     <button

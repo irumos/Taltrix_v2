@@ -110,7 +110,7 @@ export function TimelineBar() {
           {/* Primary Run / Continue Action */}
           <TaltrixButton
             size="sm"
-            variant={running ? "secondary" : "primary"}
+            variant={running ? "outline" : "primary"}
             onClick={toggle}
             aria-label={running ? "Pause execution" : "Run / Continue execution"}
             className="h-8 px-3.5 font-mono text-[11px] font-bold shadow-md shadow-cyan-500/10"

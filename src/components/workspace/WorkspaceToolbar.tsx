@@ -127,7 +127,7 @@ export function WorkspaceToolbar({
         </button>
       </ToolbarGroup>
 
-      <ToolbarDivider className="hidden sm:block" />
+      <ToolbarDivider />
 
       {/* CENTER: Logo + Program Information + Workspace Mode Controls */}
       <ToolbarGroup className="flex items-center gap-3 shrink-0">
@@ -171,7 +171,7 @@ export function WorkspaceToolbar({
         {/* Primary Visualize Action */}
         <TaltrixButton
           size="sm"
-          variant={visualizeState === "visualizing" ? "secondary" : "primary"}
+          variant={visualizeState === "visualizing" ? "outline" : "primary"}
           onClick={toggle}
           className="min-w-[110px] shadow-lg shadow-cyan-500/10 transition-all hover:scale-[1.02]"
         >

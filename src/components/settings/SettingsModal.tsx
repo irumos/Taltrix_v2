@@ -112,6 +112,9 @@ export function SettingsModal() {
       return () => {
         document.body.style.overflow = "";
       };
+    } else {
+      document.body.style.overflow = "";
+      return () => {};
     }
   }, [settingsModalOpen]);
 

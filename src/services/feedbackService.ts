@@ -152,8 +152,10 @@ export class FeedbackService {
     const index = items.findIndex((f) => f.id === id);
     if (index === -1) throw new Error('Feedback not found');
 
+    const target = items[index] as FeedbackItem;
     const updated: FeedbackItem = {
-      ...items[index],
+      ...target,
+      id: target.id,
       status,
       ...(adminResponse !== undefined ? { adminResponse } : {}),
     };

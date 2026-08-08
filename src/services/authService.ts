@@ -107,7 +107,7 @@ export class AuthService {
     const emailClean = credentials.email.trim().toLowerCase();
     const users = getStoredUsers();
 
-    let user = users.find((u) => u.email.toLowerCase() === emailClean);
+    let user: UserProfile | undefined = users.find((u) => u.email.toLowerCase() === emailClean);
 
     if (!user) {
       if (emailClean === 'admin@college.edu') {
@@ -125,7 +125,7 @@ export class AuthService {
       } else {
         user = {
           id: `user_student_${Date.now()}`,
-          name: emailClean.split('@')[0].replace('.', ' '),
+          name: (emailClean.split("@")[0] || "").replace(".", " "),
           email: emailClean,
           rollNumber: `21CS${Math.floor(100 + Math.random() * 900)}`,
           department: 'Computer Science',
@@ -140,13 +140,10 @@ export class AuthService {
       }
     }
 
-    const activeUser: UserProfile = {
-      ...user,
-      lastActive: new Date().toISOString(),
-    };
+    const activeUser: UserProfile = { ...user as UserProfile, lastActive: new Date().toISOString() };
 
     const userIndex = users.findIndex((u) => u.id === activeUser.id);
-    if (userIndex !== -1) {
+    if (user && userIndex !== -1) {
       users[userIndex] = activeUser;
       saveStoredUsers(users);
     }
@@ -241,23 +238,22 @@ export class AuthService {
       throw new Error('User not found.');
     }
 
-    const target = users[index];
+    const target = users[index] as UserProfile;
     const updated: UserProfile = {
-      id: target.id,
-      name: updates.name ?? target.name,
-      email: updates.email ?? target.email,
-      rollNumber: updates.rollNumber ?? target.rollNumber,
-      department: updates.department ?? target.department,
-      year: updates.year ?? target.year,
-      role: updates.role ?? target.role,
-      avatarUrl: updates.avatarUrl ?? target.avatarUrl,
-      status: updates.status ?? target.status,
-      createdAt: target.createdAt,
-      lastActive: new Date().toISOString(),
-      bio: updates.bio ?? target.bio,
-      githubUrl: updates.githubUrl ?? target.githubUrl,
-      preferredTheme: updates.preferredTheme ?? target.preferredTheme,
-      preferredLanguage: updates.preferredLanguage ?? target.preferredLanguage,
+      ...target,
+      ...(updates.name && { name: updates.name }),
+      ...(updates.email && { email: updates.email }),
+      ...(updates.rollNumber !== undefined && { rollNumber: updates.rollNumber }),
+      ...(updates.department !== undefined && { department: updates.department }),
+      ...(updates.year !== undefined && { year: updates.year }),
+      ...(updates.role && { role: updates.role }),
+      ...(updates.avatarUrl !== undefined && { avatarUrl: updates.avatarUrl }),
+      ...(updates.status && { status: updates.status }),
+      ...(updates.bio !== undefined && { bio: updates.bio }),
+      ...(updates.githubUrl !== undefined && { githubUrl: updates.githubUrl }),
+      ...(updates.preferredTheme !== undefined && { preferredTheme: updates.preferredTheme }),
+      ...(updates.preferredLanguage !== undefined && { preferredLanguage: updates.preferredLanguage }),
+      lastActive: new Date().toISOString()
     };
 
     users[index] = updated;
