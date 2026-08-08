@@ -3603,14 +3603,15 @@ function isDragActive() {
 //#endregion
 //#region node_modules/motion-dom/dist/es/gestures/drag/state/set-active.mjs
 function setDragLock(axis) {
-	if (axis === "x" || axis === "y") if (isDragging[axis]) return null;
-	else {
-		isDragging[axis] = true;
-		return () => {
-			isDragging[axis] = false;
-		};
-	}
-	else if (isDragging.x || isDragging.y) return null;
+	if (axis === "x" || axis === "y") {
+		if (isDragging[axis]) return null;
+		else {
+			isDragging[axis] = true;
+			return () => {
+				isDragging[axis] = false;
+			};
+		}
+	} else if (isDragging.x || isDragging.y) return null;
 	else {
 		isDragging.x = isDragging.y = true;
 		return () => {
@@ -4099,19 +4100,20 @@ function updateMotionValuesFromProps(element, next, prev) {
 		* create a new motion value from that
 		*/
 		element.addValue(key, motionValue(nextValue, { owner: element }));
-		else if (prevValue !== nextValue)
- /**
-		* If this is a flat value that has changed, update the motion value
-		* or create one if it doesn't exist. We only want to do this if we're
-		* not handling the value with our animation state.
-		*/
-		if (element.hasValue(key)) {
-			const existingValue = element.getValue(key);
-			if (existingValue.liveStyle === true) existingValue.jump(nextValue);
-			else if (!existingValue.hasAnimated) existingValue.set(nextValue);
-		} else {
-			const latestValue = element.getStaticValue(key);
-			element.addValue(key, motionValue(latestValue !== void 0 ? latestValue : nextValue, { owner: element }));
+		else if (prevValue !== nextValue) {
+			/**
+			* If this is a flat value that has changed, update the motion value
+			* or create one if it doesn't exist. We only want to do this if we're
+			* not handling the value with our animation state.
+			*/
+			if (element.hasValue(key)) {
+				const existingValue = element.getValue(key);
+				if (existingValue.liveStyle === true) existingValue.jump(nextValue);
+				else if (!existingValue.hasAnimated) existingValue.set(nextValue);
+			} else {
+				const latestValue = element.getStaticValue(key);
+				element.addValue(key, motionValue(latestValue !== void 0 ? latestValue : nextValue, { owner: element }));
+			}
 		}
 	}
 	for (const key in prev) if (next[key] === void 0) element.removeValue(key);
@@ -4934,8 +4936,10 @@ var correctBorderRadius = { correct: (latest, node) => {
 	* If latest is a string, if it's a percentage we can return immediately as it's
 	* going to be stretched appropriately. Otherwise, if it's a pixel, convert it to a number.
 	*/
-	if (typeof latest === "string") if (px.test(latest)) latest = parseFloat(latest);
-	else return latest;
+	if (typeof latest === "string") {
+		if (px.test(latest)) latest = parseFloat(latest);
+		else return latest;
+	}
 	return `${pixelsToPercent(latest, node.target.x)}% ${pixelsToPercent(latest, node.target.y)}%`;
 } };
 //#endregion
@@ -5399,9 +5403,10 @@ function createAnimationState(visualElement) {
 				let valueHasChanged = false;
 				if (isKeyframesTarget(next) && isKeyframesTarget(prev)) valueHasChanged = !shallowCompare(next, prev) || variantDidChange;
 				else valueHasChanged = next !== prev;
-				if (valueHasChanged) if (next !== void 0 && next !== null) markToAnimate(key);
-				else removedKeys.add(key);
-				else if (next !== void 0 && removedKeys.has(key))
+				if (valueHasChanged) {
+					if (next !== void 0 && next !== null) markToAnimate(key);
+					else removedKeys.add(key);
+				} else if (next !== void 0 && removedKeys.has(key))
  /**
 				* If next hasn't changed and it isn't undefined, we want to check if it's
 				* been removed by a higher priority
@@ -6557,8 +6562,10 @@ function createProjectionNode$1({ attachResizeListener, defaultParent, measureSc
 			* a relativeParent. This will allow a component to perform scale correction
 			* even if no animation has started.
 			*/
-			if (!this.targetDelta && !this.relativeTarget) if (this.options.layoutAnchor !== false && relativeParent && relativeParent.layout) this.createRelativeTarget(relativeParent, this.layout.layoutBox, relativeParent.layout.layoutBox);
-			else this.removeRelativeTarget();
+			if (!this.targetDelta && !this.relativeTarget) {
+				if (this.options.layoutAnchor !== false && relativeParent && relativeParent.layout) this.createRelativeTarget(relativeParent, this.layout.layoutBox, relativeParent.layout.layoutBox);
+				else this.removeRelativeTarget();
+			}
 			/**
 			* If we have no relative target or no target delta our target isn't valid
 			* for this frame.
@@ -8080,14 +8087,15 @@ function useMotionRef(visualState, visualElement, externalRef) {
 		if (instance) visualState.onMount?.(instance);
 		if (visualElement) instance ? visualElement.mount(instance) : visualElement.unmount();
 		const ref = externalRefContainer.current;
-		if (typeof ref === "function") if (instance) {
-			const cleanup = ref(instance);
-			if (typeof cleanup === "function") refCleanup.current = cleanup;
-		} else if (refCleanup.current) {
-			refCleanup.current();
-			refCleanup.current = null;
-		} else ref(instance);
-		else if (ref) ref.current = instance;
+		if (typeof ref === "function") {
+			if (instance) {
+				const cleanup = ref(instance);
+				if (typeof cleanup === "function") refCleanup.current = cleanup;
+			} else if (refCleanup.current) {
+				refCleanup.current();
+				refCleanup.current = null;
+			} else ref(instance);
+		} else if (ref) ref.current = instance;
 	}, [visualElement]);
 }
 //#endregion
@@ -10132,22 +10140,25 @@ function getTimeline({ source, container, ...options }) {
 		containerCache.set(targetKey, targetCache);
 	}
 	const axisKey = axis + (options.offset ?? []).join(",");
-	if (!targetCache[axisKey]) if (options.target && canUseNativeTimeline(options.target)) if (offsetToViewTimelineRange(options.offset)) targetCache[axisKey] = new ViewTimeline({
-		subject: options.target,
-		axis
-	});
-	else targetCache[axisKey] = scrollTimelineFallback({
-		container,
-		...options
-	});
-	else if (canUseNativeTimeline()) targetCache[axisKey] = new ScrollTimeline({
-		source: container,
-		axis
-	});
-	else targetCache[axisKey] = scrollTimelineFallback({
-		container,
-		...options
-	});
+	if (!targetCache[axisKey]) {
+		if (options.target && canUseNativeTimeline(options.target)) {
+			if (offsetToViewTimelineRange(options.offset)) targetCache[axisKey] = new ViewTimeline({
+				subject: options.target,
+				axis
+			});
+			else targetCache[axisKey] = scrollTimelineFallback({
+				container,
+				...options
+			});
+		} else if (canUseNativeTimeline()) targetCache[axisKey] = new ScrollTimeline({
+			source: container,
+			axis
+		});
+		else targetCache[axisKey] = scrollTimelineFallback({
+			container,
+			...options
+		});
+	}
 	return targetCache[axisKey];
 }
 //#endregion
@@ -10423,64 +10434,4 @@ function useMapTransform(inputValue, inputRange, outputMap, options) {
 	return output;
 }
 //#endregion
-//#region node_modules/framer-motion/dist/es/render/dom/viewport/index.mjs
-var thresholds = {
-	some: 0,
-	all: 1
-};
-function inView(elementOrSelector, onStart, { root, margin: rootMargin, amount = "some" } = {}) {
-	const elements = resolveElements(elementOrSelector);
-	const activeIntersections = /* @__PURE__ */ new WeakMap();
-	const onIntersectionChange = (entries) => {
-		entries.forEach((entry) => {
-			const onEnd = activeIntersections.get(entry.target);
-			/**
-			* If there's no change to the intersection, we don't need to
-			* do anything here.
-			*/
-			if (entry.isIntersecting === Boolean(onEnd)) return;
-			if (entry.isIntersecting) {
-				const newOnEnd = onStart(entry.target, entry);
-				if (typeof newOnEnd === "function") activeIntersections.set(entry.target, newOnEnd);
-				else observer.unobserve(entry.target);
-			} else if (typeof onEnd === "function") {
-				onEnd(entry);
-				activeIntersections.delete(entry.target);
-			}
-		});
-	};
-	const observer = new IntersectionObserver(onIntersectionChange, {
-		root,
-		rootMargin,
-		threshold: typeof amount === "number" ? amount : thresholds[amount]
-	});
-	elements.forEach((element) => observer.observe(element));
-	return () => observer.disconnect();
-}
-//#endregion
-//#region node_modules/framer-motion/dist/es/utils/use-in-view.mjs
-function useInView(ref, { root, margin, amount, once = false, initial = false } = {}) {
-	const [isInView, setInView] = (0, import_react.useState)(initial);
-	(0, import_react.useEffect)(() => {
-		if (!ref.current || once && isInView) return;
-		const onEnter = () => {
-			setInView(true);
-			return once ? void 0 : () => setInView(false);
-		};
-		const options = {
-			root: root && root.current || void 0,
-			margin,
-			amount
-		};
-		return inView(ref.current, onEnter, options);
-	}, [
-		root,
-		ref,
-		margin,
-		once,
-		amount
-	]);
-	return isInView;
-}
-//#endregion
-export { motion as a, useMotionValueEvent as i, useTransform as n, AnimatePresence as o, useScroll as r, useInView as t };
+export { AnimatePresence as a, motion as i, useScroll as n, useMotionValueEvent as r, useTransform as t };

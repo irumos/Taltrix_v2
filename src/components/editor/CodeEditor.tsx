@@ -6,27 +6,54 @@ import { useOptionalExecution } from "@/contexts/ExecutionContext";
 import { FloatingExecutionStatus } from "./FloatingExecutionStatus";
 import { ExecutionFlowOverlay, type FlowType } from "./ExecutionFlowOverlay";
 
-const Monaco = lazy(async () => {
-  const [{ default: Editor, loader }] = await Promise.all([import("@monaco-editor/react")]);
-  loader.init().then((monaco) => {
+function getInitialThemeId(): string {
+  if (typeof window === "undefined") return "graphite";
+  try {
+    const stored = localStorage.getItem("taltrix:user_settings:v1");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      const id = parsed?.theme?.id;
+      if (id === "taltrix-dark" || id === "dark") return "graphite";
+      if (id) return id;
+    }
+  } catch {}
+  return "graphite";
+}
+
+function updateMonacoTheme(monaco: any, themeId: string) {
+  const isLight = themeId === "light";
+  const bg = isLight ? "#f8fafc" : "#121214";
+  const lineNum = isLight ? "#94a3b8" : "#71717a";
+  const selBg = isLight ? "#cbd5e166" : "#3f3f4666";
+
+  try {
     monaco.editor.defineTheme("taltrix", {
-      base: "vs-dark",
+      base: isLight ? "vs" : "vs-dark",
       inherit: true,
       rules: [
-        { token: "comment", foreground: "5b6784", fontStyle: "italic" },
-        { token: "keyword", foreground: "a78bfa" },
-        { token: "string", foreground: "67e8f9" },
-        { token: "number", foreground: "f59e0b" },
+        { token: "comment", foreground: isLight ? "64748b" : "5b6784", fontStyle: "italic" },
+        { token: "keyword", foreground: isLight ? "7c3aed" : "a78bfa" },
+        { token: "string", foreground: isLight ? "0284c7" : "67e8f9" },
+        { token: "number", foreground: isLight ? "d97706" : "f59e0b" },
       ],
       colors: {
-        "editor.background": "#0D1224",
-        "editor.lineHighlightBackground": "#141B2D00",
-        "editorLineNumber.foreground": "#3d4a68",
-        "editorGutter.background": "#0D1224",
-        "editor.selectionBackground": "#7C3AED44",
+        "editor.background": bg,
+        "editor.lineHighlightBackground": `${bg}00`,
+        "editorLineNumber.foreground": lineNum,
+        "editorGutter.background": bg,
+        "editor.selectionBackground": selBg,
       },
     });
     monaco.editor.setTheme("taltrix");
+  } catch {
+    /* theme definition fallback */
+  }
+}
+
+const Monaco = lazy(async () => {
+  const [{ default: Editor, loader }] = await Promise.all([import("@monaco-editor/react")]);
+  loader.init().then((monaco) => {
+    updateMonacoTheme(monaco, getInitialThemeId());
   });
   return { default: Editor };
 });
@@ -59,29 +86,14 @@ export function CodeEditor({
   const handleEditorMount = (editor: any, monaco: any) => {
     editorRef.current = editor;
     monacoRef.current = monaco;
-    try {
-      monaco.editor.defineTheme("taltrix", {
-        base: "vs-dark",
-        inherit: true,
-        rules: [
-          { token: "comment", foreground: "5b6784", fontStyle: "italic" },
-          { token: "keyword", foreground: "a78bfa" },
-          { token: "string", foreground: "67e8f9" },
-          { token: "number", foreground: "f59e0b" },
-        ],
-        colors: {
-          "editor.background": "#0D1224",
-          "editor.lineHighlightBackground": "#141B2D00",
-          "editorLineNumber.foreground": "#3d4a68",
-          "editorGutter.background": "#0D1224",
-          "editor.selectionBackground": "#7C3AED44",
-        },
-      });
-      monaco.editor.setTheme("taltrix");
-    } catch {
-      // theme already defined or fallback
-    }
+    updateMonacoTheme(monaco, settings.theme.id);
   };
+
+  useEffect(() => {
+    if (monacoRef.current) {
+      updateMonacoTheme(monacoRef.current, settings.theme.id);
+    }
+  }, [settings.theme.id]);
 
 
   // Extract step metrics & line context
@@ -106,14 +118,14 @@ export function CodeEditor({
     const currentStep = exec.step;
     const prevStep = steps[index - 1];
 
-    if (currentStep.callStack && prevStep.callStack) {
-      if (currentStep.callStack.length > prevStep.callStack.length) {
+    if (currentStep.stack && prevStep?.stack) {
+      if (currentStep.stack.length > prevStep.stack.length) {
         return {
           flowType: "function-call",
           detailText: `↓ Entering ${currentStep.currentFunction || "function"}()`,
         };
       }
-      if (currentStep.callStack.length < prevStep.callStack.length) {
+      if (currentStep.stack.length < prevStep.stack.length) {
         return {
           flowType: "function-return",
           detailText: `↑ Returning to ${currentStep.currentFunction || "caller"}`,
@@ -122,6 +134,7 @@ export function CodeEditor({
     }
 
     if (
+      prevStep &&
       currentStep.line <= prevStep.line &&
       currentStep.currentFunction === prevStep.currentFunction &&
       Math.abs(currentStep.line - prevStep.line) > 1
@@ -286,7 +299,7 @@ export function CodeEditor({
               wordWrap: settings.editor.wordWrap,
               tabSize: settings.editor.tabSize,
               cursorStyle: settings.editor.cursorStyle,
-              cursorBlinking: settings.editor.cursorBlinking,
+              cursorBlinking: settings.editor.cursorBlink,
               readOnly: settings.editor.readOnly,
               scrollBeyondLastLine: false,
               padding: { top: 16, bottom: 16 },

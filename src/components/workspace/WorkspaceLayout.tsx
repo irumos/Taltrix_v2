@@ -41,15 +41,15 @@ export function WorkspaceLayout() {
   const [inspectorCollapsed, setInspectorCollapsed] = useState(false);
   const [explorerCollapsed, setExplorerCollapsed] = useState(true); // Collapsed by default for clean focus
   const [mobileTab, setMobileTab] = useState<"happening" | "inspector" | "insights">("happening");
-  const { mode, presentationMode } = useExecution();
+  const { presentationMode } = useExecution();
   useTransportShortcuts();
 
   return (
     <TooltipProvider>
       <div
         className={cn(
-          "flex h-svh flex-col overflow-hidden bg-background transition-all duration-300",
-          presentationMode && "text-lg scale-[1.02]"
+          "flex h-svh flex-col overflow-hidden bg-background transition-colors duration-300",
+          presentationMode && "text-base tracking-wide font-medium"
         )}
       >
         <CustomCursor />
@@ -74,18 +74,7 @@ export function WorkspaceLayout() {
 
             {/* Dominant Editor Panel (~70%) */}
             <ResizablePanel defaultSize={inspectorCollapsed ? "100%" : "70%"} minSize="45%">
-              <ResizablePanelGroup orientation="vertical" className="flex-col">
-                <ResizablePanel defaultSize="78%" minSize="40%">
-                  <EditorPane />
-                </ResizablePanel>
-
-                <ResizableHandle className="h-px w-full bg-border/70 transition-colors hover:bg-accent/60" />
-
-                {/* What's Happening & Insights Strip */}
-                <ResizablePanel defaultSize="22%" minSize="15%" className="p-2 bg-surface/30">
-                  {mode === "learn" ? <WhatsHappeningPanel /> : <ExecutionInsights />}
-                </ResizablePanel>
-              </ResizablePanelGroup>
+              <EditorPane />
             </ResizablePanel>
 
             {/* Information Panel (~30%) */}

@@ -24,7 +24,7 @@ const MOCK_USERS_SEED: UserProfile[] = [
     lastActive: new Date().toISOString(),
     bio: 'Passionate CS student obsessed with algorithm visualization and memory layout.',
     githubUrl: 'https://github.com/alexrivera',
-    preferredTheme: 'taltrix-dark',
+    preferredTheme: 'graphite',
     preferredLanguage: 'python',
   },
   {
@@ -38,7 +38,7 @@ const MOCK_USERS_SEED: UserProfile[] = [
     createdAt: '2025-01-15T09:30:00Z',
     lastActive: new Date().toISOString(),
     bio: 'Senior Professor & Department Chair. Taltrix Platform Administrator.',
-    preferredTheme: 'taltrix-dark',
+    preferredTheme: 'graphite',
   },
   {
     id: 'user_student_2',

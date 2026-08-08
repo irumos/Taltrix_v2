@@ -168,19 +168,6 @@ var ArrowDownRight = createLucideIcon("arrow-down-right", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var ArrowDown = createLucideIcon("arrow-down", [["path", {
-	d: "M12 5v14",
-	key: "s699le"
-}], ["path", {
-	d: "m19 12-7 7-7-7",
-	key: "1idqje"
-}]]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var ArrowLeft = createLucideIcon("arrow-left", [["path", {
 	d: "m12 19-7-7 7-7",
 	key: "1l729n"
@@ -355,74 +342,6 @@ var Boxes = createLucideIcon("boxes", [
 	["path", {
 		d: "M12 13.5V8",
 		key: "1io7kd"
-	}]
-]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var BrainCircuit = createLucideIcon("brain-circuit", [
-	["path", {
-		d: "M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z",
-		key: "l5xja"
-	}],
-	["path", {
-		d: "M9 13a4.5 4.5 0 0 0 3-4",
-		key: "10igwf"
-	}],
-	["path", {
-		d: "M6.003 5.125A3 3 0 0 0 6.401 6.5",
-		key: "105sqy"
-	}],
-	["path", {
-		d: "M3.477 10.896a4 4 0 0 1 .585-.396",
-		key: "ql3yin"
-	}],
-	["path", {
-		d: "M6 18a4 4 0 0 1-1.967-.516",
-		key: "2e4loj"
-	}],
-	["path", {
-		d: "M12 13h4",
-		key: "1ku699"
-	}],
-	["path", {
-		d: "M12 18h6a2 2 0 0 1 2 2v1",
-		key: "105ag5"
-	}],
-	["path", {
-		d: "M12 8h8",
-		key: "1lhi5i"
-	}],
-	["path", {
-		d: "M16 8V5a2 2 0 0 1 2-2",
-		key: "u6izg6"
-	}],
-	["circle", {
-		cx: "16",
-		cy: "13",
-		r: ".5",
-		key: "ry7gng"
-	}],
-	["circle", {
-		cx: "18",
-		cy: "3",
-		r: ".5",
-		key: "1aiba7"
-	}],
-	["circle", {
-		cx: "20",
-		cy: "21",
-		r: ".5",
-		key: "yhc1fs"
-	}],
-	["circle", {
-		cx: "20",
-		cy: "8",
-		r: ".5",
-		key: "1e43v0"
 	}]
 ]);
 /**
@@ -1156,38 +1075,6 @@ var KeyRound = createLucideIcon("key-round", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var Languages = createLucideIcon("languages", [
-	["path", {
-		d: "m5 8 6 6",
-		key: "1wu5hv"
-	}],
-	["path", {
-		d: "m4 14 6-6 2-3",
-		key: "1k1g8d"
-	}],
-	["path", {
-		d: "M2 5h12",
-		key: "or177f"
-	}],
-	["path", {
-		d: "M7 2h1",
-		key: "1t2jsx"
-	}],
-	["path", {
-		d: "m22 22-5-10-5 10",
-		key: "don7ne"
-	}],
-	["path", {
-		d: "M14 18h6",
-		key: "1m8k6r"
-	}]
-]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var Layers = createLucideIcon("layers", [
 	["path", {
 		d: "M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z",
@@ -1831,32 +1718,6 @@ var ShieldCheck = createLucideIcon("shield-check", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var SkipBack = createLucideIcon("skip-back", [["path", {
-	d: "M17.971 4.285A2 2 0 0 1 21 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z",
-	key: "15892j"
-}], ["path", {
-	d: "M3 20V4",
-	key: "1ptbpl"
-}]]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var SkipForward = createLucideIcon("skip-forward", [["path", {
-	d: "M21 4v16",
-	key: "7j8fe9"
-}], ["path", {
-	d: "M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z",
-	key: "zs4d6"
-}]]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var Sparkles = createLucideIcon("sparkles", [
 	["path", {
 		d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
@@ -1875,31 +1736,6 @@ var Sparkles = createLucideIcon("sparkles", [
 		cy: "20",
 		r: "2",
 		key: "6kqj1y"
-	}]
-]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var SquareTerminal = createLucideIcon("square-terminal", [
-	["path", {
-		d: "m7 11 2-2-2-2",
-		key: "1lz0vl"
-	}],
-	["path", {
-		d: "M11 13h4",
-		key: "1p7l4v"
-	}],
-	["rect", {
-		width: "18",
-		height: "18",
-		x: "3",
-		y: "3",
-		rx: "2",
-		ry: "2",
-		key: "1m3agn"
 	}]
 ]);
 /**
@@ -1997,34 +1833,6 @@ var TimerOff = createLucideIcon("timer-off", [
 	["path", {
 		d: "M12 12v-2",
 		key: "fwoke6"
-	}]
-]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var Timer = createLucideIcon("timer", [
-	["line", {
-		x1: "10",
-		x2: "14",
-		y1: "2",
-		y2: "2",
-		key: "14vaq8"
-	}],
-	["line", {
-		x1: "12",
-		x2: "15",
-		y1: "14",
-		y2: "11",
-		key: "17fdiu"
-	}],
-	["circle", {
-		cx: "12",
-		cy: "14",
-		r: "8",
-		key: "1e1u0o"
 	}]
 ]);
 /**
@@ -2303,4 +2111,4 @@ var Zap = createLucideIcon("zap", [["path", {
 	key: "1xq2db"
 }]]);
 //#endregion
-export { LayoutDashboard as $, Save as A, Building as At, MousePointer as B, ArrowUpRight as Bt, ShieldCheck as C, CircleCheckBig as Ct, Send as D, ChevronDown as Dt, Settings2 as E, ChevronLeft as Et, Pause as F, Bot as Ft, MemoryStick as G, Activity as Gt, Monitor as H, ArrowLeft as Ht, PanelRight as I, Bookmark as It, LogOut as J, Megaphone as K, Accessibility as Kt, PanelLeft as L, BookOpen as Lt, Puzzle as M, Brain as Mt, Plus as N, BrainCircuit as Nt, Search as O, Check as Ot, Play as P, Boxes as Pt, Lightbulb as Q, Palette as R, Bell as Rt, SkipBack as S, CircleCheck as St, Settings as T, ChevronRight as Tt, MessageSquare as U, ArrowDown as Ut, Moon as V, ArrowRight as Vt, Menu as W, ArrowDownRight as Wt, Lock as X, LogIn as Y, LoaderCircle as Z, Sun as _, Cpu as _t, Variable as a, History as at, Sparkles as b, Clock as bt, UserX as c, GripVertical as ct, TriangleAlert as d, FolderOpen as dt, Layers as et, TrendingUp as f, FileCodeCorner as ft, Terminal as g, Download as gt, TimerOff as h, ExternalLink as ht, Volume2 as i, Infinity$1 as it, RotateCcw as j, Bug as jt, School as k, ChartColumn as kt, UserCheck as l, GraduationCap as lt, Timer as m, EyeOff as mt, X as n, KeyRound as nt, Users as o, Hash as ot, Trash2 as p, Eye as pt, Mail as q, VolumeX as r, Info as rt, User as s, HardDrive as st, Zap as t, Languages as tt, Upload as u, Gauge as ut, Star as v, Command as vt, ShieldAlert as w, CircleAlert as wt, SkipForward as x, CircleQuestionMark as xt, SquareTerminal as y, CodeXml as yt, OctagonX as z, Award as zt };
+export { Infinity$1 as $, Play as A, Bookmark as At, Menu as B, Send as C, Check as Ct, RotateCcw as D, Brain as Dt, Save as E, Bug as Et, OctagonX as F, ArrowRight as Ft, LogIn as G, Megaphone as H, MousePointer as I, ArrowLeft as It, Lightbulb as J, Lock as K, Moon as L, ArrowDownRight as Lt, PanelRight as M, Bell as Mt, PanelLeft as N, Award as Nt, Puzzle as O, Boxes as Ot, Palette as P, ArrowUpRight as Pt, Info as Q, Monitor as R, Activity as Rt, Settings2 as S, ChevronDown as St, School as T, Building as Tt, Mail as U, MemoryStick as V, LogOut as W, Layers as X, LayoutDashboard as Y, KeyRound as Z, Star as _, CircleCheck as _t, Variable as a, Gauge as at, ShieldAlert as b, ChevronRight as bt, UserX as c, Eye as ct, TriangleAlert as d, Download as dt, History as et, TrendingUp as f, Cpu as ft, Sun as g, CircleQuestionMark as gt, Terminal as h, Clock as ht, Volume2 as i, GraduationCap as it, Pause as j, BookOpen as jt, Plus as k, Bot as kt, UserCheck as l, EyeOff as lt, TimerOff as m, CodeXml as mt, X as n, HardDrive as nt, Users as o, FolderOpen as ot, Trash2 as p, Command as pt, LoaderCircle as q, VolumeX as r, GripVertical as rt, User as s, FileCodeCorner as st, Zap as t, Hash as tt, Upload as u, ExternalLink as ut, Sparkles as v, CircleCheckBig as vt, Search as w, ChartColumn as wt, Settings as x, ChevronLeft as xt, ShieldCheck as y, CircleAlert as yt, MessageSquare as z, Accessibility as zt };

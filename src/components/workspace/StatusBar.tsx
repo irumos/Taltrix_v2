@@ -42,7 +42,7 @@ export function StatusBar() {
         </span>
         <span className="hidden items-center gap-1 sm:flex">
           <Palette className="h-3 w-3 text-cyan-400" aria-hidden />
-          <StatusChip tone="done" value={currentThemeName.toLowerCase()} label="theme" />
+          <StatusChip tone="done" value={`Theme: ${currentThemeName}`} />
         </span>
       </span>
     </footer>

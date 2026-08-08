@@ -1,156 +1,221 @@
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
-import { Pause, Play, RotateCcw, SkipBack, SkipForward, Gauge } from "lucide-react";
+import { motion } from "motion/react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Pause,
+  Play,
+  RotateCcw,
+  Gauge,
+  Activity,
+} from "lucide-react";
 import { Dropdown, TaltrixButton, Tooltip } from "@/components/ui-kit";
 import { useExecution } from "@/contexts/ExecutionContext";
+import { cn } from "@/lib/utils";
 
 const SPEEDS = [
   { value: "0.25", label: "0.25×" },
   { value: "0.5", label: "0.5×" },
   { value: "1", label: "1×" },
+  { value: "1.5", label: "1.5×" },
   { value: "2", label: "2×" },
-  { value: "5", label: "5×" },
   { value: "0", label: "Instant" },
 ];
 
-/** Scrubber + transport controls for the placeholder execution timeline. */
 export function TimelineBar() {
-  const { index, total, state, trace, speed, setSpeed, toggle, restart, next, prev, seek } = useExecution();
-  const [preview, setPreview] = useState<number | null>(null);
+  const {
+    index,
+    total,
+    state,
+    visualizeState,
+    trace,
+    speed,
+    setSpeed,
+    toggle,
+    restart,
+    next,
+    prev,
+    seek,
+  } = useExecution();
+
   const running = state === "running";
-  const progress = total > 1 ? (index / (total - 1)) * 100 : 0;
+
+  // Determine state badge label & indicator color
+  let stateLabel = "IDLE";
+  let stateDotClass = "bg-zinc-500";
+  let stateTextClass = "text-muted-foreground";
+
+  if (visualizeState === "visualizing" || running) {
+    stateLabel = "RUNNING";
+    stateDotClass = "bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]";
+    stateTextClass = "text-cyan-300 font-bold";
+  } else if (visualizeState === "paused" || state === "paused") {
+    stateLabel = "PAUSED";
+    stateDotClass = "bg-amber-400";
+    stateTextClass = "text-amber-300";
+  } else if (visualizeState === "completed" || state === "done") {
+    stateLabel = "COMPLETED";
+    stateDotClass = "bg-emerald-400";
+    stateTextClass = "text-emerald-300";
+  } else if (visualizeState === "preparing") {
+    stateLabel = "READY";
+    stateDotClass = "bg-blue-400";
+    stateTextClass = "text-blue-300";
+  }
+
+  const currentStep = trace.steps[index];
 
   return (
-    <div className="relative flex flex-col gap-1.5 border-t border-border/70 bg-surface/85 px-3 py-1.5 backdrop-blur-md">
-      <div className="flex flex-wrap items-center gap-1.5">
-        <Tooltip content="Restart">
-          <TaltrixButton size="icon" variant="ghost" onClick={restart} aria-label="Restart execution">
-            <RotateCcw className="h-4 w-4" />
-          </TaltrixButton>
-        </Tooltip>
-        <Tooltip content="Previous step">
-          <TaltrixButton size="icon" variant="ghost" onClick={prev} aria-label="Previous step">
-            <SkipBack className="h-4 w-4" />
-          </TaltrixButton>
-        </Tooltip>
-        <TaltrixButton
-          size="sm"
-          variant={running ? "outline" : "primary"}
-          onClick={toggle}
-          aria-label={running ? "Pause execution" : "Play execution"}
-        >
-          {running ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          <span className="hidden sm:inline">{running ? "Pause" : state === "idle" ? "Run" : "Resume"}</span>
-        </TaltrixButton>
-        <Tooltip content="Next step">
-          <TaltrixButton size="icon" variant="ghost" onClick={next} aria-label="Next step">
-            <SkipForward className="h-4 w-4" />
-          </TaltrixButton>
-        </Tooltip>
+    <div
+      aria-label="Code Execution Control Bar"
+      className="relative flex flex-col gap-2 border-t border-border/70 bg-surface/90 px-3 sm:px-4 py-2 backdrop-blur-md select-none"
+    >
+      {/* TOP CONTROL ROW */}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        {/* Left: Execution Controls & State Badge */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Execution State Badge */}
+          <div className="hidden xs:flex items-center gap-1.5 rounded-md border border-border/60 bg-background/50 px-2 py-1 font-mono text-[10px] uppercase">
+            <span className={cn("h-2 w-2 rounded-full", stateDotClass)} />
+            <span className={stateTextClass}>{stateLabel}</span>
+          </div>
 
-        <span className="ml-1 hidden items-center gap-1.5 sm:flex">
-          <Gauge className="h-3.5 w-3.5 text-muted-foreground" aria-hidden />
-          <Dropdown
-            label="Execution speed"
-            value={String(speed)}
-            options={SPEEDS}
-            onChange={(v) => setSpeed(Number(v))}
-          />
-        </span>
-
-        <span className="ml-auto font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
-          step {index + 1} / {total} · {trace.steps[index]?.label}
-        </span>
-      </div>
-
-      <div className="relative h-6">
-        <div className="absolute top-1/2 h-1 w-full -translate-y-1/2 overflow-hidden rounded-full bg-secondary">
-          <motion.div
-            className="h-full rounded-full [background-image:var(--gradient-primary)]"
-            animate={{ width: `${progress}%` }}
-            transition={{ type: "spring", stiffness: 220, damping: 30 }}
-          />
-        </div>
-        <motion.span
-          aria-hidden
-          className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_14px_var(--color-accent)]"
-          animate={{ left: `${progress}%` }}
-          transition={{ type: "spring", stiffness: 220, damping: 30 }}
-        />
-        <label className="sr-only" htmlFor="taltrix-scrubber">
-          Execution timeline position
-        </label>
-        <input
-          id="taltrix-scrubber"
-          type="range"
-          min={0}
-          max={total - 1}
-          value={index}
-          onChange={(e) => seek(Number(e.target.value))}
-          onMouseMove={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const ratio = (e.clientX - rect.left) / rect.width;
-            setPreview(Math.min(total - 1, Math.max(0, Math.round(ratio * (total - 1)))));
-          }}
-          onMouseLeave={() => setPreview(null)}
-          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-        />
-      </div>
-
-      <AnimatePresence>
-        {preview !== null && trace.steps[preview] ? (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ left: `calc(${(preview / Math.max(1, total - 1)) * 100}% )` }}
-            className="pointer-events-none absolute bottom-24 z-30 w-[220px] -translate-x-1/2 rounded-xl border border-border/70 bg-popover/95 p-2.5 shadow-[var(--shadow-elevated)] backdrop-blur"
-          >
-            <p className="font-mono text-[10px] text-accent">
-              step {preview + 1} · {trace.steps[preview]!.label}
-            </p>
-            <p className="mt-1 font-mono text-[9px] leading-relaxed text-muted-foreground">
-              {trace.steps[preview]!.note}
-            </p>
-            <p className="mt-1.5 truncate font-mono text-[9px] text-muted-foreground/70">
-              stack: {trace.steps[preview]!.stack.map((f) => f.name).join(" › ")}
-            </p>
-            <p className="truncate font-mono text-[9px] text-muted-foreground/70">
-              vars: {trace.steps[preview]!.variables.map((v) => `${v.name}=${v.value}`).join(", ") || "—"}
-            </p>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-
-      <ol className="hidden items-center justify-between gap-1 md:flex">
-        {trace.steps.map((s, i) => (
-          <li key={`${s.label}-${i}`} className="min-w-0 flex-1">
-            <button
-              type="button"
-              onClick={() => seek(i)}
-              data-cursor="button"
-              aria-current={i === index}
-              aria-label={`Go to step ${i + 1}: ${s.label}`}
-              className="group flex w-full flex-col items-center gap-1"
+          {/* Reset Control */}
+          <Tooltip content="Reset execution">
+            <TaltrixButton
+              size="sm"
+              variant="ghost"
+              onClick={restart}
+              aria-label="Reset execution"
+              className="h-8 px-2 text-muted-foreground hover:text-foreground"
             >
-              <motion.span
-                animate={{ scale: i === index ? 1.4 : 1 }}
-                className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                  i <= index ? "bg-accent" : "bg-border group-hover:bg-muted-foreground"
-                }`}
-              />
-              <span
-                className={`hidden w-full truncate text-center font-mono text-[9px] xl:block ${
-                  i === index ? "text-accent" : "text-muted-foreground/60"
-                }`}
-              >
-                {s.label}
-              </span>
-            </button>
-          </li>
-        ))}
-      </ol>
+              <RotateCcw className="h-3.5 w-3.5" />
+              <span className="hidden md:inline text-[11px] font-mono ml-1">Reset</span>
+            </TaltrixButton>
+          </Tooltip>
+
+          {/* Step Back Control */}
+          <Tooltip content="Previous execution step">
+            <TaltrixButton
+              size="sm"
+              variant="ghost"
+              onClick={prev}
+              aria-label="Previous execution step"
+              className="h-8 px-2 text-muted-foreground hover:text-foreground"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              <span className="hidden md:inline text-[11px] font-mono ml-0.5">Previous Step</span>
+            </TaltrixButton>
+          </Tooltip>
+
+          {/* Primary Run / Continue Action */}
+          <TaltrixButton
+            size="sm"
+            variant={running ? "secondary" : "primary"}
+            onClick={toggle}
+            aria-label={running ? "Pause execution" : "Run / Continue execution"}
+            className="h-8 px-3.5 font-mono text-[11px] font-bold shadow-md shadow-cyan-500/10"
+          >
+            {running ? <Pause className="h-3.5 w-3.5 mr-1" /> : <Play className="h-3.5 w-3.5 mr-1" />}
+            <span>{running ? "Pause" : state === "idle" ? "Run" : "Continue"}</span>
+          </TaltrixButton>
+
+          {/* Step Forward Control */}
+          <Tooltip content="Execute next step">
+            <TaltrixButton
+              size="sm"
+              variant="ghost"
+              onClick={next}
+              aria-label="Execute next step"
+              className="h-8 px-2 text-muted-foreground hover:text-foreground"
+            >
+              <span className="hidden md:inline text-[11px] font-mono mr-0.5">Next Step</span>
+              <ChevronRight className="h-4 w-4" />
+            </TaltrixButton>
+          </Tooltip>
+
+          {/* Execution Speed Dropdown */}
+          <div className="hidden sm:flex items-center gap-1.5 border-l border-border/60 pl-2">
+            <Gauge className="h-3.5 w-3.5 text-muted-foreground" aria-hidden />
+            <Dropdown
+              label="Execution Speed"
+              value={String(speed)}
+              options={SPEEDS}
+              onChange={(v) => setSpeed(Number(v))}
+            />
+          </div>
+        </div>
+
+        {/* Right: Step Counter & Function Target */}
+        <div className="flex items-center gap-2 font-mono text-[11px] ml-auto">
+          <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 font-bold text-cyan-300 shrink-0">
+            STEP {index + 1} / {total}
+          </span>
+          {currentStep ? (
+            <span className="hidden lg:inline text-muted-foreground truncate max-w-[220px]">
+              {currentStep.label}
+            </span>
+          ) : null}
+        </div>
+      </div>
+
+      {/* BOTTOM ROW: EXECUTION TRACE NODES */}
+      <div className="relative pt-0.5">
+        <div className="flex items-center justify-between gap-1 overflow-x-auto no-scrollbar py-1">
+          {trace.steps.map((s, i) => {
+            const isCurrent = i === index;
+            const isCompleted = i < index;
+            return (
+              <Tooltip key={`${s.label}-${i}`} content={`Inspect Step ${i + 1}: ${s.label}`}>
+                <button
+                  type="button"
+                  onClick={() => seek(i)}
+                  data-cursor="button"
+                  aria-current={isCurrent}
+                  aria-label={`Inspect execution step ${i + 1}: ${s.label}`}
+                  className="group relative flex flex-1 min-w-[28px] flex-col items-center gap-1 py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                >
+                  {/* Connector Line */}
+                  {i < total - 1 && (
+                    <div
+                      className={cn(
+                        "absolute top-[9px] left-[50%] w-full h-[2px] -z-10 transition-colors",
+                        i < index ? "bg-cyan-500/50" : "bg-border/60"
+                      )}
+                    />
+                  )}
+
+                  {/* Execution Node Dot */}
+                  <motion.span
+                    animate={{ scale: isCurrent ? 1.3 : 1 }}
+                    className={cn(
+                      "h-3 w-3 rounded-full border transition-all duration-200",
+                      isCurrent
+                        ? "border-cyan-400 bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.9)]"
+                        : isCompleted
+                          ? "border-cyan-500/60 bg-cyan-500/30 group-hover:bg-cyan-400"
+                          : "border-border/80 bg-surface/80 group-hover:border-muted-foreground"
+                    )}
+                  />
+
+                  {/* Step Label */}
+                  <span
+                    className={cn(
+                      "hidden xl:block w-full truncate text-center font-mono text-[9px] transition-colors",
+                      isCurrent
+                        ? "text-cyan-300 font-bold"
+                        : isCompleted
+                          ? "text-muted-foreground"
+                          : "text-muted-foreground/50"
+                    )}
+                  >
+                    {s.label.split(" ")[0]}
+                  </span>
+                </button>
+              </Tooltip>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

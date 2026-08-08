@@ -12,7 +12,7 @@ import type { UserSettings, ThemeId, AccentColor, UiDensity } from "@/types/sett
 const STORAGE_KEY = "taltrix:user_settings:v1";
 
 export const DEFAULT_SETTINGS: UserSettings = {
-  theme: { id: "taltrix-dark" },
+  theme: { id: "graphite" },
   appearance: {
     accentColor: "cyan",
     uiDensity: "comfortable",
@@ -37,7 +37,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
     indentGuides: true,
     codeFont: "JetBrains Mono",
     cursorStyle: "line",
-    cursorBlinking: "phase",
+    cursorBlink: "phase",
     tabSize: 2,
     readOnly: false,
   },
@@ -141,10 +141,14 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
+        let activeThemeId: ThemeId = parsed?.theme?.id || "graphite";
+        if (activeThemeId === ("taltrix-dark" as ThemeId) || (activeThemeId as string) === "dark") {
+          activeThemeId = "graphite";
+        }
         return {
           ...DEFAULT_SETTINGS,
           ...parsed,
-          theme: { ...DEFAULT_SETTINGS.theme, ...parsed?.theme },
+          theme: { id: activeThemeId },
           appearance: { ...DEFAULT_SETTINGS.appearance, ...parsed?.appearance },
           devCursor: { ...DEFAULT_SETTINGS.devCursor, ...parsed?.devCursor },
           editor: { ...DEFAULT_SETTINGS.editor, ...parsed?.editor },
@@ -243,7 +247,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   const toggleDarkLight = useCallback(() => {
     setSettingsState((prev) => {
-      const nextTheme: ThemeId = prev.theme.id === "light" ? "taltrix-dark" : "light";
+      const nextTheme: ThemeId = prev.theme.id === "light" ? "graphite" : "light";
       return {
         ...prev,
         theme: { id: nextTheme },

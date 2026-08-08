@@ -44,12 +44,8 @@ export function LoginPage() {
     blip('run');
 
     try {
-      const session = await login({ email, password, rememberMe });
-      if (session.user.role === 'admin') {
-        navigate({ to: '/admin' });
-      } else {
-        navigate({ to: '/dashboard' });
-      }
+      await login({ email, password, rememberMe });
+      navigate({ to: '/' });
     } catch (err: any) {
       setErrorMsg(err.message || 'Invalid login credentials.');
     } finally {
@@ -60,7 +56,7 @@ export function LoginPage() {
   const handleGuest = () => {
     blip('run');
     guestLogin();
-    navigate({ to: '/dashboard' });
+    navigate({ to: '/' });
   };
 
   const fillMockUser = (mockEmail: string, mockPass: string) => {

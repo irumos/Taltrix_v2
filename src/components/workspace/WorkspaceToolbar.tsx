@@ -11,6 +11,7 @@ import {
   Sparkles,
   Loader2,
   CheckCircle2,
+  LayoutDashboard,
 } from "lucide-react";
 import { useState } from "react";
 import {
@@ -26,9 +27,9 @@ import { PROGRAMS, PROGRAM_LANGUAGES } from "@/data/programs";
 import { ModeSwitcher } from "./ModeSwitcher";
 import { useSettings } from "@/contexts/SettingsContext";
 import { useExecution } from "@/contexts/ExecutionContext";
-import type { LanguageId } from "@/types/execution";
-
+import { useAuth } from "@/contexts/AuthContext";
 import { useNavigationHistory } from "@/contexts/NavigationHistoryContext";
+import type { LanguageId } from "@/types/execution";
 
 export function WorkspaceToolbar({
   onToggleInspector,
@@ -41,7 +42,10 @@ export function WorkspaceToolbar({
   onToggleExplorer: () => void;
   explorerCollapsed: boolean;
 }) {
-  const { getBackLabel, navigateBack } = useNavigationHistory();
+  const { role } = useAuth();
+  const { navigateBack } = useNavigationHistory();
+  const dashboardPath = role === "admin" ? "/admin" : "/dashboard";
+
   const {
     language,
     setLanguage,
@@ -96,8 +100,9 @@ export function WorkspaceToolbar({
   };
 
   return (
-    <Toolbar className="border-b border-border/70 bg-surface/80 backdrop-blur-md">
-      <ToolbarGroup>
+    <Toolbar className="border-b border-border/70 bg-surface/80 backdrop-blur-md px-3 sm:px-4 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+      {/* LEFT SIDE: Toggle Explorer + Exit to Previous Page */}
+      <ToolbarGroup className="flex items-center gap-2 shrink-0">
         <Tooltip content="Toggle examples explorer">
           <TaltrixButton
             size="icon"
@@ -112,41 +117,56 @@ export function WorkspaceToolbar({
 
         <button
           type="button"
-          onClick={() => navigateBack('/')}
+          onClick={() => navigateBack("/")}
           data-cursor="button"
-          aria-label="Exit workspace"
-          className="group flex items-center gap-1 rounded-lg px-2.5 py-1.5 font-mono text-[11px] text-muted-foreground transition-all hover:bg-surface-h hover:text-foreground active:scale-95"
+          aria-label="Exit workspace to previous page"
+          className="group flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface/60 px-2.5 py-1 font-mono text-[11px] font-medium text-muted-foreground transition-all hover:border-border hover:bg-surface-h hover:text-foreground active:scale-95 shrink-0"
         >
           <ChevronLeft className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:-translate-x-1" />
-          <span>{getBackLabel()}</span>
+          <span>Exit</span>
         </button>
-        <span className="font-display text-[12px] font-semibold tracking-[0.32em] text-foreground">
+      </ToolbarGroup>
+
+      <ToolbarDivider className="hidden sm:block" />
+
+      {/* CENTER: Logo + Program Information + Workspace Mode Controls */}
+      <ToolbarGroup className="flex items-center gap-3 shrink-0">
+        <span className="font-display text-[12px] font-semibold tracking-[0.32em] text-foreground hidden sm:inline">
           TALTRIX
         </span>
-      </ToolbarGroup>
 
-      <ToolbarDivider />
+        <div className="hidden md:flex items-center gap-2">
+          <Dropdown
+            label="Language"
+            value={language}
+            onChange={(v) => setLanguage(v as LanguageId)}
+            options={PROGRAM_LANGUAGES.map((l) => ({ value: l.id, label: l.label }))}
+          />
+          <Dropdown
+            label="Example"
+            value={trace.id}
+            onChange={(v) => setProgram(v)}
+            options={PROGRAMS.map((p) => ({ value: p.id, label: p.title, hint: p.category }))}
+          />
+        </div>
 
-      <ToolbarGroup>
-        <Dropdown
-          label="Language"
-          value={language}
-          onChange={(v) => setLanguage(v as LanguageId)}
-          options={PROGRAM_LANGUAGES.map((l) => ({ value: l.id, label: l.label }))}
-        />
-        <Dropdown
-          label="Example"
-          value={trace.id}
-          onChange={(v) => setProgram(v)}
-          options={PROGRAMS.map((p) => ({ value: p.id, label: p.title, hint: p.category }))}
-        />
-        <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
-          {trace.fileName}
-        </span>
-      </ToolbarGroup>
-
-      <ToolbarGroup className="ml-auto flex items-center gap-2">
         <ModeSwitcher />
+      </ToolbarGroup>
+
+      {/* RIGHT SIDE: Dashboard Shortcut + Run Visualization CTA + Utilities */}
+      <ToolbarGroup className="ml-auto flex items-center gap-2 shrink-0">
+        {/* Dashboard Shortcut Navigation Tile */}
+        <Link to={dashboardPath} className="shrink-0">
+          <button
+            type="button"
+            data-cursor="button"
+            aria-label="Go to Dashboard"
+            className="group flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface/60 px-2.5 py-1 font-mono text-[11px] font-medium text-muted-foreground transition-all hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-300 active:scale-95"
+          >
+            <LayoutDashboard className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+            <span className="hidden sm:inline">Dashboard</span>
+          </button>
+        </Link>
 
         {/* Primary Visualize Action */}
         <TaltrixButton
@@ -160,7 +180,7 @@ export function WorkspaceToolbar({
 
         <ToolbarDivider />
 
-        {/* Presentation Mode Toggle */}
+        {/* Utilities */}
         <Tooltip content={presentationMode ? "Exit Presentation Mode" : "Presentation Mode (Classroom)"}>
           <TaltrixButton
             size="icon"

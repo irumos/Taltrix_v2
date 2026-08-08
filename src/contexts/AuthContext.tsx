@@ -16,6 +16,9 @@ interface AuthContextValue {
   isAuthenticated: boolean;
   isLoading: boolean;
   role: UserRole;
+  authModalOpen: boolean;
+  setAuthModalOpen: (open: boolean) => void;
+  requireAuth: (callback: () => void) => boolean;
   login: (credentials: LoginCredentials) => Promise<AuthSession>;
   signup: (payload: SignupPayload) => Promise<AuthSession>;
   guestLogin: () => AuthSession;
@@ -30,6 +33,7 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<AuthSession | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [authModalOpen, setAuthModalOpen] = useState<boolean>(false);
   const { notify } = useNotifications();
 
   // Auto restore session on page reload
@@ -46,16 +50,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const requireAuth = useCallback(
+    (callback: () => void) => {
+      if (session?.user) {
+        callback();
+        return true;
+      }
+      setAuthModalOpen(true);
+      return false;
+    },
+    [session]
+  );
+
   const login = useCallback(
     async (credentials: LoginCredentials) => {
       setIsLoading(true);
       try {
         const newSession = await AuthService.login(credentials);
         setSession(newSession);
-        notify('success', 'Sign In Successful', `Welcome back, ${newSession.user.name}!`);
+        notify('success', 'Welcome to TALTRIX', 'You are now signed in.');
         return newSession;
       } catch (err: any) {
-        notify('error', 'Authentication Failed', err.message || 'Invalid college email or password.');
+        notify('error', 'Sign in failed', err.message || 'Please check your credentials and try again.');
         throw err;
       } finally {
         setIsLoading(false);
@@ -70,7 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const newSession = await AuthService.signup(payload);
         setSession(newSession);
-        notify('success', 'Account Created', `Welcome to TALTRIX, ${newSession.user.name}!`);
+        notify('success', 'Welcome to TALTRIX', 'Your account has been created successfully.');
         return newSession;
       } catch (err: any) {
         notify('error', 'Sign Up Failed', err.message || 'Could not register account.');
@@ -90,11 +106,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [notify]);
 
   const logout = useCallback(() => {
-    const userName = session?.user.name;
     AuthService.logout();
     setSession(null);
-    notify('info', 'Signed Out', userName ? `Goodbye, ${userName}` : 'Session ended.');
-  }, [session, notify]);
+    notify('info', 'Signed out successfully', 'You have been signed out.');
+  }, [notify]);
 
   const updateProfile = useCallback(
     async (updates: Partial<UserProfile>) => {
@@ -157,6 +172,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAuthenticated,
         isLoading,
         role,
+        authModalOpen,
+        setAuthModalOpen,
+        requireAuth,
         login,
         signup,
         guestLogin,

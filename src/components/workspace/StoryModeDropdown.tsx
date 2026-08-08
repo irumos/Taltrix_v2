@@ -23,28 +23,28 @@ export const STORY_MODES: StoryModeOption[] = [
   {
     id: 'beginner',
     label: 'Beginner',
-    desc: 'Simple English, friendly teacher style for new coders.',
+    desc: 'Simple explanations for new programmers.',
     icon: GraduationCap,
     accent: 'text-cyan-400',
   },
   {
     id: 'intermediate',
     label: 'Intermediate',
-    desc: 'Balanced explanations with step details & variable scope.',
+    desc: 'Balanced technical explanations.',
     icon: Puzzle,
     accent: 'text-purple-400',
   },
   {
     id: 'advanced',
     label: 'Advanced',
-    desc: 'Detailed execution analysis, memory addresses & control flow.',
+    desc: 'Detailed execution and runtime explanations.',
     icon: Zap,
     accent: 'text-amber-400',
   },
   {
     id: 'professor',
     label: 'Professor',
-    desc: 'Formal computer science terminology & stack frame analysis.',
+    desc: 'Formal teaching-oriented explanations.',
     icon: School,
     accent: 'text-emerald-400',
   },
@@ -59,7 +59,7 @@ export function StoryModeDropdown({ value, onChange }: StoryModeDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const currentMode = STORY_MODES.find((m) => m.id === value) || STORY_MODES[0];
+  const currentMode = STORY_MODES.find((m) => m.id === value) ?? STORY_MODES[0]!;
   const CurrentIcon = currentMode.icon;
 
   const handleSelect = (modeId: ExplanationMode) => {

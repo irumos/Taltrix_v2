@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, Boxes, CircuitBoard } from "lucide-react";
 import { LivingCodeCanvas } from "@/components/animations/LivingCodeCanvas";
 import { TaltrixButton } from "@/components/ui-kit/TaltrixButton";
+import { useAuth } from "@/contexts/AuthContext";
 
-const TITLE = "TALTRIX";
-const SUB = "Understand How Code Really Works.";
+const TITLE = "SEE CODE THINK.";
+const SUB = "Understand what happens inside your program, one step at a time.";
 
 function useTypewriter(text: string, speed = 55, delay = 0, enabled = true) {
   const [out, setOut] = useState(enabled ? "" : text);
@@ -29,6 +30,8 @@ function useTypewriter(text: string, speed = 55, delay = 0, enabled = true) {
 }
 
 export function Hero({ reduced }: { reduced: boolean }) {
+  const navigate = useNavigate();
+  const { requireAuth } = useAuth();
   const title = useTypewriter(TITLE, 105, 320, !reduced);
   const sub = useTypewriter(SUB, 42, 1400, !reduced);
   const { scrollYProgress } = useScroll();
@@ -60,35 +63,43 @@ export function Hero({ reduced }: { reduced: boolean }) {
           Interactive Code Execution Visualizer
         </motion.div>
 
-        <h1 className="mt-7 font-display text-[clamp(3.4rem,13vw,9.5rem)] leading-[0.86] font-bold tracking-[-0.045em]">
+        <h1 className="mt-7 font-display text-[clamp(3.4rem,13vw,8.5rem)] leading-[0.88] font-bold tracking-[-0.045em]">
           <span className="text-gradient">{title || "\u00A0"}</span>
-          {!reduced && title.length < TITLE.length && (
-            <span className="ml-1 inline-block h-[0.78em] w-[0.06em] translate-y-[0.04em] bg-cyan-400 align-baseline" />
+          {!reduced && (
+            <span
+              className={`ml-1 inline-block h-[0.78em] w-[0.06em] translate-y-[0.04em] bg-cyan-400 align-baseline transition-opacity duration-300 ${
+                title.length < TITLE.length ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            />
           )}
         </h1>
 
-        <p className="mt-6 font-mono text-[clamp(1rem,2.4vw,1.5rem)] text-foreground/90">
+        <p className="mt-6 font-mono text-[clamp(1rem,2.2vw,1.4rem)] text-foreground/90 max-w-2xl">
           <span className="mr-2 text-cyan-400">›</span>
           {sub}
-          {!reduced && sub.length < SUB.length && sub.length > 0 && (
-            <span className="ml-0.5 inline-block h-[1em] w-[0.5ch] translate-y-[0.12em] bg-cyan-400" />
+          {!reduced && (
+            <span
+              className={`ml-0.5 inline-block h-[1em] w-[0.5ch] translate-y-[0.12em] bg-cyan-400 transition-opacity duration-300 ${
+                sub.length < SUB.length && sub.length > 0 ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            />
           )}
         </p>
 
-        <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-          Watch your program execute step by step with interactive visualizations — variables, function calls, memory, and step explanations designed for students and educators.
-        </p>
-
         <div className="mt-10 flex flex-wrap items-center gap-3">
-          <Link to="/workspace">
-            <TaltrixButton size="lg" className="shadow-lg shadow-cyan-500/20">
-              Start Visualizing
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </TaltrixButton>
-          </Link>
-          <a href="#demo" onClick={(e) => { e.preventDefault(); document.querySelector("#demo")?.scrollIntoView({ behavior: "smooth" }); }}>
+          <TaltrixButton
+            size="lg"
+            onClick={() => {
+              requireAuth(() => navigate({ to: "/workspace" }));
+            }}
+            className="shadow-lg shadow-cyan-500/20"
+          >
+            Launch Workspace
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </TaltrixButton>
+          <a href="#problem" onClick={(e) => { e.preventDefault(); document.querySelector("#problem")?.scrollIntoView({ behavior: "smooth" }); }}>
             <TaltrixButton size="lg" variant="outline">
-              Browse Examples
+              See How It Works
             </TaltrixButton>
           </a>
         </div>

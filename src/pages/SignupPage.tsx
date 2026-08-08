@@ -88,7 +88,7 @@ export function SignupPage() {
         confirmPassword,
         acceptTerms,
       });
-      navigate({ to: '/dashboard' });
+      navigate({ to: '/' });
     } catch (err: any) {
       setErrorMsg(err.message || 'Could not complete registration.');
     } finally {

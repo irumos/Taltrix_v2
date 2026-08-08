@@ -37,12 +37,12 @@ type TabId = (typeof TABS)[number]["id"];
 
 const THEMES: { id: ThemeId; name: string; desc: string; bg: string; border: string; accent: string }[] = [
   {
-    id: "taltrix-dark",
-    name: "Taltrix Dark",
-    desc: "Default sleek dark cyan & purple identity",
-    bg: "bg-[#0D1224]",
-    border: "border-cyan-500/40",
-    accent: "bg-cyan-400",
+    id: "graphite",
+    name: "Graphite",
+    desc: "Default sleek carbon gray theme for minimalists",
+    bg: "bg-[#18181B]",
+    border: "border-zinc-600",
+    accent: "bg-zinc-300",
   },
   {
     id: "midnight",
@@ -61,12 +61,12 @@ const THEMES: { id: ThemeId; name: string; desc: string; bg: string; border: str
     accent: "bg-sky-400",
   },
   {
-    id: "graphite",
-    name: "Graphite",
-    desc: "Monochromatic carbon gray for minimalists",
-    bg: "bg-[#18181B]",
-    border: "border-zinc-600",
-    accent: "bg-zinc-300",
+    id: "taltrix-dark",
+    name: "Taltrix Dark (Legacy)",
+    desc: "Classic dark cyan & purple identity",
+    bg: "bg-[#0D1224]",
+    border: "border-cyan-500/40",
+    accent: "bg-cyan-400",
   },
   {
     id: "light",

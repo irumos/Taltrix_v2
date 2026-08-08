@@ -43,8 +43,49 @@
 }
 
 :root,
-[data-theme="taltrix-dark"] {
+[data-theme="graphite"] {
   --radius: 0.75rem;
+  --background: #121214;
+  --surface: #18181b;
+  --card: #27272a;
+  --card-foreground: #f4f4f5;
+  --popover: #18181b;
+  --popover-foreground: #f4f4f5;
+  --foreground: #f4f4f5;
+  --primary: #a1a1aa;
+  --primary-soft: #d4d4d8;
+  --secondary: #27272a;
+  --secondary-foreground: #f4f4f5;
+  --accent: #e4e4e7;
+  --accent-foreground: #121214;
+  --accent-soft: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --destructive: oklch(0.6368 0.2078 25.33);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.8763 0.2278 152.55);
+  --warning: oklch(0.7686 0.1647 70.08);
+  --border: #3f3f46;
+  --input: #3f3f46;
+  --ring: #e4e4e7;
+
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  --gradient-halo: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in oklab, var(--primary) 32%, transparent) 0%,
+    transparent 62%
+  );
+  --gradient-surface: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--card) 92%, transparent),
+    color-mix(in oklab, var(--surface) 88%, transparent)
+  );
+  --shadow-elevated: 0 24px 60px -24px color-mix(in oklab, var(--primary) 45%, transparent);
+  --shadow-inset: inset 0 1px 0 0 color-mix(in oklab, oklch(1 0 0) 8%, transparent);
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="taltrix-dark"] {
   --background: oklch(0.1395 0.0317 270.28);
   --foreground: oklch(0.98 0.004 250);
   --surface: oklch(0.1877 0.0376 270.7);
@@ -69,81 +110,6 @@
   --border: oklch(0.3186 0.0457 265.03);
   --input: oklch(0.3186 0.0457 265.03);
   --ring: oklch(0.5413 0.2466 293.01);
-
-  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-  --gradient-halo: radial-gradient(
-    circle at 50% 0%,
-    color-mix(in oklab, var(--primary) 32%, transparent) 0%,
-    transparent 62%
-  );
-  --gradient-surface: linear-gradient(
-    160deg,
-    color-mix(in oklab, var(--card) 92%, transparent),
-    color-mix(in oklab, var(--surface) 88%, transparent)
-  );
-  --shadow-elevated: 0 24px 60px -24px color-mix(in oklab, var(--primary) 45%, transparent);
-  --shadow-inset: inset 0 1px 0 0 color-mix(in oklab, oklch(1 0 0) 8%, transparent);
-  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-[data-theme="midnight"] {
-  --background: #050711;
-  --surface: #0b0f1e;
-  --card: #10172a;
-  --card-foreground: #f8fafc;
-  --popover: #0b0f1e;
-  --popover-foreground: #f8fafc;
-  --foreground: #f8fafc;
-  --primary: #3b82f6;
-  --primary-soft: #60a5fa;
-  --secondary: #1e293b;
-  --accent: #38bdf8;
-  --accent-soft: #7dd3fc;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #38bdf8;
-}
-
-[data-theme="deep-blue"] {
-  --background: #071330;
-  --surface: #0c1b40;
-  --card: #122452;
-  --card-foreground: #f0f6ff;
-  --popover: #0c1b40;
-  --popover-foreground: #f0f6ff;
-  --foreground: #f0f6ff;
-  --primary: #4f46e5;
-  --primary-soft: #818cf8;
-  --secondary: #1e3a7a;
-  --accent: #00d8ff;
-  --accent-soft: #67e8f9;
-  --muted: #1e3a7a;
-  --muted-foreground: #93c5fd;
-  --border: #1e3a7a;
-  --input: #1e3a7a;
-  --ring: #00d8ff;
-}
-
-[data-theme="graphite"] {
-  --background: #121214;
-  --surface: #18181b;
-  --card: #27272a;
-  --card-foreground: #f4f4f5;
-  --popover: #18181b;
-  --popover-foreground: #f4f4f5;
-  --foreground: #f4f4f5;
-  --primary: #a1a1aa;
-  --primary-soft: #d4d4d8;
-  --secondary: #27272a;
-  --accent: #e4e4e7;
-  --accent-soft: #fafafa;
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  --border: #3f3f46;
-  --input: #3f3f46;
-  --ring: #e4e4e7;
 }
 
 [data-theme="light"] {

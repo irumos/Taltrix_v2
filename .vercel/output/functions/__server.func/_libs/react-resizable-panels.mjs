@@ -383,8 +383,8 @@ function Ge(e) {
 }
 function Dt(e, t, n) {
 	let o, i = {
-		x: Infinity,
-		y: Infinity
+		x: 1 / 0,
+		y: 1 / 0
 	};
 	for (const s of t) {
 		const u = Je(n, s.rect);

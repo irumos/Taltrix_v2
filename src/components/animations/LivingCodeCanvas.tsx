@@ -38,31 +38,60 @@ export const LivingCodeCanvas = memo(function LivingCodeCanvas({ reduced }: { re
     const ripples: { x: number; y: number; r: number; life: number }[] = [];
 
     const build = () => {
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      if (!w || !h) return;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const nextW = canvas.clientWidth;
+      const nextH = canvas.clientHeight;
+      if (!nextW || !nextH) return;
+
+      if (canvas.width !== Math.floor(nextW * dpr) || canvas.height !== Math.floor(nextH * dpr)) {
+        canvas.width = Math.floor(nextW * dpr);
+        canvas.height = Math.floor(nextH * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      w = nextW;
+      h = nextH;
 
       // Capped density for buttery 60fps performance
       const density = Math.min(90, Math.max(50, Math.round((w * h) / 14000)));
-      fragments = Array.from({ length: density }, () => {
-        const x = Math.random() * w;
-        const y = Math.random() * h;
-        return {
-          x,
-          y,
-          hx: x,
-          hy: y,
-          vx: (Math.random() - 0.5) * 0.18,
-          vy: (Math.random() - 0.5) * 0.18,
-          size: 11,
-          alpha: 0.12 + Math.random() * 0.28,
-          text: TOKENS[Math.floor(Math.random() * TOKENS.length)] ?? "if",
-          hue: Math.random(),
-        };
-      });
+
+      if (fragments.length === 0) {
+        fragments = Array.from({ length: density }, () => {
+          const x = Math.random() * w;
+          const y = Math.random() * h;
+          return {
+            x,
+            y,
+            hx: x,
+            hy: y,
+            vx: (Math.random() - 0.5) * 0.18,
+            vy: (Math.random() - 0.5) * 0.18,
+            size: 11,
+            alpha: 0.12 + Math.random() * 0.28,
+            text: TOKENS[Math.floor(Math.random() * TOKENS.length)] ?? "if",
+            hue: Math.random(),
+          };
+        });
+      } else if (fragments.length < density) {
+        const diff = density - fragments.length;
+        for (let i = 0; i < diff; i++) {
+          const x = Math.random() * w;
+          const y = Math.random() * h;
+          fragments.push({
+            x,
+            y,
+            hx: x,
+            hy: y,
+            vx: (Math.random() - 0.5) * 0.18,
+            vy: (Math.random() - 0.5) * 0.18,
+            size: 11,
+            alpha: 0.12 + Math.random() * 0.28,
+            text: TOKENS[Math.floor(Math.random() * TOKENS.length)] ?? "if",
+            hue: Math.random(),
+          });
+        }
+      } else if (fragments.length > density) {
+        fragments.length = density;
+      }
     };
 
     const columnTargets = () => {

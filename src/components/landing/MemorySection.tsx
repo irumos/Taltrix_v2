@@ -1,95 +1,132 @@
-import { useRef } from "react";
-import { motion, useInView } from "motion/react";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import { Section, SectionHeading } from "@/components/ui-kit/Section";
-import { TRACE } from "@/data/execution";
-
-const SNAPSHOT = TRACE[4]!;
+import { Layers, Variable, Boxes, Activity, ArrowRight } from "lucide-react";
 
 export function MemorySection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-120px" });
-
   return (
-    <Section id="memory">
+    <Section id="runtime-state">
       <SectionHeading
-        index="03"
-        eyebrow="Memory visualization"
-        title="Stack grows down. Heap grows out."
-        description="Every binding is a card that flies into the region that owns it, with live references drawn between frames and heap objects."
+        index="04"
+        eyebrow="Runtime Visualization"
+        title="See What Your Program Sees."
+        description="Variables, functions, memory and execution state — visible as your program runs."
       />
 
-      <div ref={ref} className="mt-14 grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr]">
-        <div>
-          <div className="mb-3 flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-            <ArrowDown className="h-3.5 w-3.5" aria-hidden /> Stack
-          </div>
-          <div className="flex flex-col gap-2">
-            {SNAPSHOT.stack.map((f, i) => (
-              <motion.div
-                key={f.name + i}
-                initial={{ opacity: 0, y: -22, scale: 0.95 }}
-                animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ delay: 0.1 + i * 0.12, type: "spring", stiffness: 260, damping: 26 }}
-                className="panel flex items-center justify-between px-4 py-3 font-mono text-[12px]"
-                style={{ marginLeft: i * 10 }}
-              >
-                <span>{f.name}</span>
-                <span className="text-muted-foreground">
-                  {Object.entries(f.locals ?? {})
-                    .map(([k, v]) => `${k}=${v}`)
-                    .join(", ") || "—"}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-3 flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden /> Heap
-          </div>
-          <div className="relative">
-            <svg
-              aria-hidden
-              className="pointer-events-none absolute inset-0 h-full w-full"
-              preserveAspectRatio="none"
-            >
-              <motion.path
-                d="M 10 40 C 120 10, 220 90, 340 44"
-                fill="none"
-                stroke="var(--color-accent)"
-                strokeOpacity="0.35"
-                strokeWidth="1"
-                strokeDasharray="4 6"
-                initial={{ pathLength: 0 }}
-                animate={inView ? { pathLength: 1 } : {}}
-                transition={{ duration: 1.4, delay: 0.5 }}
-              />
-            </svg>
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {SNAPSHOT.heap.map((o, i) => (
-                <motion.article
-                  key={o.id}
-                  initial={{ opacity: 0, x: 40, rotate: 2 }}
-                  animate={inView ? { opacity: 1, x: 0, rotate: 0 } : {}}
-                  transition={{ delay: 0.2 + i * 0.1, type: "spring", stiffness: 240, damping: 24 }}
-                  whileHover={{ y: -4 }}
-                  className="panel p-4"
-                >
-                  <div className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-                    {o.id}
-                  </div>
-                  <div className="mt-2 font-display text-lg font-semibold">{o.label}</div>
-                  <div className="mt-1 font-mono text-[12px] text-accent">{o.type}</div>
-                  <div className="mt-3 border-t border-border/60 pt-3 font-mono text-[12px] text-muted-foreground">
-                    {o.value}
-                  </div>
-                </motion.article>
-              ))}
+      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* PANEL 1: VARIABLES */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="panel p-5 flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 border-b border-border/60 pb-3 mb-4 font-mono text-xs font-bold text-cyan-300 uppercase tracking-wider">
+              <Variable className="h-4 w-4" />
+              <span>VARIABLES</span>
+            </div>
+            <div className="space-y-2.5 font-mono text-xs">
+              <div className="flex items-center justify-between p-2 rounded-lg bg-surface-h/40 border border-border/40">
+                <span className="text-muted-foreground">count</span>
+                <span className="font-bold text-foreground">5</span>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-surface-h/40 border border-border/40">
+                <span className="text-muted-foreground">total</span>
+                <span className="font-bold text-foreground">120</span>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-surface-h/40 border border-border/40">
+                <span className="text-muted-foreground">name</span>
+                <span className="font-bold text-cyan-300">"Alex"</span>
+              </div>
             </div>
           </div>
-        </div>
+          <span className="mt-4 font-mono text-[10px] text-muted-foreground">Live variable state</span>
+        </motion.div>
+
+        {/* PANEL 2: FUNCTION CALLS */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="panel p-5 flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 border-b border-border/60 pb-3 mb-4 font-mono text-xs font-bold text-cyan-300 uppercase tracking-wider">
+              <Layers className="h-4 w-4" />
+              <span>FUNCTION CALLS</span>
+            </div>
+            <div className="space-y-2 font-mono text-xs">
+              <div className="p-2 rounded-lg bg-surface-h/40 border border-border/40 flex items-center justify-between text-muted-foreground">
+                <span>main()</span>
+                <ArrowRight className="h-3 w-3 text-cyan-400" />
+              </div>
+              <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-between font-semibold text-cyan-300">
+                <span>calculate()</span>
+                <ArrowRight className="h-3 w-3 text-cyan-400" />
+              </div>
+              <div className="p-2 rounded-lg bg-surface-h/40 border border-border/40 flex items-center justify-between text-muted-foreground">
+                <span>validate()</span>
+              </div>
+            </div>
+          </div>
+          <span className="mt-4 font-mono text-[10px] text-muted-foreground">Call stack depth</span>
+        </motion.div>
+
+        {/* PANEL 3: MEMORY */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="panel p-5 flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 border-b border-border/60 pb-3 mb-4 font-mono text-xs font-bold text-cyan-300 uppercase tracking-wider">
+              <Boxes className="h-4 w-4" />
+              <span>MEMORY</span>
+            </div>
+            <div className="p-3 rounded-lg bg-surface-h/40 border border-border/40 font-mono text-xs space-y-1 text-muted-foreground">
+              <div className="text-foreground font-semibold">Stack</div>
+              <div className="pl-2">└── calculate()</div>
+              <div className="pl-6">├── count</div>
+              <div className="pl-6">└── total</div>
+            </div>
+          </div>
+          <span className="mt-4 font-mono text-[10px] text-muted-foreground">Stack allocation layout</span>
+        </motion.div>
+
+        {/* PANEL 4: EXECUTION */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="panel p-5 flex flex-col justify-between border-cyan-500/30"
+        >
+          <div>
+            <div className="flex items-center gap-2 border-b border-border/60 pb-3 mb-4 font-mono text-xs font-bold text-cyan-300 uppercase tracking-wider">
+              <Activity className="h-4 w-4" />
+              <span>EXECUTION</span>
+            </div>
+            <div className="space-y-2 font-mono text-xs">
+              <div className="flex items-center justify-between p-2 rounded-lg bg-surface-h/40 border border-border/40">
+                <span className="text-muted-foreground">Step</span>
+                <span className="font-bold text-cyan-300">06</span>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+                <span>Status</span>
+                <span className="font-bold">Running</span>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-surface-h/40 border border-border/40">
+                <span className="text-muted-foreground">Function</span>
+                <span className="font-semibold text-foreground">calculate()</span>
+              </div>
+            </div>
+          </div>
+          <span className="mt-4 font-mono text-[10px] text-muted-foreground">Execution status</span>
+        </motion.div>
       </div>
     </Section>
   );

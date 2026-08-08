@@ -20,40 +20,21 @@ import {
   BookOpen,
 } from 'lucide-react';
 import { useExecution } from '@/contexts/ExecutionContext';
+import { useSettings } from '@/contexts/SettingsContext';
 import { ExecutionStoryService, ExplanationMode } from '@/services/executionStoryService';
 import { useStorySpeech } from '@/hooks/use-story-speech';
 import { blip } from '@/lib/sound';
-
-const MODES: { id: ExplanationMode; label: string; desc: string }[] = [
-  { id: 'beginner', label: 'Beginner', desc: 'Simple English, friendly teacher style' },
-  { id: 'intermediate', label: 'Intermediate', desc: 'Step detail & variable scope' },
-  { id: 'advanced', label: 'Advanced', desc: 'Memory addresses & control flow' },
-  { id: 'professor', label: 'Professor', desc: 'Formal computer science terminology' },
-];
-
 import { StoryModeDropdown } from './StoryModeDropdown';
-
-const STORAGE_KEY = 'taltrix_execution_story_mode';
 
 export function ExecutionStoryPanel() {
   const { step, index, program, select, setHover } = useExecution();
+  const { settings, updateCategory } = useSettings();
   const { speak, stop, isSpeaking, supported } = useStorySpeech();
 
-  const [explanationMode, setExplanationMode] = useState<ExplanationMode>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved && ['beginner', 'intermediate', 'advanced', 'professor'].includes(saved)) {
-        return saved as ExplanationMode;
-      }
-    }
-    return 'beginner';
-  });
+  const explanationMode = (settings.explanation?.style as ExplanationMode) || 'beginner';
 
   const handleModeChange = (newMode: ExplanationMode) => {
-    setExplanationMode(newMode);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, newMode);
-    }
+    updateCategory('explanation', { style: newMode as any });
   };
 
   const [showHistory, setShowHistory] = useState(false);
@@ -212,12 +193,11 @@ export function ExecutionStoryPanel() {
 
                 return (
                   <button
-                    key={st.id || idx}
+                    key={idx}
                     type="button"
                     onClick={() => {
                       blip('hover');
-                      // Jump to step via select or index
-                      select({ kind: 'line', line: st.line });
+                      select({ kind: 'function', name: st.currentFunction || 'main' });
                     }}
                     className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-all ${
                       isCurrent

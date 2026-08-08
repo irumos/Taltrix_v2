@@ -77,21 +77,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Taltrix | Interactive Code Visualizer" },
+      { title: "TALTRIX — See Code Come Alive" },
       {
         name: "description",
         content:
-          "Taltrix is an interactive code execution visualization platform for students and educators.",
+          "TALTRIX — See Code Come Alive. A visual code execution platform that helps students understand how programs execute step by step.",
       },
-      { name: "author", content: "Taltrix" },
-      { property: "og:title", content: "Taltrix | Interactive Code Visualizer" },
+      { name: "author", content: "TALTRIX" },
+      { property: "og:title", content: "TALTRIX — See Code Come Alive" },
       {
         property: "og:description",
-        content:
-          "Taltrix is an interactive code execution visualization platform for students and educators.",
+        content: "Visualize program execution step by step with TALTRIX.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "TALTRIX — See Code Come Alive" },
+      {
+        name: "twitter:description",
+        content: "Visualize program execution step by step with TALTRIX.",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -120,6 +124,11 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem("taltrix:user_settings:v1");if(s){var p=JSON.parse(s);var t=p&&p.theme&&p.theme.id;if(t==="taltrix-dark"||t==="dark"){t="graphite";}if(t){document.documentElement.dataset.theme=t;}if(p&&p.appearance&&p.appearance.accentColor){document.documentElement.dataset.accent=p.appearance.accentColor;}if(p&&p.appearance&&p.appearance.uiDensity){document.documentElement.dataset.density=p.appearance.uiDensity;}}else{document.documentElement.dataset.theme="graphite";}}catch(e){document.documentElement.dataset.theme="graphite";}})();`,
+          }}
+        />
         <HeadContent />
       </head>
       <body>
@@ -142,6 +151,7 @@ import { NavigationHistoryProvider } from "@/contexts/NavigationHistoryContext";
 import { CommandPalette } from "@/components/common/CommandPalette";
 import { ShortcutsModal } from "@/components/common/ShortcutsModal";
 import { SettingsModal } from "@/components/settings/SettingsModal";
+import { AuthRequiredModal } from "@/components/common/AuthRequiredModal";
 import { CustomCursor } from "@/components/animations/CustomCursor";
 
 function RootComponent() {
@@ -157,7 +167,7 @@ function RootComponent() {
               <ThemeProvider>
                 <TransitionProvider>
                   <CustomCursor />
-                  <Toaster position="top-right" theme="dark" richColors closeButton />
+                  <Toaster position="bottom-right" theme="dark" richColors closeButton />
                   <AnimatePresence mode="sync" initial={false}>
                     <motion.div
                       key={location.pathname}
@@ -174,6 +184,7 @@ function RootComponent() {
                   <CommandPalette />
                   <ShortcutsModal />
                   <SettingsModal />
+                  <AuthRequiredModal />
                 </TransitionProvider>
               </ThemeProvider>
             </SettingsProvider>
